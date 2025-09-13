@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limpopo Connect - Onboarding</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="sticky-nav">
+            <a href="index.html" class="nav-icon">Home</a>
+            <a href="#" class="nav-icon">Search</a>
+            <a href="community.html" class="nav-icon">Events</a>
+            <a href="messaging.html" class="nav-icon">Messages</a>
+            <a href="profile.html" class="nav-icon">Profile</a>
+        </nav>
+        <div class="mode-toggle">
+            <button id="hookups-mode">Hookups</button>
+            <button id="community-mode">Community</button>
+            <button id="both-modes">Both</button>
+        </div>
+    </header>
+
+    <main>
+        <section id="onboarding-page">
+            <div class="onboarding-container">
+                <h2>Set up your profile</h2>
+                <p>This information will be used to personalize your experience.</p>
+                <form id="onboarding-form">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+
+                    <label for="avatar">Profile Picture:</label>
+                    <input type="file" id="avatar" name="avatar">
+
+                    <div class="privacy-settings">
+                        <h3>Privacy Settings</h3>
+                        <div class="setting">
+                            <input type="checkbox" id="blur-avatar" name="blur-avatar">
+                            <label for="blur-avatar">Blur my avatar in Hookups mode</label>
+                        </div>
+                        <div class="setting">
+                            <input type="checkbox" id="use-pseudonym" name="use-pseudonym">
+                            <label for="use-pseudonym">Use a pseudonym in Hookups mode</label>
+                        </div>
+                    </div>
+
+                    <button type="submit">Complete Profile</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Limpopo Connect. All rights reserved.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
