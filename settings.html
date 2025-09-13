@@ -4,71 +4,100 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Limpopo Connect - Settings</title>
-    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              hookups: { bg: '#1a1a1a', text: '#e0e0e0', accent: '#ff3b30' },
+              community: { bg: '#f5f5f7', text: '#1d1d1f', accent: '#ff9500', secondary: '#00a0b0' }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+        input:checked ~ .dot {
+            transform: translateX(100%);
+            background-color: #ff9500; /* community-accent */
+        }
+        .dark input:checked ~ .dot {
+            background-color: #ff3b30; /* hookups-accent */
+        }
+    </style>
 </head>
-<body>
-    <header>
-        <nav class="sticky-nav">
-            <a href="index.html" class="nav-icon">Home</a>
-            <a href="#" class="nav-icon">Search</a>
-            <a href="community.html" class="nav-icon">Events</a>
-            <a href="messaging.html" class="nav-icon">Messages</a>
-            <a href="profile.html" class="nav-icon">Profile</a>
-        </nav>
-        <div class="mode-toggle">
-            <button id="hookups-mode">Hookups</button>
-            <button id="community-mode">Community</button>
-            <button id="both-modes">Both</button>
+<body class="bg-community-bg text-community-text dark:bg-hookups-bg dark:text-hookups-text">
+    <div class="flex h-screen">
+        <aside class="hidden lg:flex lg:flex-col lg:w-64 bg-white dark:bg-gray-800 shadow-lg">
+            <div class="flex items-center justify-center h-20 shadow-md"><h1 class="text-2xl font-bold text-community-accent dark:text-hookups-accent">Limpopo C.</h1></div>
+            <nav class="flex-1 px-4 py-8 space-y-2">
+                <a href="index.html" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-md">Home</a>
+                <a href="#" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-md">Search</a>
+                <a href="community.html" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-md">Events</a>
+                <a href="messaging.html" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-md">Messages</a>
+                <a href="profile.html" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-md">Profile</a>
+            </nav>
+            <div class="mt-auto p-4"><button id="theme-toggle-btn" class="w-full py-2 px-4 bg-gray-200 dark:bg-gray-700 rounded-lg text-gray-800 dark:text-white">Toggle Theme</button></div>
+        </aside>
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <header class="lg:hidden flex justify-between items-center p-4 bg-white dark:bg-gray-800 shadow-md"><h1 class="text-xl font-bold text-community-accent dark:text-hookups-accent">Limpopo Connect</h1></header>
+            <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 dark:bg-gray-900 p-8">
+                <div class="container mx-auto max-w-4xl">
+                    <h1 class="text-3xl font-bold text-gray-800 dark:text-white mb-8">Settings</h1>
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+                        <form id="settings-form" class="space-y-8">
+                            <div class="space-y-4">
+                                <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Profile Information</h2>
+                                <div>
+                                    <label for="username" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Username</label>
+                                    <input type="text" id="username" name="username" value="JohnDoe" class="mt-1 block w-full bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-community-accent focus:border-community-accent">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
+                                    <input type="email" id="email" name="email" value="johndoe@example.com" class="mt-1 block w-full bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-community-accent focus:border-community-accent">
+                                </div>
+                            </div>
+                            <div class="space-y-4">
+                                <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Privacy Controls</h2>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-gray-700 dark:text-gray-300">Blur my avatar in Hookups mode</span>
+                                    <label for="blur-avatar" class="flex items-center cursor-pointer">
+                                        <div class="relative">
+                                            <input type="checkbox" id="blur-avatar" class="sr-only">
+                                            <div class="block bg-gray-300 dark:bg-gray-600 w-14 h-8 rounded-full"></div>
+                                            <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-gray-700 dark:text-gray-300">Use a pseudonym in Hookups mode</span>
+                                    <label for="use-pseudonym" class="flex items-center cursor-pointer">
+                                        <div class="relative">
+                                            <input type="checkbox" id="use-pseudonym" class="sr-only">
+                                            <div class="block bg-gray-300 dark:bg-gray-600 w-14 h-8 rounded-full"></div>
+                                            <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="flex justify-end">
+                                <button type="submit" class="px-6 py-2 bg-community-accent text-white font-semibold rounded-lg shadow-md hover:bg-orange-600 transition">Save Settings</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </main>
         </div>
-    </header>
-
-    <main>
-        <section id="settings-page">
-            <div class="settings-container">
-                <h2>Settings</h2>
-
-                <form id="settings-form">
-                    <h3>Profile Information</h3>
-                    <label for="username">Username:</label>
-                    <input type="text" id="username" name="username" value="JohnDoe">
-
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" value="johndoe@example.com">
-
-                    <h3>Privacy Controls</h3>
-                     <div class="setting">
-                        <input type="checkbox" id="blur-avatar" name="blur-avatar">
-                        <label for="blur-avatar">Blur my avatar in Hookups mode</label>
-                    </div>
-                    <div class="setting">
-                        <input type="checkbox" id="use-pseudonym" name="use-pseudonym">
-                        <label for="use-pseudonym">Use a pseudonym in Hookups mode</label>
-                    </div>
-
-                    <h3>Notifications</h3>
-                    <div class="setting">
-                        <input type="checkbox" id="email-notifications" name="email-notifications" checked>
-                        <label for="email-notifications">Email Notifications</label>
-                    </div>
-                     <div class="setting">
-                        <input type="checkbox" id="push-notifications" name="push-notifications" checked>
-                        <label for="push-notifications">Push Notifications</label>
-                    </div>
-
-                    <h3>Safety Tools</h3>
-                    <a href="#" class="safety-link">Manage Blocked Users</a>
-                    <a href="#" class="safety-link">Report a concern</a>
-
-                    <button type="submit">Save Settings</button>
-                </form>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2025 Limpopo Connect. All rights reserved.</p>
-    </footer>
-
+    </div>
+    <nav class="lg:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 shadow-[0_-1px_5px_rgba(0,0,0,0.1)] flex justify-around">
+        <a href="index.html" class="flex flex-col items-center justify-center w-full pt-2 pb-1 text-community-accent dark:text-hookups-accent">Home</a>
+        <a href="#" class="flex flex-col items-center justify-center w-full pt-2 pb-1 text-gray-600 dark:text-gray-300 hover:text-community-accent dark:hover:text-hookups-accent">Search</a>
+        <a href="community.html" class="flex flex-col items-center justify-center w-full pt-2 pb-1 text-gray-600 dark:text-gray-300 hover:text-community-accent dark:hover:text-hookups-accent">Events</a>
+        <a href="messaging.html" class="flex flex-col items-center justify-center w-full pt-2 pb-1 text-gray-600 dark:text-gray-300 hover:text-community-accent dark:hover:text-hookups-accent">Messages</a>
+        <a href="profile.html" class="flex flex-col items-center justify-center w-full pt-2 pb-1 text-gray-600 dark:text-gray-300 hover:text-community-accent dark:hover:text-hookups-accent">Profile</a>
+    </nav>
     <script src="js/script.js"></script>
 </body>
 </html>

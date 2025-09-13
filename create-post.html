@@ -4,50 +4,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Limpopo Connect - Create Post</title>
-    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              hookups: { bg: '#1a1a1a', text: '#e0e0e0', accent: '#ff3b30' },
+              community: { bg: '#f5f5f7', text: '#1d1d1f', accent: '#ff9500', secondary: '#00a0b0' }
+            }
+          }
+        }
+      }
+    </script>
 </head>
-<body class="hookups-theme">
-    <header>
-        <nav class="sticky-nav">
-            <a href="index.html" class="nav-icon">Home</a>
-            <a href="#" class="nav-icon">Search</a>
-            <a href="community.html" class="nav-icon">Events</a>
-            <a href="messaging.html" class="nav-icon">Messages</a>
-            <a href="profile.html" class="nav-icon">Profile</a>
-        </nav>
-        <div class="mode-toggle">
-            <button id="hookups-mode">Hookups</button>
-            <button id="community-mode">Community</button>
-            <button id="both-modes">Both</button>
-        </div>
-    </header>
-
-    <main>
-        <section id="create-post-page">
-            <div class="form-container">
-                <h2>Create a New Post</h2>
-                <form id="create-post-form">
-                    <label for="post-title">Title:</label>
-                    <input type="text" id="post-title" name="post-title" required>
-
-                    <label for="post-content">Content:</label>
-                    <textarea id="post-content" name="post-content" rows="6" required></textarea>
-
-                    <div class="anonymity-toggle">
-                        <input type="checkbox" id="anonymous" name="anonymous">
-                        <label for="anonymous">Post anonymously (use pseudonym and blurred avatar)</label>
+<body class="bg-community-bg text-community-text dark:bg-hookups-bg dark:text-hookups-text">
+    <div class="flex h-screen">
+        <aside class="hidden lg:flex lg:flex-col lg:w-64 bg-white dark:bg-gray-800 shadow-lg">
+            <div class="flex items-center justify-center h-20 shadow-md"><h1 class="text-2xl font-bold text-community-accent dark:text-hookups-accent">Limpopo C.</h1></div>
+            <nav class="flex-1 px-4 py-8 space-y-2">
+                <a href="index.html" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-md">Home</a>
+                <a href="#" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-md">Search</a>
+                <a href="community.html" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-md">Events</a>
+                <a href="messaging.html" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-md">Messages</a>
+                <a href="profile.html" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-md">Profile</a>
+            </nav>
+            <div class="mt-auto p-4"><button id="theme-toggle-btn" class="w-full py-2 px-4 bg-gray-200 dark:bg-gray-700 rounded-lg text-gray-800 dark:text-white">Toggle Theme</button></div>
+        </aside>
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <header class="lg:hidden flex justify-between items-center p-4 bg-white dark:bg-gray-800 shadow-md"><h1 class="text-xl font-bold text-community-accent dark:text-hookups-accent">Limpopo Connect</h1></header>
+            <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 dark:bg-gray-900">
+                <div class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-2xl p-8 w-full max-w-lg">
+                        <div class="flex justify-between items-center mb-6">
+                            <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Create a New Post</h2>
+                            <a href="hookups.html" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 text-2xl">&times;</a>
+                        </div>
+                        <form id="create-post-form" class="space-y-6">
+                            <div>
+                                <label for="post-title" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Title</label>
+                                <input type="text" id="post-title" name="post-title" required class="mt-1 block w-full bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-hookups-accent focus:border-hookups-accent">
+                            </div>
+                            <div>
+                                <label for="post-content" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Content</label>
+                                <textarea id="post-content" name="post-content" rows="4" required class="mt-1 block w-full bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-hookups-accent focus:border-hookups-accent"></textarea>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="anonymous" name="anonymous" class="h-4 w-4 text-hookups-accent border-gray-300 rounded focus:ring-hookups-accent">
+                                <label for="anonymous" class="ml-2 block text-sm text-gray-900 dark:text-gray-200">Post anonymously</label>
+                            </div>
+                            <div class="flex justify-end">
+                                <button type="submit" class="px-6 py-2 bg-hookups-accent text-white font-semibold rounded-lg shadow-md hover:bg-red-700 transition">Create Post</button>
+                            </div>
+                        </form>
                     </div>
-
-                    <button type="submit">Create Post</button>
-                </form>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2025 Limpopo Connect. All rights reserved.</p>
-    </footer>
-
+                </div>
+            </main>
+        </div>
+    </div>
+    <nav class="lg:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 shadow-[0_-1px_5px_rgba(0,0,0,0.1)] flex justify-around">
+        <a href="index.html" class="flex flex-col items-center justify-center w-full pt-2 pb-1 text-community-accent dark:text-hookups-accent">Home</a>
+        <a href="#" class="flex flex-col items-center justify-center w-full pt-2 pb-1 text-gray-600 dark:text-gray-300 hover:text-community-accent dark:hover:text-hookups-accent">Search</a>
+        <a href="community.html" class="flex flex-col items-center justify-center w-full pt-2 pb-1 text-gray-600 dark:text-gray-300 hover:text-community-accent dark:hover:text-hookups-accent">Events</a>
+        <a href="messaging.html" class="flex flex-col items-center justify-center w-full pt-2 pb-1 text-gray-600 dark:text-gray-300 hover:text-community-accent dark:hover:text-hookups-accent">Messages</a>
+        <a href="profile.html" class="flex flex-col items-center justify-center w-full pt-2 pb-1 text-gray-600 dark:text-gray-300 hover:text-community-accent dark:hover:text-hookups-accent">Profile</a>
+    </nav>
     <script src="js/script.js"></script>
 </body>
 </html>

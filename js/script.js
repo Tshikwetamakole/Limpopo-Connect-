@@ -7,40 +7,33 @@ document.addEventListener('DOMContentLoaded', () => {
      * The 'hookups-theme' class is added or removed from the body element,
      * which triggers the CSS variable changes for the dark theme.
      */
-    const hookupsModeBtn = document.getElementById('hookups-mode');
-    const communityModeBtn = document.getElementById('community-mode');
-    const bothModesBtn = document.getElementById('both-modes');
-    const body = document.body;
+    const htmlEl = document.documentElement;
 
     // Function to apply the theme based on localStorage
     const applyTheme = () => {
-        if (localStorage.getItem('theme') === 'hookups') {
-            body.classList.add('hookups-theme');
+        if (localStorage.getItem('theme') === 'dark') {
+            htmlEl.classList.add('dark');
         } else {
-            body.classList.remove('hookups-theme');
+            htmlEl.classList.remove('dark');
         }
     };
 
     // Apply theme on initial page load
     applyTheme();
 
-    if (hookupsModeBtn) {
-        hookupsModeBtn.addEventListener('click', () => {
-            localStorage.setItem('theme', 'hookups');
-            applyTheme();
-        });
-    }
-    if (communityModeBtn) {
-        communityModeBtn.addEventListener('click', () => {
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
+
+    const toggleTheme = () => {
+        if (localStorage.getItem('theme') === 'dark') {
             localStorage.removeItem('theme');
-            applyTheme();
-        });
-    }
-    if (bothModesBtn) {
-        bothModesBtn.addEventListener('click', () => {
-            localStorage.removeItem('theme');
-            applyTheme();
-        });
+        } else {
+            localStorage.setItem('theme', 'dark');
+        }
+        applyTheme();
+    };
+
+    if(themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', toggleTheme);
     }
 
     console.log("Limpopo Connect script loaded.");
@@ -76,20 +69,26 @@ document.addEventListener('DOMContentLoaded', () => {
     handleFormSubmit('settings-form', 'Settings Form');
 
     // --- Messaging Simulation ---
-    const messageInput = document.querySelector('.message-input input');
-    const messageSendBtn = document.querySelector('.message-input button');
-    const messageArea = document.querySelector('.message-area');
+    const messageInput = document.getElementById('message-input');
+    const messageSendBtn = document.getElementById('message-send-btn');
+    const messageArea = document.getElementById('message-area');
 
     if (messageInput && messageSendBtn && messageArea) {
-        messageSendBtn.addEventListener('click', () => {
+        const sendMessage = () => {
             const messageText = messageInput.value.trim();
             if (messageText) {
                 const messageEl = document.createElement('div');
-                messageEl.classList.add('message', 'sent');
-                messageEl.innerHTML = `<p>${messageText}</p>`;
+                messageEl.className = 'flex justify-end';
+                messageEl.innerHTML = `<div class="bg-community-accent text-white p-3 rounded-lg max-w-lg">${messageText}</div>`;
                 messageArea.appendChild(messageEl);
                 messageInput.value = '';
-                messageArea.scrollTop = messageArea.scrollHeight; // Scroll to bottom
+                messageArea.scrollTop = messageArea.scrollHeight;
+            }
+        };
+        messageSendBtn.addEventListener('click', sendMessage);
+        messageInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
             }
         });
     }
@@ -111,4 +110,13 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log(`Searching for: ${e.target.value}`);
         });
     }
+
+    // --- Placeholder for dead links ---
+    const deadLinks = document.querySelectorAll('a[href="#"]');
+    deadLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            alert("This feature is not yet implemented.");
+        });
+    });
 });

@@ -4,67 +4,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Limpopo Connect - Hookups</title>
-    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              hookups: { bg: '#1a1a1a', text: '#e0e0e0', accent: '#ff3b30' },
+              community: { bg: '#f5f5f7', text: '#1d1d1f', accent: '#ff9500', secondary: '#00a0b0' }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      .perspective-1000 { perspective: 1000px; }
+      .transform-style-3d { transform-style: preserve-3d; }
+      .backface-hidden { backface-visibility: hidden; }
+      .rotate-y-180 { transform: rotateY(180deg); }
+    </style>
 </head>
-<body class="hookups-theme">
-    <header>
-        <nav class="sticky-nav">
-            <a href="index.html" class="nav-icon">Home</a>
-            <a href="#" class="nav-icon">Search</a>
-            <a href="community.html" class="nav-icon">Events</a>
-            <a href="messaging.html" class="nav-icon">Messages</a>
-            <a href="profile.html" class="nav-icon">Profile</a>
-        </nav>
-        <div class="mode-toggle">
-            <button id="hookups-mode">Hookups</button>
-            <button id="community-mode">Community</button>
-            <button id="both-modes">Both</button>
+<body class="bg-community-bg text-community-text dark:bg-hookups-bg dark:text-hookups-text">
+    <div class="flex h-screen">
+        <aside class="hidden lg:flex lg:flex-col lg:w-64 bg-white dark:bg-gray-800 shadow-lg">
+            <div class="flex items-center justify-center h-20 shadow-md"><h1 class="text-2xl font-bold text-community-accent dark:text-hookups-accent">Limpopo C.</h1></div>
+            <nav class="flex-1 px-4 py-8 space-y-2">
+                <a href="index.html" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-md">Home</a>
+                <a href="#" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-md">Search</a>
+                <a href="community.html" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-md">Events</a>
+                <a href="messaging.html" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-md">Messages</a>
+                <a href="profile.html" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-md">Profile</a>
+            </nav>
+            <div class="mt-auto p-4"><button id="theme-toggle-btn" class="w-full py-2 px-4 bg-gray-200 dark:bg-gray-700 rounded-lg text-gray-800 dark:text-white">Toggle Theme</button></div>
+        </aside>
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <header class="lg:hidden flex justify-between items-center p-4 bg-white dark:bg-gray-800 shadow-md"><h1 class="text-xl font-bold text-community-accent dark:text-hookups-accent">Limpopo Connect</h1></header>
+            <main class="flex-1 overflow-x-hidden overflow-y-auto bg-hookups-bg p-8">
+                <div class="container mx-auto">
+                    <div class="mb-8">
+                        <h1 class="text-3xl font-bold text-white mb-4">Hookups Feed</h1>
+                        <div class="flex flex-wrap items-center gap-4">
+                            <div class="relative"><input type="search" placeholder="Search..." class="bg-gray-700 text-white rounded-full py-2 px-4 pl-10 focus:outline-none focus:ring-2 focus:ring-hookups-accent"></div>
+                            <span class="bg-gray-700 text-white text-sm font-semibold px-4 py-2 rounded-full cursor-pointer hover:bg-hookups-accent transition">Age: 25-35</span>
+                            <span class="bg-gray-700 text-white text-sm font-semibold px-4 py-2 rounded-full cursor-pointer hover:bg-hookups-accent transition">Location: Downtown</span>
+                            <span class="bg-gray-700 text-white text-sm font-semibold px-4 py-2 rounded-full cursor-pointer hover:bg-hookups-accent transition">Preference: M4F</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="group perspective-1000">
+                            <div class="relative w-full h-80 rounded-lg shadow-lg transition-transform duration-700 transform-style-3d group-hover:rotate-y-180">
+                                <div class="absolute w-full h-full backface-hidden rounded-lg overflow-hidden bg-gray-800 border border-hookups-accent/30 p-6 flex flex-col justify-between">
+                                    <div>
+                                        <div class="flex items-center gap-4 mb-4"><img src="https://via.placeholder.com/50/FF3B30/FFFFFF?text=A" alt="Avatar" class="w-12 h-12 rounded-full object-cover filter blur-sm"><span class="font-bold text-lg text-white">Anonymous</span></div>
+                                        <h3 class="text-xl font-bold text-white mb-2">Looking for fun tonight</h3>
+                                    </div>
+                                    <p class="text-gray-400">25, M4F, Downtown</p>
+                                </div>
+                                <div class="absolute w-full h-full backface-hidden rounded-lg overflow-hidden bg-gray-700 border border-hookups-accent/30 p-6 flex flex-col justify-between rotate-y-180">
+                                    <p class="text-gray-300">Discreet and respectful. Can host. Looking for someone to connect with...</p>
+                                    <a href="post-detail.html" class="self-end mt-4 px-4 py-2 bg-hookups-accent text-white font-bold rounded-lg shadow-lg hover:bg-red-700 transition">View Post</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="group perspective-1000">
+                             <div class="relative w-full h-80 rounded-lg shadow-lg transition-transform duration-700 transform-style-3d group-hover:rotate-y-180">
+                                <div class="absolute w-full h-full backface-hidden rounded-lg overflow-hidden bg-gray-800 border border-hookups-accent/30 p-6 flex flex-col justify-between">
+                                    <div>
+                                        <div class="flex items-center gap-4 mb-4"><img src="https://via.placeholder.com/50/FF9500/FFFFFF?text=N" alt="Avatar" class="w-12 h-12 rounded-full object-cover"><span class="font-bold text-lg text-white">NewInTown</span></div>
+                                        <h3 class="text-xl font-bold text-white mb-2">New in town</h3>
+                                    </div>
+                                    <p class="text-gray-400">30, F4M, Midtown</p>
+                                </div>
+                                <div class="absolute w-full h-full backface-hidden rounded-lg overflow-hidden bg-gray-700 border border-hookups-accent/30 p-6 flex flex-col justify-between rotate-y-180">
+                                    <p class="text-gray-300">Just moved here and looking to meet new people for casual fun...</p>
+                                    <a href="post-detail.html" class="self-end mt-4 px-4 py-2 bg-hookups-accent text-white font-bold rounded-lg shadow-lg hover:bg-red-700 transition">View Post</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="create-post.html" class="fixed bottom-24 right-8 lg:bottom-8 lg:right-8 bg-hookups-accent text-white w-16 h-16 rounded-full flex items-center justify-center shadow-lg hover:bg-red-700 transition"><p class="text-3xl">+</p></a>
+            </main>
         </div>
-    </header>
-
-    <main>
-        <section id="hookups-feed">
-            <div class="feed-header">
-                <h2>Hookups Feed</h2>
-                <a href="create-post.html" class="create-post-btn">Create Post</a>
-            </div>
-            <div class="filters">
-                <input type="search" placeholder="Search posts...">
-                <select>
-                    <option>Age</option>
-                </select>
-                <select>
-                    <option>Location</option>
-                </select>
-                <select>
-                    <option>Preference</option>
-                </select>
-            </div>
-            <div class="post-grid">
-                <!-- Placeholder Post -->
-                <div class="post-card">
-                    <img src="https://via.placeholder.com/50" alt="Avatar" class="avatar blurred">
-                    <h3>Looking for fun tonight</h3>
-                    <p class="post-meta">25, M4F, Downtown</p>
-                    <p>Discreet and respectful. Can host. Looking for someone to connect with...</p>
-                    <a href="post-detail.html" class="view-post-link">View Post</a>
-                </div>
-                 <!-- Placeholder Post 2 -->
-                <div class="post-card">
-                    <img src="https://via.placeholder.com/50" alt="Avatar" class="avatar">
-                    <h3>New in town</h3>
-                    <p class="post-meta">30, F4M, Midtown</p>
-                    <p>Just moved here and looking to meet new people for casual fun...</p>
-                    <a href="post-detail.html" class="view-post-link">View Post</a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2025 Limpopo Connect. All rights reserved.</p>
-    </footer>
-
+    </div>
+    <nav class="lg:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 shadow-[0_-1px_5px_rgba(0,0,0,0.1)] flex justify-around">
+        <a href="index.html" class="flex flex-col items-center justify-center w-full pt-2 pb-1 text-community-accent dark:text-hookups-accent">Home</a>
+        <a href="#" class="flex flex-col items-center justify-center w-full pt-2 pb-1 text-gray-600 dark:text-gray-300 hover:text-community-accent dark:hover:text-hookups-accent">Search</a>
+        <a href="community.html" class="flex flex-col items-center justify-center w-full pt-2 pb-1 text-gray-600 dark:text-gray-300 hover:text-community-accent dark:hover:text-hookups-accent">Events</a>
+        <a href="messaging.html" class="flex flex-col items-center justify-center w-full pt-2 pb-1 text-gray-600 dark:text-gray-300 hover:text-community-accent dark:hover:text-hookups-accent">Messages</a>
+        <a href="profile.html" class="flex flex-col items-center justify-center w-full pt-2 pb-1 text-gray-600 dark:text-gray-300 hover:text-community-accent dark:hover:text-hookups-accent">Profile</a>
+    </nav>
     <script src="js/script.js"></script>
 </body>
 </html>
