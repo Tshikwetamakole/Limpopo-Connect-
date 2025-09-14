@@ -36,4 +36,3 @@ jobs:
           folder: dist               # folder with build output
           token: ${{ secrets.GITHUB_TOKEN }}
           clean: true
-          
