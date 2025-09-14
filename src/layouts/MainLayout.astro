@@ -5,8 +5,8 @@ import MobileHeader from '@components/MobileHeader.astro';
 import MobileNav from '@components/MobileNav.astro';
 
 interface Props {
-	title: string;
-    mainClass?: string;
+  title: string;
+  mainClass?: string;
 }
 
 const { title, mainClass = "flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 dark:bg-gray-900" } = Astro.props;
@@ -14,29 +14,28 @@ const { title, mainClass = "flex-1 overflow-x-hidden overflow-y-auto bg-gray-100
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
-</head>
-<body class="bg-community-bg text-community-text dark:bg-hookups-bg dark:text-hookups-text">
-
+  </head>
+  <body class="bg-community-bg text-community-text dark:bg-hookups-bg dark:text-hookups-text">
     <div class="flex h-screen">
-        <DesktopSidebar />
+      <DesktopSidebar />
 
-        <!-- Main Content -->
-        <div class="flex-1 flex flex-col overflow-hidden">
-            <MobileHeader />
+      <!-- Main Content -->
+      <div class="flex-1 flex flex-col overflow-hidden">
+        <MobileHeader />
 
-            <main class={mainClass}>
-                <slot />
-            </main>
-        </div>
+        <main class={mainClass}>
+          <slot />
+        </main>
+      </div>
     </div>
 
     <MobileNav />
 
+    <!-- Inline script -->
     <script src="../scripts/script.js" is:inline></script>
-
-</body>
+  </body>
 </html>
