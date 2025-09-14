@@ -1,7 +1,7 @@
 `README.md`:
 
 ````markdown
-# 🌍 Limpopo Connect
+🌍 Limpopo Connect
 
 > A modern prototype of a **social platform** built with [Astro](https://astro.build/) + [Tailwind CSS](https://tailwindcss.com/), designed to connect people, communities, and culture in Limpopo.
 
