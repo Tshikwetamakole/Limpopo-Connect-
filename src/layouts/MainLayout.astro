@@ -9,7 +9,7 @@ interface Props {
   mainClass?: string;
 }
 
-const { title, mainClass = "flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 dark:bg-gray-900" } = Astro.props;
+const { title, mainClass = "flex-1 overflow-x-hidden overflow-y-auto" } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -35,7 +35,8 @@ const { title, mainClass = "flex-1 overflow-x-hidden overflow-y-auto bg-gray-100
 
     <MobileNav />
 
-    <!-- Inline script -->
-    <script src="../scripts/script.js" is:inline></script>
+    <script>
+      import "../scripts/main.js";
+    </script>
   </body>
 </html>
