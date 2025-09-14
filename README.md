@@ -1,7 +1,7 @@
 # Limpopo Connect
 
 A static prototype of a social platform with two distinct modes:
-- **Hookups** — a discreet, dark-themed mode for private connections.
+- *Hookups** — a discreet, dark-themed mode for private connections.
 - **Community** — a light, vibrant mode for events, groups and cultural engagement.
 
 This repository contains a front-end design built with Astro, demonstrating UI/UX, theme toggles, and a persistent user onboarding flow. There is no backend — all forms and interactions are simulated in the browser using `localStorage`.
