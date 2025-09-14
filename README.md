@@ -14,6 +14,7 @@ Why this repo exists
 - Prototype interactions and visual design for two user journeys in the same product.
 - Validate UI/UX and flows before building a backend or full-stack implementation.
 
+, 
 Features
 - **Seamless Onboarding Flow**: Sign up, complete an onboarding form, and see your information persisted on a dynamic profile page.
 - **Persistent User Data**: User information is saved to `localStorage`, simulating a real user session across page reloads.
