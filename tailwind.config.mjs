@@ -1,22 +1,55 @@
 /** @type {import('tailwindcss').Config} */
+
+// Helper function to define colors with opacity support
+const withOpacity = (variableName) => {
+  return ({ opacityValue }) => {
+    if (opacityValue !== undefined) {
+      return `rgba(var(${variableName}), ${opacityValue})`;
+    }
+    return `rgb(var(${variableName}))`;
+  };
+};
+
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
-  darkMode: 'class',
   theme: {
     extend: {
       colors: {
+        theme: {
+          bg: withOpacity('--theme-bg'),
+          text: withOpacity('--theme-text'),
+          accent: withOpacity('--theme-accent'),
+          secondary: withOpacity('--theme-secondary'),
+        },
+        // The old color names are kept for now for a gradual refactor,
+        // but they point to the new CSS variables.
         hookups: {
-          bg: '#1a1a1a',
-          text: '#e0e0e0',
-          accent: '#ff3b30',
+          bg: withOpacity('--theme-bg'),
+          text: withOpacity('--theme-text'),
+          accent: withOpacity('--theme-accent'),
         },
         community: {
-          bg: '#f5f5f7',
-          text: '#1d1d1f',
-          accent: '#ff9500',
-          secondary: '#00a0b0',
+          bg: withOpacity('--theme-bg'),
+          text: withOpacity('--theme-text'),
+          accent: withOpacity('--theme-accent'),
+          secondary: withOpacity('--theme-secondary'),
         }
-      }
+      },
+      animation: {
+        'gradient-xy': 'gradient-xy 15s ease infinite',
+      },
+      keyframes: {
+        'gradient-xy': {
+          '0%, 100%': {
+            'background-size': '400% 400%',
+            'background-position': 'left center',
+          },
+          '50%': {
+            'background-size': '200% 200%',
+            'background-position': 'right center',
+          },
+        },
+      },
     },
   },
   plugins: [],
