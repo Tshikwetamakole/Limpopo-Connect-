@@ -7,9 +7,12 @@
 import { initTheme } from './theme.js';
 import { initializeUI } from './ui.js';
 
-// Initialize all client-side functionality.
-// This script is loaded as a module in the browser, so it runs after the DOM is parsed.
-initTheme();
-initializeUI();
-
-console.log("Limpopo Connect scripts initialized.");
+// Ensure this code runs only in the browser
+if (typeof window !== 'undefined') {
+  // Initialize all client-side functionality when the DOM is ready.
+  document.addEventListener('DOMContentLoaded', () => {
+    initTheme();
+    initializeUI();
+    console.log("Limpopo Connect scripts initialized.");
+  });
+}
