@@ -1,0 +1,41 @@
+---
+import '../styles/global.css';
+import DesktopSidebar from '@components/DesktopSidebar.astro';
+import MobileHeader from '@components/MobileHeader.astro';
+import MobileNav from '@components/MobileNav.astro';
+
+interface Props {
+	title: string;
+    mainClass?: string;
+}
+
+const { title, mainClass = "flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 dark:bg-gray-900" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+</head>
+<body class="bg-community-bg text-community-text dark:bg-hookups-bg dark:text-hookups-text">
+
+    <div class="flex h-screen">
+        <DesktopSidebar />
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <MobileHeader />
+
+            <main class={mainClass}>
+                <slot />
+            </main>
+        </div>
+    </div>
+
+    <MobileNav />
+
+    <script src="/js/script.js"></script>
+</body>
+</html>
