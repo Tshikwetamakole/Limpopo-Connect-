@@ -18,7 +18,7 @@ Features
 - **Seamless Onboarding Flow**: Sign up, complete an onboarding form, and see your information persisted on a dynamic profile page.
 - **Persistent User Data**: User information is saved to `localStorage`, simulating a real user session across page reloads.
 - **Dual Modes**: Hookups (dark) and Community (light) with distinct visual identities.
-- **Theme Toggle**: Light/dark mode preference is saved to `localStorage`.
+- **Theme Toggle**: Light/dark function preference is saved to `localStorage`.
 - **Simulated Interactions**: Basic chat UI and event RSVP buttons that toggle state on the client-side.
 - **Responsive Design**: A mobile-friendly layout with a bottom navigation bar.
 
