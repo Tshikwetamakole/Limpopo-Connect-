@@ -9,6 +9,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /**
      * ------------------------------------------------------------------------
+     * USER PROFILE DATA MANAGEMENT
+     * ------------------------------------------------------------------------
+     * Manages the user's profile data using localStorage to simulate a
+     * persistent session.
+     */
+
+    const USER_PROFILE_KEY = 'limpopoConnectUserProfile';
+
+    /**
+     * Retrieves the current user profile from localStorage.
+     * @returns {object | null} The user profile object or null if not found.
+     */
+    const getUserProfile = () => {
+        const profileJson = localStorage.getItem(USER_PROFILE_KEY);
+        return profileJson ? JSON.parse(profileJson) : null;
+    };
+
+    /**
+     * Saves the user profile to localStorage. It merges the new data with
+     * existing data.
+     * @param {object} profileData - The profile data to save.
+     * @returns {void}
+     */
+    const saveUserProfile = (profileData) => {
+        const existingProfile = getUserProfile() || {};
+        const updatedProfile = { ...existingProfile, ...profileData };
+        localStorage.setItem(USER_PROFILE_KEY, JSON.stringify(updatedProfile));
+        console.log('User profile saved:', updatedProfile);
+    };
+
+    /**
+     * Clears the user profile from localStorage.
+     * @returns {void}
+     */
+    const clearUserProfile = () => {
+        localStorage.removeItem(USER_PROFILE_KEY);
+        console.log('User profile cleared.');
+    };
+
+
+    /**
+     * ------------------------------------------------------------------------
      * THEME TOGGLE
      * ------------------------------------------------------------------------
      * Manages the dark and light mode functionality of the website.
@@ -57,21 +99,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /**
      * ------------------------------------------------------------------------
-     * FORM SUBMISSION SIMULATION
+     * FORM SUBMISSION HANDLING
      * ------------------------------------------------------------------------
-     * A generic handler for all form submissions on the site.
+     * Handlers for various forms across the site.
      */
 
+    // --- Sign Up Form: Save data and redirect to onboarding ---
+    const signupForm = document.getElementById('signup-form');
+    if (signupForm) {
+        signupForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(signupForm);
+            const data = Object.fromEntries(formData.entries());
+
+            saveUserProfile(data);
+
+            // Redirect
+            window.location.href = '/onboarding/';
+        });
+    }
+
     /**
-     * Attaches a submit event listener to a form to simulate a submission.
-     * It prevents the default form submission, gathers the form data,
-     * logs it to the console, shows a confirmation alert, and then resets the form.
-     * This is a placeholder for future API integration.
-     * @param {string} formId - The ID of the form element to attach the handler to.
-     * @param {string} formName - A descriptive name for the form for logging and alert purposes.
+     * Attaches a generic submit event listener for forms that only log data.
+     * @param {string} formId - The ID of the form element.
+     * @param {string} formName - A descriptive name for the form for logging.
      * @returns {void}
      */
-    const handleFormSubmit = (formId, formName) => {
+    const handleGenericFormSubmit = (formId, formName) => {
         const form = document.getElementById(formId);
         if (form) {
             form.addEventListener('submit', (e) => {
@@ -85,11 +139,52 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Attach form submission handlers to all relevant forms.
-    handleFormSubmit('signup-form', 'Sign Up Form');
-    handleFormSubmit('onboarding-form', 'Onboarding Form');
-    handleFormSubmit('create-post-form', 'Create Post Form');
-    handleFormSubmit('settings-form', 'Settings Form');
+    // --- Onboarding Form: Update profile and redirect to profile page ---
+    const onboardingForm = document.getElementById('onboarding-form');
+    if (onboardingForm) {
+        onboardingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(onboardingForm);
+            const data = Object.fromEntries(formData.entries());
+
+            saveUserProfile(data);
+
+            // Redirect
+            window.location.href = '/profile/';
+        });
+    }
+
+    // Attach submission handlers for other generic forms
+    handleGenericFormSubmit('create-post-form', 'Create Post Form');
+    handleGenericFormSubmit('settings-form', 'Settings Form');
+
+    /**
+     * ------------------------------------------------------------------------
+     * DYNAMIC PROFILE PAGE POPULATION
+     * ------------------------------------------------------------------------
+     * Checks if the current page is the profile page and populates it with
+     * data from localStorage.
+     */
+    const populateProfilePage = () => {
+        const usernameElement = document.getElementById('profile-username');
+        if (usernameElement) { // Simple check to see if we are on the profile page
+            const userProfile = getUserProfile();
+            if (userProfile) {
+                const avatarElement = document.getElementById('profile-avatar');
+
+                if (avatarElement && userProfile['profile-image-url']) {
+                    avatarElement.src = userProfile['profile-image-url'];
+                }
+
+                if (userProfile.username) {
+                    usernameElement.textContent = userProfile.username;
+                }
+            }
+        }
+    };
+
+    // Run the function to populate the profile page on load.
+    populateProfilePage();
 
     /**
      * ------------------------------------------------------------------------
