@@ -1,0 +1,50 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+---
+<MainLayout title="Limpopo Connect - Onboarding">
+    <div class="p-8 flex items-center justify-center">
+        <div class="w-full max-w-2xl">
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-2xl p-8">
+                <h2 class="text-3xl font-bold text-center text-gray-800 dark:text-white mb-2">Complete Your Profile</h2>
+                <p class="text-center text-gray-600 dark:text-gray-400 mb-8">Step 2 of 2</p>
+                <form id="onboarding-form" class="space-y-8">
+                    <div class="text-center">
+                        <img src="https://via.placeholder.com/150/00A0B0/FFFFFF?text=JD" alt="Avatar Preview" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-gray-200 dark:border-gray-700">
+                        <label for="avatar" class="cursor-pointer text-sm font-medium text-community-accent hover:text-orange-500">
+                            Upload a profile picture
+                            <input type="file" id="avatar" name="avatar" class="hidden">
+                        </label>
+                    </div>
+                    <div>
+                        <label for="username" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Choose a username</label>
+                        <input type="text" id="username" name="username" required class="mt-1 block w-full bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm py-3 px-4 focus:outline-none focus:ring-community-accent focus:border-community-accent">
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-medium text-gray-800 dark:text-white mb-4">Privacy Settings for Hookups Mode</h3>
+                        <div class="space-y-4">
+                            <label for="blur-avatar-onboarding" class="flex items-center justify-between p-4 rounded-lg border border-gray-300 dark:border-gray-600 cursor-pointer has-[:checked]:bg-orange-50 dark:has-[:checked]:bg-gray-700 has-[:checked]:border-community-accent">
+                                <div>
+                                    <h4 class="font-bold text-gray-800 dark:text-white">Blurred Avatar</h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Your avatar will be blurred in the Hookups feed.</p>
+                                </div>
+                                <input type="checkbox" id="blur-avatar-onboarding" name="blur-avatar" class="h-6 w-6 text-community-accent border-gray-300 rounded focus:ring-community-accent">
+                            </label>
+                            <label for="use-pseudonym-onboarding" class="flex items-center justify-between p-4 rounded-lg border border-gray-300 dark:border-gray-600 cursor-pointer has-[:checked]:bg-orange-50 dark:has-[:checked]:bg-gray-700 has-[:checked]:border-community-accent">
+                                <div>
+                                    <h4 class="font-bold text-gray-800 dark:text-white">Use Pseudonym</h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">A random pseudonym will be used instead of your username.</p>
+                                </div>
+                                <input type="checkbox" id="use-pseudonym-onboarding" name="use-pseudonym" class="h-6 w-6 text-community-accent border-gray-300 rounded focus:ring-community-accent">
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <a href="/" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-community-accent hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-community-accent transition">
+                            Finish & Enter Limpopo Connect
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</MainLayout>

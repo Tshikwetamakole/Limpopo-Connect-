@@ -1,0 +1,30 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+---
+<MainLayout title="Limpopo Connect - Create Post">
+    <div class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-2xl p-8 w-full max-w-lg">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Create a New Post</h2>
+                <a href="/hookups/" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 text-2xl">&times;</a>
+            </div>
+            <form id="create-post-form" class="space-y-6">
+                <div>
+                    <label for="post-title" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Title</label>
+                    <input type="text" id="post-title" name="post-title" required class="mt-1 block w-full bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-hookups-accent focus:border-hookups-accent">
+                </div>
+                <div>
+                    <label for="post-content" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Content</label>
+                    <textarea id="post-content" name="post-content" rows="4" required class="mt-1 block w-full bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-hookups-accent focus:border-hookups-accent"></textarea>
+                </div>
+                <div class="flex items-center">
+                    <input type="checkbox" id="anonymous" name="anonymous" class="h-4 w-4 text-hookups-accent border-gray-300 rounded focus:ring-hookups-accent">
+                    <label for="anonymous" class="ml-2 block text-sm text-gray-900 dark:text-gray-200">Post anonymously</label>
+                </div>
+                <div class="flex justify-end">
+                    <button type="submit" class="px-6 py-2 bg-hookups-accent text-white font-semibold rounded-lg shadow-md hover:bg-red-700 transition">Create Post</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</MainLayout>
