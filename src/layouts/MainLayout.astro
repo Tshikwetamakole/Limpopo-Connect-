@@ -3,6 +3,7 @@ import '../styles/global.css';
 import DesktopSidebar from '@components/DesktopSidebar.astro';
 import MobileHeader from '@components/MobileHeader.astro';
 import MobileNav from '@components/MobileNav.astro';
+import "../scripts/main.js";
 
 interface Props {
   title: string;
@@ -34,9 +35,5 @@ const { title, mainClass = "flex-1 overflow-x-hidden overflow-y-auto" } = Astro.
     </div>
 
     <MobileNav />
-
-    <script>
-      import "../scripts/main.js";
-    </script>
   </body>
 </html>
