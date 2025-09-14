@@ -95,7 +95,10 @@ const initializeMessaging = () => {
     if (messageText) {
       const messageEl = document.createElement('div');
       messageEl.className = 'flex justify-end';
-      messageEl.innerHTML = `<div class="bg-community-accent dark:bg-hookups-accent text-white p-3 rounded-lg max-w-lg">${messageText}</div>`;
+      const innerDiv = document.createElement('div');
+      innerDiv.className = 'bg-community-accent dark:bg-hookups-accent text-white p-3 rounded-lg max-w-lg';
+      innerDiv.textContent = messageText;
+      messageEl.appendChild(innerDiv);
       messageArea.appendChild(messageEl);
       messageInput.value = '';
       messageArea.scrollTop = messageArea.scrollHeight;
