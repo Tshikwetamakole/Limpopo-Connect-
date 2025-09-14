@@ -11,7 +11,7 @@
     "test": "node test/build-verification.test.js"
   },
   "dependencies": {
-    "@astrojs/tailwind": "^5.1.0",
+    "@astrojs/tailwind": "^6.0.2",
     "astro": "^5.13.7",
     "tailwindcss": "^3.4.4"
   }
