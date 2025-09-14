@@ -106,4 +106,4 @@ License
 - Add a LICENSE file (e.g., MIT) if you want to open-source this prototype.
 
 Contact
-- Add your preferred contact or socials here (email, Twitter, LinkedIn, etc.)
+- justexecutetechnologies@gmail.com
