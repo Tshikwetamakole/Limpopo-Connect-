@@ -33,6 +33,6 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages            # target branch to push the static site to
-          folder: dist               # folder with build output
+          folder: ./dist             # folder with build output
           token: ${{ secrets.GITHUB_TOKEN }}
           clean: true
