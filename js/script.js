@@ -21,9 +21,11 @@ document.addEventListener('DOMContentLoaded', () => {
      * @returns {void}
      */
     const applyTheme = () => {
-        if (localStorage.getItem('theme') === 'dark') {
+        const theme = localStorage.getItem('theme');
+        if (theme === 'dark') {
             htmlEl.classList.add('dark');
         } else {
+            // Defaults to light theme
             htmlEl.classList.remove('dark');
         }
     };
@@ -35,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     const toggleTheme = () => {
         if (localStorage.getItem('theme') === 'dark') {
-            localStorage.removeItem('theme');
+            localStorage.setItem('theme', 'light');
         } else {
             localStorage.setItem('theme', 'dark');
         }
