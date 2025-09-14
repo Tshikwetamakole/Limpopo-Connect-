@@ -4,6 +4,5 @@ import tailwind from "@astrojs/tailwind";
 // https://astro.build/config
 export default defineConfig({
   site: "https://limpopoconnect.site", // your custom domain
-  base: "/",                           // must be "/" for custom domains
   integrations: [tailwind()],
 });
