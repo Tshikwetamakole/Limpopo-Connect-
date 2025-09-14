@@ -10,6 +10,6 @@ export default defineConfig({
 import { defineConfig } from "astro/config";
 
 export default defineConfig({
-  site: "https://tshikwetamakole.github.io", // your GitHub username + .github.io
-  base: "/Limpopo-Connect-/",               // repo name with trailing slash
+  site: "https://tshikwetamakole.github.io/",
+  base: "/Limpopo-Connect-/", 
 });
