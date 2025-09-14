@@ -6,7 +6,6 @@
 > A modern prototype of a **social platform** built with [Astro](https://astro.build/) + [Tailwind CSS](https://tailwindcss.com/), designed to connect people, communities, and culture in Limpopo.
 
 
-
 🔗 **Live Demo:** [limpopoconnect.site](https://limpopoconnect.site)
 
 ---
