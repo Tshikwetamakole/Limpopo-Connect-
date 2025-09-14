@@ -1,9 +1,9 @@
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 
-// https://astro.build/config
 export default defineConfig({
-  site: "https://tshikwetamakole.github.io/",
-  base: "/Limpopo-Connect-/",
+  site: "https://limpopoconnect.site", // 👈 your custom domain
+  base: "/",                           // 👈 root, because custom domain points to root
   integrations: [tailwind()],
 });
+
