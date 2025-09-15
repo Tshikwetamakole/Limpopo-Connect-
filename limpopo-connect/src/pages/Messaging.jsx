@@ -42,7 +42,7 @@ function ConversationList({ onSelectConversation }) {
 
 function ChatWindow({ conversationId }) {
  
-  const chatMessages = typeof conversationId === 'string' && messages.hasOwnProperty(conversationId) ? messages[conversationId] : [];
+  const chatMessages = typeof conversationId === 'string' && Object.prototype.hasOwnProperty.call(messages, conversationId) ? messages[conversationId] : [];
 
   const chatMessages = messages[conversationId] || [];
 
