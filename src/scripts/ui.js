@@ -1,28 +1,9 @@
 /**
- * @file Manages general UI interactions and dynamic content.
- * @description This script handles form submissions, profile data display,
- * chat simulation, and other interactive elements across the site.
+ * Attaches a submit event listener to a form to simulate a submission.
+ * @param {string} formId - The ID of the form element.
+ * @param {string} formName - A descriptive name for the form for logging.
  */
-
-import { STORAGE_KEYS } from './constants.js';
-
-// --- User Profile Data Management ---
-
-const getUserProfile = () => {
-  const profileJson = localStorage.getItem(STORAGE_KEYS.USER_PROFILE);
-  return profileJson ? JSON.parse(profileJson) : null;
-};
-
-const saveUserProfile = (profileData) => {
-  const existingProfile = getUserProfile() || {};
-  const updatedProfile = { ...existingProfile, ...profileData };
-  localStorage.setItem(STORAGE_KEYS.USER_PROFILE, JSON.stringify(updatedProfile));
-  console.log('User profile saved:', updatedProfile);
-};
-
-// --- Form Submission Handling ---
-
-const handleGenericFormSubmit = (formId, formName) => {
+function handleFormSubmit(formId, formName) {
   const form = document.getElementById(formId);
   if (form) {
     form.addEventListener('submit', (e) => {
@@ -30,60 +11,26 @@ const handleGenericFormSubmit = (formId, formName) => {
       const formData = new FormData(form);
       const data = Object.fromEntries(formData.entries());
       console.log(`${formName} submitted:`, data);
-      alert(`${formName} submitted successfully! (Check console for data)`);
+      alert(`${formName} submitted successfully! (Check console)`);
       form.reset();
     });
   }
-};
+}
 
-const initializeFormHandlers = () => {
-  const signupForm = document.getElementById('signup-form');
-  if (signupForm) {
-    signupForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const formData = new FormData(signupForm);
-      const data = Object.fromEntries(formData.entries());
-      saveUserProfile(data);
-      window.location.href = '/onboarding/';
-    });
-  }
+/**
+ * Initializes all form handlers.
+ */
+function initFormHandlers() {
+  handleFormSubmit('signup-form', 'Sign Up Form');
+  handleFormSubmit('onboarding-form', 'Onboarding Form');
+  handleFormSubmit('create-post-form', 'Create Post Form');
+  handleFormSubmit('settings-form', 'Settings Form');
+}
 
-  const onboardingForm = document.getElementById('onboarding-form');
-  if (onboardingForm) {
-    onboardingForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const formData = new FormData(onboardingForm);
-      const data = Object.fromEntries(formData.entries());
-      saveUserProfile(data);
-      window.location.href = '/profile/';
-    });
-  }
-
-  handleGenericFormSubmit('create-post-form', 'Create Post Form');
-  handleGenericFormSubmit('settings-form', 'Settings Form');
-};
-
-// --- Dynamic Profile Page Population ---
-
-const populateProfilePage = () => {
-  const usernameElement = document.getElementById('profile-username');
-  if (!usernameElement) return;
-
-  const userProfile = getUserProfile();
-  if (userProfile) {
-    const avatarElement = document.getElementById('profile-avatar');
-    if (avatarElement && userProfile['profile-image-url']) {
-      avatarElement.src = userProfile['profile-image-url'];
-    }
-    if (userProfile.username) {
-      usernameElement.textContent = userProfile.username;
-    }
-  }
-};
-
-// --- Messaging Simulation ---
-
-const initializeMessaging = () => {
+/**
+ * Initializes the messaging simulation UI.
+ */
+function initMessaging() {
   const messageInput = document.getElementById('message-input');
   const messageSendBtn = document.getElementById('message-send-btn');
   const messageArea = document.getElementById('message-area');
@@ -95,10 +42,7 @@ const initializeMessaging = () => {
     if (messageText) {
       const messageEl = document.createElement('div');
       messageEl.className = 'flex justify-end';
-      const innerDiv = document.createElement('div');
-      innerDiv.className = 'bg-community-accent dark:bg-hookups-accent text-white p-3 rounded-lg max-w-lg';
-      innerDiv.textContent = messageText;
-      messageEl.appendChild(innerDiv);
+      messageEl.innerHTML = `<div class="bg-theme-accent text-white p-3 rounded-lg max-w-lg">${messageText}</div>`;
       messageArea.appendChild(messageEl);
       messageInput.value = '';
       messageArea.scrollTop = messageArea.scrollHeight;
@@ -112,18 +56,12 @@ const initializeMessaging = () => {
       sendMessage();
     }
   });
-};
+}
 
 /**
- * Initializes all UI components and event listeners.
- * This function should be called on the client side.
+ * Initializes the RSVP button simulation.
  */
-export const initializeUI = () => {
-  initializeFormHandlers();
-  populateProfilePage();
-  initializeMessaging();
-
-  // RSVP Simulation
+function initRsvpButton() {
   const rsvpBtn = document.querySelector('.rsvp-btn');
   if (rsvpBtn) {
     rsvpBtn.addEventListener('click', () => {
@@ -131,12 +69,28 @@ export const initializeUI = () => {
       rsvpBtn.disabled = true;
     }, { once: true });
   }
+}
 
-  // Search/Filter Simulation
-  const searchInput = document.querySelector('.filters input[type="search"]');
-  if (searchInput) {
-    searchInput.addEventListener('input', (e) => {
-      console.log(`Searching for: ${e.target.value}`);
+/**
+ * Initializes handlers for any non-implemented feature links.
+ */
+function initDeadLinks() {
+    const deadLinks = document.querySelectorAll('a[href="#"]');
+    deadLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            alert("This feature is not yet implemented.");
+        });
     });
-  }
-};
+}
+
+/**
+ * Initializes all UI components and event listeners.
+ * This should be called once the DOM is ready.
+ */
+export function initUI() {
+  initFormHandlers();
+  initMessaging();
+  initRsvpButton();
+  initDeadLinks();
+}
