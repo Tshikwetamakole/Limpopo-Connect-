@@ -5,14 +5,14 @@
  */
 
 import { initTheme } from './theme.js';
-import { initializeUI } from './ui.js';
+import { initUI } from './ui.js';
 
 // Ensure this code runs only in the browser
 if (typeof window !== 'undefined') {
   // Initialize all client-side functionality when the DOM is ready.
   document.addEventListener('DOMContentLoaded', () => {
     initTheme();
-    initializeUI();
+    initUI();
     console.log("Limpopo Connect scripts initialized.");
   });
 }
