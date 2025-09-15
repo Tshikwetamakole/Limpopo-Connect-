@@ -4,10 +4,11 @@ import '../styles/theme.css'; // Import theme variables
 import DesktopSidebar from '@components/DesktopSidebar.astro';
 import MobileHeader from '@components/MobileHeader.astro';
 import MobileNav from '@components/MobileNav.astro';
+import "../scripts/main.js";
 
 interface Props {
-	title: string;
-    mainClass?: string;
+  title: string;
+  mainClass?: string;
 }
 
 const { title, mainClass = "flex-1 overflow-x-hidden overflow-y-auto bg-theme-bg" } = Astro.props;
@@ -15,35 +16,35 @@ const { title, mainClass = "flex-1 overflow-x-hidden overflow-y-auto bg-theme-bg
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
+
     <script type="module">
-        import { initTheme } from '/src/scripts/theme.js';
-        import { initUI } from '/src/scripts/ui.js';
+      import { initTheme } from '/src/scripts/theme.js';
+      import { initUI } from '/src/scripts/ui.js';
 
-        // Run initializers on client
-        initTheme();
-        initUI();
+      // Run initializers on client
+      initTheme();
+      initUI();
     </script>
-</head>
-<body class="bg-theme-bg text-theme-text font-sans">
+  </head>
 
+  <body class="bg-theme-bg text-theme-text font-sans dark:bg-hookups-bg dark:text-hookups-text">
     <div class="flex h-screen">
-        <DesktopSidebar />
+      <DesktopSidebar />
 
-        <!-- Main Content -->
-        <div class="flex-1 flex flex-col overflow-hidden">
-            <MobileHeader />
+      <!-- Main Content -->
+      <div class="flex-1 flex flex-col overflow-hidden">
+        <MobileHeader />
 
-<main class:list={[mainClass, "pb-24 lg:pb-0"]}>
-                <slot />
-            </main>
-        </div>
+        <main class:list={[mainClass, "pb-24 lg:pb-0"]}>
+          <slot />
+        </main>
+      </div>
     </div>
 
     <MobileNav />
-
-</body>
+  </body>
 </html>

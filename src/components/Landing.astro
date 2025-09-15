@@ -7,6 +7,7 @@
 const copyVariants = {
   control: {
     title: "Your Connection, Your Choice.",
+ feat/landing-page-redesign
     ctaPrivate: "Start Private — Meet discreetly, arrange safely.",
     ctaCommunity: "Join Community — Find events & connections.",
   },
@@ -19,6 +20,20 @@ const copyVariants = {
     title: "Two Experiences. One Platform.",
     ctaPrivate: "Go Private — Safe, anonymous, and direct.",
     ctaCommunity: "Go Public — Join groups and find your people.",
+
+    ctaPrivate: "Start Private",
+    ctaCommunity: "Join Community",
+  },
+  a: {
+    title: "Find Your Vibe in Limpopo.",
+    ctaPrivate: "Explore Discreetly",
+    ctaCommunity: "Discover Events",
+  },
+  b: {
+    title: "Two Experiences. One Platform.",
+    ctaPrivate: "Go Private",
+    ctaCommunity: "Go Public",
+
   }
 };
 
@@ -52,12 +67,22 @@ const cards = {
 };
 ---
 
+ feat/landing-page-redesign
 <!--
   This container defaults to the 'community' (light) theme to ensure a good experience
+ feat/landing-page-redesign
+<!--
+  This container defaults to the 'community' (light) theme to ensure a good experience
+
+<!-- 
+  This container defaults to the 'community' (light) theme to ensure a good experience 
+ main
+ 
   for first-time visitors, even if JavaScript is disabled.
 -->
 <div data-theme="community" class="bg-theme-bg text-theme-text min-h-screen font-sans">
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+
 
     <!-- HERO SECTION -->
     <header
@@ -126,6 +151,50 @@ const cards = {
       </div>
     </section>
 
+
+    
+
+    <!-- HERO SECTION -->
+    <header class="text-center">
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-theme-text">
+        {hero.title}
+      </h1>
+      <p class="mt-4 max-w-2xl mx-auto text-lg text-theme-text-subtle">
+        {hero.subtitle}
+      </p>
+
+      <!-- HERO CTAs -->
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <!-- The primary CTA for the "dark" mode experience -->
+
+          href={cards.hookups.link}
+          data-cta-hero-private
+          class="w-full sm:w-auto flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-theme-cta-primary-text bg-theme-cta-primary-bg hover:bg-theme-cta-primary-bg-hover transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-theme-accent"
+          id="hookups-cta-btn"
+        >
+          {hero.ctaPrivate}
+        </a>
+        <!-- The primary CTA for the "light" mode experience -->
+          href={cards.community.link}
+          data-cta-hero-community
+          class="w-full sm:w-auto flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-theme-cta-secondary-text bg-theme-cta-secondary-bg hover:bg-theme-cta-secondary-bg-hover transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-theme-accent"
+        >
+          {hero.ctaCommunity}
+        </a>
+      </div>
+
+      <!-- TRUST SIGNALS -->
+      <div class="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-4 text-theme-text-subtle">
+        {trustSignals.map(signal => (
+          <div class="flex items-center gap-2 text-sm font-medium">
+            <Fragment set:html={signal.icon} />
+            <span>{signal.text}</span>
+          </div>
+        ))}
+      </div>
+    </header>
+
+
     <!-- EXPERIENCE CARDS SECTION -->
     <section class="mt-20">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -133,6 +202,7 @@ const cards = {
         <!-- HOOKUPS CARD -->
         <a
           href={cards.hookups.link}
+
           data-card-hookups
           class="group block p-8 rounded-2xl bg-theme-bg-card border border-theme-border shadow-sm hover:shadow-lg hover:border-theme-accent transition-all duration-300"
           id="hookups-card-link"
@@ -141,6 +211,7 @@ const cards = {
             <h2 class="text-2xl font-bold text-theme-text">{cards.hookups.title}</h2>
             <p class="mt-2 text-theme-text-subtle">{cards.hookups.description}</p>
           </div>
+
           <div
             class="relative h-48 w-full rounded-lg overflow-hidden bg-cover bg-center"
             style="background-image: url('https://picsum.photos/seed/hookups/800/600?grayscale');"
@@ -151,39 +222,36 @@ const cards = {
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
               </svg>
             </div>
+
+          <div class="relative h-48 w-full rounded-lg overflow-hidden bg-gray-900/20">
+            <svg class="absolute inset-0 h-full w-full" width="100%" height="100%" viewBox="0 0 400 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <filter id="glow-hookups">
+                  <feGaussianBlur stdDeviation="7" result="coloredBlur"/>
+                  <feMerge>
+                    <feMergeNode in="coloredBlur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+              </defs>
+              <path d="M 50 150 Q 150 50 250 120 T 450 150" stroke="rgba(var(--theme-accent), 0.4)" fill="transparent" stroke-width="30" stroke-linecap="round" filter="url(#glow-hookups)"/>
+              <path d="M -50 100 Q 100 180 200 100 T 350 50" stroke="rgba(var(--theme-accent), 0.6)" fill="transparent" stroke-width="35" stroke-linecap="round" filter="url(#glow-hookups)"/>
+            </svg>
+            <div class="absolute inset-0 bg-gradient-to-t from-theme-bg-card via-transparent"></div>
+
           </div>
         </a>
 
-        <!-- COMMUNITY CARD -->
-        <a
-          href={cards.community.link}
-          data-card-community
-          class="group block p-8 rounded-2xl bg-theme-bg-card border border-theme-border shadow-sm hover:shadow-lg hover:border-theme-accent transition-all duration-300"
-        >
-          <div class="mb-4">
-            <h2 class="text-2xl font-bold text-theme-text">{cards.community.title}</h2>
-            <p class="mt-2 text-theme-text-subtle">{cards.community.description}</p>
-          </div>
-          <div
-            class="relative h-48 w-full rounded-lg overflow-hidden bg-cover bg-center"
-            style="background-image: url('https://picsum.photos/seed/community/800/600');"
-          >
-            <div class="absolute inset-0 bg-black/40"></div>
-            <div class="absolute top-3 right-3 bg-black/50 p-2 rounded-full">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
-                <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
-              </svg>
-            </div>
-          </div>
-        </a>
-
-      </div>
-    </section>
+        <!
 
     <!-- SIGN UP CTA -->
     <footer class="text-center mt-20">
         <p class="text-lg text-theme-text-subtle">Ready to join?</p>
+ 
         <a
+
+
+
             href="/signup"
             data-cta-signup
             class="mt-4 inline-block px-10 py-4 font-bold rounded-full text-theme-cta-primary-text bg-theme-cta-primary-bg hover:bg-theme-cta-primary-bg-hover transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-theme-accent"
@@ -199,6 +267,7 @@ const cards = {
   // This script handles the theme switching when the user interacts with hookups-related CTAs.
   // It ensures the visual theme matches the chosen experience.
 
+
   function setHookupsTheme(event) {
     // Prevent navigation to allow theme to be set first.
     event.preventDefault();
@@ -209,6 +278,8 @@ const cards = {
     // Store the preference in localStorage
     localStorage.setItem('limpopo-theme', 'hookups');
 
+
+ main
     // Navigate to the href of the clicked link
     const targetUrl = event.currentTarget.href;
     window.location.href = targetUrl;
