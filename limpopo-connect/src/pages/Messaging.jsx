@@ -41,7 +41,7 @@ function ConversationList({ onSelectConversation }) {
 }
 
 function ChatWindow({ conversationId }) {
-  const chatMessages = messages[conversationId] || [];
+  const chatMessages = Object.prototype.hasOwnProperty.call(messages, conversationId) ? messages[conversationId] : [];
 
   return (
     <div className="w-2/3 bg-gray-900 text-white p-4 flex flex-col">
