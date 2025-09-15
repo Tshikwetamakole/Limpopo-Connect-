@@ -4,7 +4,6 @@ import '../styles/theme.css'; // Import theme variables
 import DesktopSidebar from '@components/DesktopSidebar.astro';
 import MobileHeader from '@components/MobileHeader.astro';
 import MobileNav from '@components/MobileNav.astro';
-import "../scripts/main.js";
 
 interface Props {
   title: string;
@@ -21,17 +20,32 @@ const { title, mainClass = "flex-1 overflow-x-hidden overflow-y-auto bg-theme-bg
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
 
+    <script is:inline>
+      // Run theme script immediately to prevent FOUC
+      const theme = (() => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme');
+        }
+        // No system preference check, default to 'community'
+        return 'community';
+      })();
+      document.documentElement.setAttribute('data-theme', theme);
+    </script>
     <script type="module">
-      import { initTheme } from '/src/scripts/theme.js';
-      import { initUI } from '/src/scripts/ui.js';
+        import { initTheme } from '/src/scripts/theme.js';
+        import { initUI } from '/src/scripts/ui.js';
 
-      // Run initializers on client
-      initTheme();
-      initUI();
+        // Theme has been set inline, now attach listeners
+        initTheme();
+
+        // Defer UI listeners until DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            initUI();
+        });
     </script>
   </head>
 
-  <body class="bg-theme-bg text-theme-text font-sans dark:bg-hookups-bg dark:text-hookups-text">
+  <body class="bg-theme-bg text-theme-text font-sans">
     <div class="flex h-screen">
       <DesktopSidebar />
 

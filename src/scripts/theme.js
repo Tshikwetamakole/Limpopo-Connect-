@@ -1,10 +1,10 @@
-import { STORAGE_KEYS, THEME_TOGGLE_BTN_ID, THEMES } from './constants.js';
+import { STORAGE_KEYS, THEME_TOGGLE_BTN_CLASS, THEMES } from './constants.js';
 
 /**
  * Applies the given theme to the document.
  * @param {string} theme - The theme to apply ('community' or 'hookups').
  */
-function applyTheme(theme) {
+export function applyTheme(theme) {
   const newTheme = theme === THEMES.HOOKUPS ? THEMES.HOOKUPS : THEMES.COMMUNITY;
   document.documentElement.setAttribute('data-theme', newTheme);
   localStorage.setItem(STORAGE_KEYS.THEME, newTheme);
@@ -25,13 +25,9 @@ function toggleTheme() {
  * This function should only be called on the client.
  */
 export function initTheme() {
-  // Apply the saved theme or default to 'community'
-  const savedTheme = localStorage.getItem(STORAGE_KEYS.THEME);
-  applyTheme(savedTheme || THEMES.COMMUNITY);
-
-  // Attach event listener to the toggle button
-  const themeToggleBtn = document.getElementById(THEME_TOGGLE_BTN_ID);
-  if (themeToggleBtn) {
-    themeToggleBtn.addEventListener('click', toggleTheme);
-  }
+  // Attach event listener to all toggle buttons
+  const themeToggleBtns = document.querySelectorAll(`.${THEME_TOGGLE_BTN_CLASS}`);
+  themeToggleBtns.forEach(btn => {
+    btn.addEventListener('click', toggleTheme);
+  });
 }
