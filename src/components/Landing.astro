@@ -3,12 +3,31 @@
 // This component serves as the main entry point for the new, conversion-focused landing page.
 // It is designed to be mobile-first and uses the dual-theme system (Community/Hookups).
 
-// --- Copywriting: Stored in variables for easy management and A/B testing ---
+// --- A/B Test Variants ---
+const copyVariants = {
+  control: {
+    title: "Your Connection, Your Choice.",
+    ctaPrivate: "Start Private",
+    ctaCommunity: "Join Community",
+  },
+  a: {
+    title: "Find Your Vibe in Limpopo.",
+    ctaPrivate: "Explore Discreetly",
+    ctaCommunity: "Discover Events",
+  },
+  b: {
+    title: "Two Experiences. One Platform.",
+    ctaPrivate: "Go Private",
+    ctaCommunity: "Go Public",
+  }
+};
+
+// --- Logic to select the active variant ---
+const { searchParams } = Astro.url;
+const variantKey = searchParams.get('variant')?.toLowerCase();
 const hero = {
-  title: "Your Connection, Your Choice.",
-  subtitle: "Whether you seek a private spark or a public square, find your place in Limpopo. Two distinct experiences, one platform.",
-  ctaPrivate: "Start Private",
-  ctaCommunity: "Join Community",
+    subtitle: "Whether you seek a private spark or a public square, find your place in Limpopo. Two distinct experiences, one platform.",
+    ...(copyVariants[variantKey] || copyVariants.control)
 };
 
 const trustSignals = [
@@ -33,13 +52,13 @@ const cards = {
 };
 ---
 
-<!--
-  This container defaults to the 'community' (light) theme to ensure a good experience
+<!-- 
+  This container defaults to the 'community' (light) theme to ensure a good experience 
   for first-time visitors, even if JavaScript is disabled.
 -->
 <div data-theme="community" class="bg-theme-bg text-theme-text min-h-screen font-sans">
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-
+    
     <!-- HERO SECTION -->
     <header class="text-center">
       <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-theme-text">
@@ -52,7 +71,7 @@ const cards = {
       <!-- HERO CTAs -->
       <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
         <!-- The primary CTA for the "dark" mode experience -->
-        <a
+        <a 
           href={cards.hookups.link}
           data-cta-hero-private
           class="w-full sm:w-auto flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-theme-cta-primary-text bg-theme-cta-primary-bg hover:bg-theme-cta-primary-bg-hover transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-theme-accent"
@@ -61,7 +80,7 @@ const cards = {
           {hero.ctaPrivate}
         </a>
         <!-- The primary CTA for the "light" mode experience -->
-        <a
+        <a 
           href={cards.community.link}
           data-cta-hero-community
           class="w-full sm:w-auto flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-theme-cta-secondary-text bg-theme-cta-secondary-bg hover:bg-theme-cta-secondary-bg-hover transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-theme-accent"
@@ -84,10 +103,10 @@ const cards = {
     <!-- EXPERIENCE CARDS SECTION -->
     <section class="mt-20">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-
+        
         <!-- HOOKUPS CARD -->
-        <a
-          href={cards.hookups.link}
+        <a 
+          href={cards.hookups.link} 
           data-card-hookups
           class="group block p-8 rounded-2xl bg-theme-bg-card border border-theme-border shadow-sm hover:shadow-lg hover:border-theme-accent transition-all duration-300"
           id="hookups-card-link"
@@ -96,16 +115,27 @@ const cards = {
             <h2 class="text-2xl font-bold text-theme-text">{cards.hookups.title}</h2>
             <p class="mt-2 text-theme-text-subtle">{cards.hookups.description}</p>
           </div>
-          <div class="relative h-48 w-full rounded-lg overflow-hidden bg-gray-200 dark:bg-gray-800">
-            <!-- Imagery Guidance: Abstract, non-photographic visuals -->
-            <div class="absolute inset-0 bg-gradient-to-br from-red-500 to-purple-600 opacity-80"></div>
-            <p class="absolute inset-0 flex items-center justify-center text-white font-bold text-lg">Discreet Visuals</p>
+          <div class="relative h-48 w-full rounded-lg overflow-hidden bg-gray-900/20">
+            <svg class="absolute inset-0 h-full w-full" width="100%" height="100%" viewBox="0 0 400 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <filter id="glow-hookups">
+                  <feGaussianBlur stdDeviation="7" result="coloredBlur"/>
+                  <feMerge>
+                    <feMergeNode in="coloredBlur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+              </defs>
+              <path d="M 50 150 Q 150 50 250 120 T 450 150" stroke="rgba(var(--theme-accent), 0.4)" fill="transparent" stroke-width="30" stroke-linecap="round" filter="url(#glow-hookups)"/>
+              <path d="M -50 100 Q 100 180 200 100 T 350 50" stroke="rgba(var(--theme-accent), 0.6)" fill="transparent" stroke-width="35" stroke-linecap="round" filter="url(#glow-hookups)"/>
+            </svg>
+            <div class="absolute inset-0 bg-gradient-to-t from-theme-bg-card via-transparent"></div>
           </div>
         </a>
 
         <!-- COMMUNITY CARD -->
-        <a
-          href={cards.community.link}
+        <a 
+          href={cards.community.link} 
           data-card-community
           class="group block p-8 rounded-2xl bg-theme-bg-card border border-theme-border shadow-sm hover:shadow-lg hover:border-theme-accent transition-all duration-300"
         >
@@ -113,10 +143,24 @@ const cards = {
             <h2 class="text-2xl font-bold text-theme-text">{cards.community.title}</h2>
             <p class="mt-2 text-theme-text-subtle">{cards.community.description}</p>
           </div>
-          <div class="relative h-48 w-full rounded-lg overflow-hidden bg-gray-200">
-            <!-- Imagery Guidance: Abstract, non-photographic visuals -->
-            <div class="absolute inset-0 bg-gradient-to-br from-orange-400 to-teal-500 opacity-80"></div>
-            <p class="absolute inset-0 flex items-center justify-center text-white font-bold text-lg">Vibrant Connections</p>
+          <div class="relative h-48 w-full rounded-lg overflow-hidden bg-gray-100/20">
+            <svg class="absolute inset-0 h-full w-full" width="100%" height="100%" viewBox="0 0 400 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <filter id="glow-community">
+                  <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
+                  <feMerge>
+                    <feMergeNode in="coloredBlur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+              </defs>
+              <circle cx="100" cy="80" r="40" fill="rgba(var(--theme-accent), 0.7)" filter="url(#glow-community)"/>
+              <circle cx="180" cy="120" r="50" fill="rgba(var(--theme-cta-secondary-bg), 0.6)" filter="url(#glow-community)"/>
+              <circle cx="280" cy="70" r="45" fill="rgba(var(--theme-accent), 0.6)" filter="url(#glow-community)"/>
+              <circle cx="350" cy="140" r="30" fill="rgba(var(--theme-cta-secondary-bg), 0.7)" filter="url(#glow-community)"/>
+              <circle cx="50" cy="150" r="25" fill="rgba(var(--theme-accent), 0.5)" filter="url(#glow-community)"/>
+            </svg>
+            <div class="absolute inset-0 bg-gradient-to-t from-theme-bg-card via-transparent"></div>
           </div>
         </a>
 
@@ -126,7 +170,7 @@ const cards = {
     <!-- SIGN UP CTA -->
     <footer class="text-center mt-20">
         <p class="text-lg text-theme-text-subtle">Ready to join?</p>
-        <a
+        <a 
             href="/signup"
             data-cta-signup
             class="mt-4 inline-block px-10 py-4 font-bold rounded-full text-theme-cta-primary-text bg-theme-cta-primary-bg hover:bg-theme-cta-primary-bg-hover transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-theme-accent"
@@ -141,17 +185,17 @@ const cards = {
 <script>
   // This script handles the theme switching when the user interacts with hookups-related CTAs.
   // It ensures the visual theme matches the chosen experience.
-
+  
   function setHookupsTheme(event) {
     // Prevent navigation to allow theme to be set first.
     event.preventDefault();
-
+    
     // Set the data-theme attribute on the root element
     document.documentElement.setAttribute('data-theme', 'hookups');
-
+    
     // Store the preference in localStorage
     localStorage.setItem('limpopo-theme', 'hookups');
-
+    
     // Navigate to the href of the clicked link
     const targetUrl = event.currentTarget.href;
     window.location.href = targetUrl;
