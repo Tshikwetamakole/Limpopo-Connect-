@@ -8,11 +8,16 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "test": "node test/build-verification.test.js"
+    "test": "node test/build-verification.test.js",
+    "test:a11y": "node test/a11y.mjs"
   },
   "dependencies": {
     "@astrojs/tailwind": "^6.0.2",
     "astro": "^5.13.7",
     "tailwindcss": "^3.4.4"
+  },
+  "devDependencies": {
+    "axe-playwright": "^2.2.2",
+    "playwright": "^1.55.0"
   }
 }
