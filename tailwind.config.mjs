@@ -16,23 +16,25 @@ export default {
     extend: {
       colors: {
         theme: {
+          // Core Palette
           bg: withOpacity('--theme-bg'),
           text: withOpacity('--theme-text'),
+          'text-subtle': withOpacity('--theme-text-subtle'),
+          border: withOpacity('--theme-border'),
+
+          // Components
+          'bg-card': withOpacity('--theme-bg-card'),
+          'bg-card-hover': withOpacity('--theme-bg-card-hover'),
+
+          // Accents & CTAs
           accent: withOpacity('--theme-accent'),
-          secondary: withOpacity('--theme-secondary'),
-        },
-        // The old color names are kept for now for a gradual refactor,
-        // but they point to the new CSS variables.
-        hookups: {
-          bg: withOpacity('--theme-bg'),
-          text: withOpacity('--theme-text'),
-          accent: withOpacity('--theme-accent'),
-        },
-        community: {
-          bg: withOpacity('--theme-bg'),
-          text: withOpacity('--theme-text'),
-          accent: withOpacity('--theme-accent'),
-          secondary: withOpacity('--theme-secondary'),
+          'accent-hover': withOpacity('--theme-accent-hover'),
+          'cta-primary-bg': withOpacity('--theme-cta-primary-bg'),
+          'cta-primary-text': withOpacity('--theme-cta-primary-text'),
+          'cta-primary-bg-hover': withOpacity('--theme-cta-primary-bg-hover'),
+          'cta-secondary-bg': withOpacity('--theme-cta-secondary-bg'),
+          'cta-secondary-text': withOpacity('--theme-cta-secondary-text'),
+          'cta-secondary-bg-hover': withOpacity('--theme-cta-secondary-bg-hover'),
         }
       },
       animation: {
