@@ -1,53 +1,11 @@
 ---
+// src/pages/index.astro
+// This is the home page, which now uses the new Landing component.
+
 import MainLayout from '../layouts/MainLayout.astro';
-import HomeCard from '../components/HomeCard.astro';
+import Landing from '../components/Landing.astro';
 ---
-<MainLayout title="Limpopo Connect" mainClass="flex-1 overflow-x-hidden overflow-y-auto bg-white dark:bg-gray-900">
-    <!-- Hero Section -->
-    <div class="relative isolate overflow-hidden bg-gradient-to-br from-purple-600 via-pink-500 to-red-500 animate-gradient-xy pt-14">
-        <div class="absolute inset-0 bg-black opacity-40"></div>
-        <div class="mx-auto max-w-2xl py-24 sm:py-32 lg:py-40">
-            <div class="relative z-10 text-center">
-                <h1 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">
-                    Connect Your Way
-                </h1>
-                <p class="mt-6 text-lg leading-8 text-gray-200">
-                    One platform, two worlds. Find your connection.
-                </p>
-            </div>
-        </div>
-    </div>
 
-    <!-- Cards Section -->
-    <div class="bg-gray-100 dark:bg-gray-900 py-16 sm:py-24">
-        <div class="mx-auto max-w-7xl px-6 lg:px-8">
-            <div class="mx-auto max-w-2xl text-center">
-                <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">Choose Your Experience</h2>
-                <p class="mt-2 text-lg leading-8 text-gray-600 dark:text-gray-300">
-                    Whether you're looking for community or something more discreet.
-                </p>
-            </div>
-
-            <div class="mt-16 grid grid-cols-1 gap-y-10 sm:grid-cols-2 lg:grid-cols-2 sm:gap-x-8 max-w-4xl mx-auto">
-                <HomeCard
-                    title="Hookups"
-                    description="Discreet. Anonymous. Direct."
-                    href="/hookups/"
-                    imgSrc="https://i.imgur.com/TyhAOt9.png"
-                    imgAlt="Woman looking over shoulder in a dark, moody setting"
-                    buttonText="Enter"
-                    theme="hookups"
-                />
-                <HomeCard
-                    title="Community"
-                    description="Events. Groups. Culture."
-                    href="/community/"
-                    imgSrc="/images/community-card.jpg"
-                    imgAlt="People gathered at a community event"
-                    buttonText="Explore"
-                    theme="community"
-                />
-            </div>
-        </div>
-    </div>
+<MainLayout title="Limpopo Connect: Your Connection, Your Choice" mainClass="flex-1 overflow-x-hidden overflow-y-auto">
+  <Landing />
 </MainLayout>

@@ -1,0 +1,171 @@
+---
+// Landing.astro
+// This component serves as the main entry point for the new, conversion-focused landing page.
+// It is designed to be mobile-first and uses the dual-theme system (Community/Hookups).
+
+// --- Copywriting: Stored in variables for easy management and A/B testing ---
+const hero = {
+  title: "Your Connection, Your Choice.",
+  subtitle: "Whether you seek a private spark or a public square, find your place in Limpopo. Two distinct experiences, one platform.",
+  ctaPrivate: "Start Private",
+  ctaCommunity: "Join Community",
+};
+
+const trustSignals = [
+  { icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5.002a11.954 11.954 0 01-1.611 3.993 1.14 1.14 0 00.103 1.25l.01.011c.11.123.26.19.413.19h.01a1.137 1.137 0 00.99-1.299 9.539 9.539 0 00-2.31-4.998 9.54 9.54 0 00-1.02-1.33C.003 4.29.002 4.288 0 4.286v-.002C.002 4.283 0 4.28.002 4.277a.7.7 0 01.02-.128C.13 3.65 1.513 1.353 5.44 1.01A.7.7 0 016.14.31a.7.7 0 01.698.698C6.51 5.376 4.29 9.35 4.288 9.353a.7.7 0 01-1.22.503A9.536 9.536 0 00.5 4.858a9.535 9.535 0 004.998 2.31.7.7 0 01.298.99l-.01.01a.7.7 0 01-1.25-.102A11.954 11.954 0 011.944 10 11.954 11.954 0 015.002 17.834a11.954 11.954 0 013.993 1.611 1.14 1.14 0 001.25-.103l.011-.01c.123-.11.19-.26.19-.413v-.01a1.137 1.137 0 00-1.299-.99 9.539 9.539 0 00-4.998-2.31 9.54 9.54 0 00-1.33-1.02c-.99-.66-.992-.662-.994-.664h-.002c-.001 0-.004-.002-.006-.004a.7.7 0 01-.128-.02C3.65 13.87 1.353 12.487 1.01 8.56a.7.7 0 01.31-0.702.7.7 0 01.698.698c.328 3.328 2.54 5.54 2.542 5.542a.7.7 0 01.503-1.22A9.536 9.536 0 004.858 19.5a9.535 9.535 0 002.31-4.998.7.7 0 01.99-.298l.01.01a.7.7 0 01-.102 1.25A11.954 11.954 0 0110 18.056a11.954 11.954 0 01-2.166-3.993 1.14 1.14 0 00-.103-1.25l-.01-.011a1.137 1.137 0 00-1.189-.588 1.137 1.137 0 00-.588 1.189c.32 1.13.78 2.21 1.362 3.225a.7.7 0 01-1.12 1.04A13.354 13.354 0 010 10c0-4.418 2.158-8.29 5.44-10.493a.7.7 0 011.04 1.12A11.952 11.952 0 001.944 10z" clip-rule="evenodd" /></svg>`, text: "Private by design" },
+  { icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18H9.5a4 4 0 003.943-3.452l.05-.025A2 2 0 0014.567 18h.383a2 2 0 001.942-1.554l.058-.233A4 4 0 0018 13.5V9.5a4 4 0 00-4-4H7.5a4 4 0 00-3.943 3.452l-.05.025A2 2 0 002 10.333z" /></svg>`, text: "Real connections" },
+  { icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" /></svg>`, text: "Safety first" }
+];
+
+const cards = {
+  hookups: {
+    title: "Hookups Mode",
+    description: "Discreet, direct, and private. Find what you're looking for, safely.",
+    link: "/hookups/",
+    theme: "hookups"
+  },
+  community: {
+    title: "Community Mode",
+    description: "Connect with your culture. Join events, find locations, and build your network.",
+    link: "/community/",
+    theme: "community"
+  }
+};
+---
+
+<!--
+  This container defaults to the 'community' (light) theme to ensure a good experience
+  for first-time visitors, even if JavaScript is disabled.
+-->
+<div data-theme="community" class="bg-theme-bg text-theme-text min-h-screen font-sans">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+
+    <!-- HERO SECTION -->
+    <header class="text-center">
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-theme-text">
+        {hero.title}
+      </h1>
+      <p class="mt-4 max-w-2xl mx-auto text-lg text-theme-text-subtle">
+        {hero.subtitle}
+      </p>
+
+      <!-- HERO CTAs -->
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <!-- The primary CTA for the "dark" mode experience -->
+        <a
+          href={cards.hookups.link}
+          data-cta-hero-private
+          class="w-full sm:w-auto flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-theme-cta-primary-text bg-theme-cta-primary-bg hover:bg-theme-cta-primary-bg-hover transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-theme-accent"
+          id="hookups-cta-btn"
+        >
+          {hero.ctaPrivate}
+        </a>
+        <!-- The primary CTA for the "light" mode experience -->
+        <a
+          href={cards.community.link}
+          data-cta-hero-community
+          class="w-full sm:w-auto flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-theme-cta-secondary-text bg-theme-cta-secondary-bg hover:bg-theme-cta-secondary-bg-hover transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-theme-accent"
+        >
+          {hero.ctaCommunity}
+        </a>
+      </div>
+
+      <!-- TRUST SIGNALS -->
+      <div class="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-4 text-theme-text-subtle">
+        {trustSignals.map(signal => (
+          <div class="flex items-center gap-2 text-sm font-medium">
+            <Fragment set:html={signal.icon} />
+            <span>{signal.text}</span>
+          </div>
+        ))}
+      </div>
+    </header>
+
+    <!-- EXPERIENCE CARDS SECTION -->
+    <section class="mt-20">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+        <!-- HOOKUPS CARD -->
+        <a
+          href={cards.hookups.link}
+          data-card-hookups
+          class="group block p-8 rounded-2xl bg-theme-bg-card border border-theme-border shadow-sm hover:shadow-lg hover:border-theme-accent transition-all duration-300"
+          id="hookups-card-link"
+        >
+          <div class="mb-4">
+            <h2 class="text-2xl font-bold text-theme-text">{cards.hookups.title}</h2>
+            <p class="mt-2 text-theme-text-subtle">{cards.hookups.description}</p>
+          </div>
+          <div class="relative h-48 w-full rounded-lg overflow-hidden bg-gray-200 dark:bg-gray-800">
+            <!-- Imagery Guidance: Abstract, non-photographic visuals -->
+            <div class="absolute inset-0 bg-gradient-to-br from-red-500 to-purple-600 opacity-80"></div>
+            <p class="absolute inset-0 flex items-center justify-center text-white font-bold text-lg">Discreet Visuals</p>
+          </div>
+        </a>
+
+        <!-- COMMUNITY CARD -->
+        <a
+          href={cards.community.link}
+          data-card-community
+          class="group block p-8 rounded-2xl bg-theme-bg-card border border-theme-border shadow-sm hover:shadow-lg hover:border-theme-accent transition-all duration-300"
+        >
+          <div class="mb-4">
+            <h2 class="text-2xl font-bold text-theme-text">{cards.community.title}</h2>
+            <p class="mt-2 text-theme-text-subtle">{cards.community.description}</p>
+          </div>
+          <div class="relative h-48 w-full rounded-lg overflow-hidden bg-gray-200">
+            <!-- Imagery Guidance: Abstract, non-photographic visuals -->
+            <div class="absolute inset-0 bg-gradient-to-br from-orange-400 to-teal-500 opacity-80"></div>
+            <p class="absolute inset-0 flex items-center justify-center text-white font-bold text-lg">Vibrant Connections</p>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- SIGN UP CTA -->
+    <footer class="text-center mt-20">
+        <p class="text-lg text-theme-text-subtle">Ready to join?</p>
+        <a
+            href="/signup"
+            data-cta-signup
+            class="mt-4 inline-block px-10 py-4 font-bold rounded-full text-theme-cta-primary-text bg-theme-cta-primary-bg hover:bg-theme-cta-primary-bg-hover transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-theme-accent"
+        >
+            Sign Up Now
+        </a>
+    </footer>
+
+  </div>
+</div>
+
+<script>
+  // This script handles the theme switching when the user interacts with hookups-related CTAs.
+  // It ensures the visual theme matches the chosen experience.
+
+  function setHookupsTheme(event) {
+    // Prevent navigation to allow theme to be set first.
+    event.preventDefault();
+
+    // Set the data-theme attribute on the root element
+    document.documentElement.setAttribute('data-theme', 'hookups');
+
+    // Store the preference in localStorage
+    localStorage.setItem('limpopo-theme', 'hookups');
+
+    // Navigate to the href of the clicked link
+    const targetUrl = event.currentTarget.href;
+    window.location.href = targetUrl;
+  }
+
+  // Attach event listener to the Hookups CTA button in the hero
+  const hookupsCtaBtn = document.getElementById('hookups-cta-btn');
+  if (hookupsCtaBtn) {
+    hookupsCtaBtn.addEventListener('click', setHookupsTheme);
+  }
+
+  // Attach event listener to the Hookups card
+  const hookupsCardLink = document.getElementById('hookups-card-link');
+  if (hookupsCardLink) {
+    hookupsCardLink.addEventListener('click', setHookupsTheme);
+  }
+</script>
