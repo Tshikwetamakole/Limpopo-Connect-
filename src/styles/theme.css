@@ -1,20 +1,58 @@
 /*
   Defines the CSS custom properties (variables) for the two themes:
-  - 'community' (default)
-  - 'hookups'
+  - 'community' (light, default)
+  - 'hookups' (dark)
 */
 
 :root,
 [data-theme="community"] {
+  /* Core Palette */
   --theme-bg: 245 245 247; /* #f5f5f7 */
   --theme-text: 29 29 31;   /* #1d1d1f */
+  --theme-text-subtle: 108 114 117; /* #6c7275 */
+  --theme-border: 222 226 230; /* #dee2e6 */
+
+  /* Component-specific */
+  --theme-bg-card: 255 255 255; /* #ffffff */
+  --theme-bg-card-hover: 248 249 250; /* #f8f9fa */
+
+  /* Accents & CTAs */
   --theme-accent: 255 149 0; /* #ff9500 */
-  --theme-secondary: 0 160 176; /* #00a0b0 */
+  --theme-accent-hover: 230 134 0; /* #e68600 */
+
+  /* Hookups CTA (Primary on this page) */
+  --theme-cta-primary-bg: 29 29 31; /* #1d1d1f */
+  --theme-cta-primary-text: 255 255 255; /* #ffffff */
+  --theme-cta-primary-bg-hover: 60 60 60; /* #3c3c3c */
+
+  /* Community CTA (Secondary on this page) */
+  --theme-cta-secondary-bg: 255 149 0; /* #ff9500 */
+  --theme-cta-secondary-text: 255 255 255; /* #ffffff */
+  --theme-cta-secondary-bg-hover: 230 134 0; /* #e68600 */
 }
 
 [data-theme="hookups"] {
-  --theme-bg: 26 26 26;   /* #1a1a1a */
+  /* Core Palette */
+  --theme-bg: 18 18 18;   /* #121212 */
   --theme-text: 224 224 224; /* #e0e0e0 */
+  --theme-text-subtle: 160 160 160; /* #a0a0a0 */
+  --theme-border: 60 60 60; /* #3c3c3c */
+
+  /* Component-specific */
+  --theme-bg-card: 28 28 28; /* #1c1c1c */
+  --theme-bg-card-hover: 38 38 38; /* #262626 */
+
+  /* Accents & CTAs */
   --theme-accent: 255 59 48; /* #ff3b30 */
-  --theme-secondary: 255 59 48; /* #ff3b30, same as accent for this theme */
+  --theme-accent-hover: 230 53 43; /* #e6352b */
+
+  /* Hookups CTA (Primary on this page) */
+  --theme-cta-primary-bg: 255 59 48; /* #ff3b30 */
+  --theme-cta-primary-text: 255 255 255; /* #ffffff */
+  --theme-cta-primary-bg-hover: 230 53 43; /* #e6352b */
+
+  /* Community CTA (Secondary on this page) */
+  --theme-cta-secondary-bg: 38 38 38; /* #262626 */
+  --theme-cta-secondary-text: 224 224 224; /* #e0e0e0 */
+  --theme-cta-secondary-bg-hover: 60 60 60; /* #3c3c3c */
 }
