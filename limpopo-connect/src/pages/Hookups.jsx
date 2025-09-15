@@ -7,21 +7,33 @@ const posts = [
     author: 'Anonymous',
     title: 'M4F - Looking for a fun night out',
     body: 'In town for a few days and looking for someone to show me around. Open to seeing where the night takes us.',
+
+    avatar: '/images/Randy.jpg',
+
     avatar: 'https://via.placeholder.com/150',
+
   },
   {
     id: 2,
     author: 'JohnDoe',
     title: 'F4M - Dinner and a movie?',
     body: 'Tired of the usual scene. Looking for a genuine connection, even if it\'s just for one night.',
+
+    avatar: '/images/lady azania.jpg',
+
     avatar: 'https://via.placeholder.com/150',
+
   },
   {
     id: 3,
     author: 'Anonymous',
     title: 'M4M - Gym buddy and more?',
     body: 'Looking for someone to work out with and maybe grab a drink afterwards. Let\'s see what happens.',
+
+    avatar: '/images/Randy.jpg',
+
     avatar: 'https://via.placeholder.com/150',
+
   },
 ];
 

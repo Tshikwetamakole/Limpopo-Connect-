@@ -4,7 +4,11 @@ import { Link } from 'react-router-dom';
 const user = {
   name: 'Jules',
   email: 'jules@example.com',
+
+  avatar: '/images/Randy.jpg',
+
   avatar: 'https://via.placeholder.com/150',
+
   bio: 'Just a developer trying to make the world a better place.',
   activity: [
     { type: 'event', name: 'Polokwane Tech Meetup', date: '2025-10-01' },

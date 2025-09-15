@@ -5,19 +5,31 @@ const groups = [
     id: 1,
     name: 'Polokwane Programmers',
     members: 128,
+
+    image: '/images/public faces.jpg',
+
     image: 'https://via.placeholder.com/400x200',
+
   },
   {
     id: 2,
     name: 'Tzaneen Book Club',
     members: 42,
+
+    image: '/images/public faces.jpg',
+
     image: 'https://via.placeholder.com/400x200',
+
   },
   {
     id: 3,
     name: 'Mokopane Artists Collective',
     members: 78,
+
+    image: '/images/public faces.jpg',
+
     image: 'https://via.placeholder.com/400x200',
+
   },
 ];
 

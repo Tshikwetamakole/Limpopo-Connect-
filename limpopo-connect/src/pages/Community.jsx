@@ -8,7 +8,11 @@ const events = [
     date: '2025-10-01',
     location: 'Polokwane',
     description: 'A monthly meetup for tech enthusiasts and professionals.',
+ 
+    image: '/images/community-card.jpg',
+
     image: 'https://via.placeholder.com/400x200',
+
   },
   {
     id: 2,
@@ -16,7 +20,11 @@ const events = [
     date: '2025-10-15',
     location: 'Tzaneen',
     description: 'Celebrate the rich cultural heritage of the Tzaneen region.',
+
+    image: '/images/community-card.jpg',
+
     image: 'https://via.placeholder.com/400x200',
+
   },
   {
     id: 3,
@@ -24,7 +32,11 @@ const events = [
     date: '2025-11-05',
     location: 'Mokopane',
     description: 'A scenic hiking trip through the beautiful landscapes of Mokopane.',
+
+    image: '/images/community-card.jpg',
+
     image: 'https://via.placeholder.com/400x200',
+
   },
 ];
 
