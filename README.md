@@ -8,8 +8,7 @@
 
 🔗 **Live Demo:** [limpopoconnect.site](https://limpopoconnect.site)
 
----
-
+-
 ## ✨ Highlights
 
 - 🔒 **Hookups Mode** — discreet, dark-themed UI for private connections  
