@@ -18,6 +18,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Auto-update PR & Notify Conflicts
+        uses: sequelize/pr-auto-update-and-handle-conflicts@1.0.1
       - name: Checkout your repository using git
         uses: actions/checkout@v4
       - name: Install, build, and upload your site
@@ -39,5 +41,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-      - name: Auto-update PR & Notify Conflicts
-        uses: sequelize/pr-auto-update-and-handle-conflicts@1.0.1
