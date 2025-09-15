@@ -27,7 +27,7 @@ export const ThemeProvider = ({ children }) => {
     }
   };
 
-  const currentTheme = themeConfig[theme];
+  const currentTheme = themeConfig[Object.keys(themeConfig).includes(theme) ? theme : 'default'];
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme, currentTheme }}>
