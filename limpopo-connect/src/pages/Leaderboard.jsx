@@ -5,6 +5,12 @@ const leaderboard = [
   { id: 2, name: 'JaneSmith', score: 1100, avatar: '/images/lady azania.jpg' },
   { id: 3, name: 'JohnDoe', score: 950, avatar: '/images/public faces.jpg' },
   { id: 4, name: 'Anonymous', score: 800, avatar: '/images/hookups-card.png' },
+
+  { id: 1, name: 'Jules', score: 1250, avatar: 'https://via.placeholder.com/150' },
+  { id: 2, name: 'JaneSmith', score: 1100, avatar: 'https://via.placeholder.com/150' },
+  { id: 3, name: 'JohnDoe', score: 950, avatar: 'https://via.placeholder.com/150' },
+  { id: 4, name: 'Anonymous', score: 800, avatar: 'https://via.placeholder.com/150' },
+
 ];
 
 function Leaderboard() {

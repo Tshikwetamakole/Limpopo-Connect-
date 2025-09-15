@@ -18,7 +18,7 @@ function Home() {
 
           <div className="mt-12 grid gap-5 max-w-lg mx-auto lg:grid-cols-2 lg:max-w-none">
             {/* Hookups Card */}
-            <div className="flex flex-col rounded-lg shadow-lg overflow-hidden">
+            <div className="flex flex-col rounded-lg shadow-lg overflow-h
               <div className="flex-shrink-0">
                 <img className="h-48 w-full object-cover" src="/images/hookups-card.png" alt="Hookups" />
               </div>
@@ -26,12 +26,22 @@ function Home() {
                 <div className="flex-1">
                     <h3 className="text-2xl font-bold text-gray-800">Hookups (18+)</h3>
                     <p className="mt-2 text-lg text-gray-500">A private and anonymous space for casual encounters.</p>
+
+              <div className="flex-shrink-0 bg-gray-800 p-6">
+                <h3 className="text-2xl font-bold text-white">Hookups (18+)</h3>
+                <p className="mt-2 text-lg text-gray-300">A private and anonymous space for casual encounters.</p>
+              </div>
+              <div className="flex-1 bg-white p-6 flex flex-col justify-between">
+                <div className="flex-1">
+                  <p className="text-gray-700">Find what you're looking for with our advanced filters and anonymous messaging.</p>
+
                 </div>
               </div>
             </div>
 
             {/* Community Hub Card */}
             <div className="flex flex-col rounded-lg shadow-lg overflow-hidden">
+ 
                 <div className="flex-shrink-0">
                     <img className="h-48 w-full object-cover" src="/images/community-card.png" alt="Community Hub" />
                 </div>
@@ -41,6 +51,17 @@ function Home() {
                         <p className="mt-2 text-lg text-gray-500">A social space for events, groups, and cultural activities.</p>
                     </div>
                 </div>
+
+              <div className="flex-shrink-0 bg-orange-500 p-6">
+                <h3 className="text-2xl font-bold text-white">Community Hub</h3>
+                <p className="mt-2 text-lg text-white">A social space for events, groups, and cultural activities.</p>
+              </div>
+              <div className="flex-1 bg-white p-6 flex flex-col justify-between">
+                <div className="flex-1">
+                  <p className="text-gray-700">Discover local events, join groups, and connect with your community.</p>
+                </div>
+              </div>
+
             </div>
           </div>
 

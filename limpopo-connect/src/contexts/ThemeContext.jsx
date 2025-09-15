@@ -27,7 +27,11 @@ export const ThemeProvider = ({ children }) => {
     }
   };
 
+ feat/initial-ui-scaffold
   const currentTheme = themeConfig[Object.keys(themeConfig).includes(theme) ? theme : 'default'];
+
+  const currentTheme = themeConfig[theme];
+ main
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme, currentTheme }}>
