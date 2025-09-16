@@ -13,9 +13,9 @@ export const ThemeProvider = ({ children }) => {
   const themeConfig = {
     dark: {
       navbar: 'bg-transparent',
-      // The background now uses the custom colors.
-      background: 'bg-brand-dark',
-      gradient: 'bg-brand-gradient from-brand-dark via-brand-purple to-brand-red',
+      // The background is now handled by the AnimatedBackground component.
+      background: '',
+      gradient: '',
       text: 'text-white',
       cardBg: 'bg-gray-800 bg-opacity-50 backdrop-blur-sm', // Added backdrop-blur for a frosted glass effect
       button: 'bg-brand-red hover:bg-red-700',
