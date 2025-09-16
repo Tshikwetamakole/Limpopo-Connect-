@@ -10,8 +10,6 @@ const posts = [
 
       avatar: '/images/Randy.jpg',
 
-      avatar: 'https://via.placeholder.com/150',
-
     },
     {
       id: 2,
@@ -21,8 +19,6 @@ const posts = [
 
       avatar: '/images/lady azania.jpg',
 
-      avatar: 'https://via.placeholder.com/150',
-
     },
     {
       id: 3,
@@ -31,8 +27,6 @@ const posts = [
       body: 'Looking for someone to work out with and maybe grab a drink afterwards. Let\'s see what happens.',
 
       avatar: '/images/Randy.jpg',
-
-      avatar: 'https://via.placeholder.com/150',
 
     },
   ];

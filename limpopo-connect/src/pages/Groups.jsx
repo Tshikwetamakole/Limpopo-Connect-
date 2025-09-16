@@ -8,8 +8,6 @@ const groups = [
 
     image: '/images/public faces.jpg',
 
-    image: 'https://via.placeholder.com/400x200',
-
   },
   {
     id: 2,
@@ -18,8 +16,6 @@ const groups = [
 
     image: '/images/public faces.jpg',
 
-    image: 'https://via.placeholder.com/400x200',
-
   },
   {
     id: 3,
@@ -27,8 +23,6 @@ const groups = [
     members: 78,
 
     image: '/images/public faces.jpg',
-
-    image: 'https://via.placeholder.com/400x200',
 
   },
 ];
