@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { ThemeContext } from '../contexts/ThemeContext';
+import ladyAzania from '/images/lady-azania.jpg';
+import publicFaces from '/images/public-faces.jpg';
 
 /**
  * Renders the Home page, which serves as the main entry point of the application.
@@ -31,7 +33,7 @@ function Home() {
             <Link to="/hookups" className="block transform hover:scale-105 transition-transform duration-300 group">
               <div
                 className={cardStyle}
-                style={{ backgroundImage: `url('/images/lady azania.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+                style={{ backgroundImage: `url(${ladyAzania})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
               >
                 <div className={overlayStyle}></div>
                 <div className={textContainerStyle}>
@@ -50,7 +52,7 @@ function Home() {
             <Link to="/community" className="block transform hover:scale-105 transition-transform duration-300 group">
               <div
                 className={cardStyle}
-                style={{ backgroundImage: `url('/images/public faces.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+                style={{ backgroundImage: `url(${publicFaces})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
               >
                 <div className={overlayStyle}></div>
                 <div className={textContainerStyle}>
