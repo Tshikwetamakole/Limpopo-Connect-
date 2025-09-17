@@ -12,7 +12,8 @@ import Profile from './pages/Profile';
 import Settings from './pages/Settings';
 import Badges from './pages/Badges';
 import Leaderboard from './pages/Leaderboard';
-import { IoHomeOutline, IoCalendarOutline, IoLocationOutline, IoChatbubbleEllipsesOutline, IoPersonOutline } from 'react-icons/io5';
+import Blog from './pages/Blog';
+import { IoHomeOutline, IoCalendarOutline, IoLocationOutline, IoChatbubbleEllipsesOutline, IoPersonOutline, IoNewspaperOutline } from 'react-icons/io5';
 
 /**
  * @typedef {object} Route
@@ -43,4 +44,5 @@ export const routes = [
   { path: '/settings', Component: Settings, nav: false },
   { path: '/badges', Component: Badges, nav: false },
   { path: '/leaderboard', Component: Leaderboard, nav: false },
+  { path: '/blog', Component: Blog, label: 'Blog', Icon: IoNewspaperOutline, nav: true },
 ];

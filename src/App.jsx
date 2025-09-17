@@ -1,8 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import { routes } from './routes';
 import Navbar from './components/Navbar';
 import BottomNav from './components/BottomNav';
+import Footer from './components/Footer';
 import { ThemeProvider } from './contexts/ThemeContext';
 import AnimatedBackground from './components/AnimatedBackground';
 
@@ -16,25 +18,28 @@ import AnimatedBackground from './components/AnimatedBackground';
  */
 function App() {
   return (
-    <ThemeProvider>
-      <div style={{ position: 'relative' }}>
-        <AnimatedBackground />
-        <div style={{ position: 'relative', zIndex: 1 }}>
+    <HelmetProvider>
+      <ThemeProvider>
+        <div style={{ position: 'relative' }}>
+          <AnimatedBackground />
+          <div style={{ position: 'relative', zIndex: 1 }}>
 
-          <Router basename={import.meta.env.BASE_URL}>
-            <Navbar />
-            <Routes>
-              {routes.map((route) => (
-                <Route key={route.path} path={route.path} element={<route.Component />} />
-              ))}
-            </Routes>
-            <BottomNav />
-          </Router>
+            <Router basename={import.meta.env.BASE_URL}>
+              <Navbar />
+              <Routes>
+                {routes.map((route) => (
+                  <Route key={route.path} path={route.path} element={<route.Component />} />
+                ))}
+              </Routes>
+              <BottomNav />
+              <Footer />
+            </Router>
 
 
+          </div>
         </div>
-      </div>
-    </ThemeProvider>
+      </ThemeProvider>
+    </HelmetProvider>
   );
 }
 

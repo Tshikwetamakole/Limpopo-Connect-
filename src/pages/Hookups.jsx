@@ -1,27 +1,42 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { ThemeContext } from '../contexts/ThemeContext';
+import SEO from '../components/SEO';
+import { IoHeartOutline, IoChatbubbleOutline, IoPersonOutline } from 'react-icons/io5';
 
 const posts = [
   {
     id: 1,
     author: 'Anonymous',
-    title: 'M4F - Looking for a fun night out',
-    body: 'In town for a few days and looking for someone to show me around. Open to seeing where the night takes us.',
-    avatar: 'https://via.placeholder.com/150',
+    title: 'M4F - Looking for a fun night out in Polokwane',
+    body: 'Visiting Polokwane for business and looking for someone local to show me the best spots. Open to dinner, drinks, and seeing where the evening takes us. Must be respectful and genuine.',
+    avatar: 'https://via.placeholder.com/150/4A5568/FFFFFF?text=A',
+    location: 'Polokwane',
+    age: 32,
+    interests: ['Dining', 'Nightlife', 'Local Culture'],
+    postedDate: '2025-09-15'
   },
   {
     id: 2,
     author: 'JohnDoe',
-    title: 'F4M - Dinner and a movie?',
-    body: 'Tired of the usual scene. Looking for a genuine connection, even if it\'s just for one night.',
-    avatar: 'https://via.placeholder.com/150',
+    title: 'F4M - Dinner and meaningful conversation in Tzaneen',
+    body: 'Seeking someone for a genuine connection. Tired of superficial interactions. Looking for dinner, deep conversation, and possibly more. Value honesty, respect, and shared interests.',
+    avatar: 'https://via.placeholder.com/150/2D3748/FFFFFF?text=J',
+    location: 'Tzaneen',
+    age: 28,
+    interests: ['Fine Dining', 'Intellectual Conversations', 'Nature'],
+    postedDate: '2025-09-14'
   },
   {
     id: 3,
     author: 'Anonymous',
-    title: 'M4M - Gym buddy and more?',
-    body: 'Looking for someone to work out with and maybe grab a drink afterwards. Let\'s see what happens.',
-    avatar: 'https://via.placeholder.com/150',
+    title: 'M4M - Fitness enthusiast seeking workout partner in Mokopane',
+    body: 'Looking for a like-minded individual to hit the gym with and maybe grab healthy post-workout meals. Open to seeing if there\'s chemistry beyond fitness. Health-conscious and active lifestyle preferred.',
+    avatar: 'https://via.placeholder.com/150/1A202C/FFFFFF?text=M',
+    location: 'Mokopane',
+    age: 30,
+    interests: ['Fitness', 'Healthy Eating', 'Outdoor Activities'],
+    postedDate: '2025-09-13'
   },
 ];
 
@@ -33,36 +48,149 @@ const posts = [
  * @returns {JSX.Element} The Hookups page component.
  */
 function Hookups() {
+  const { currentTheme } = useContext(ThemeContext);
+
   return (
-    <div className="min-h-screen bg-black text-white">
-      <main className="py-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center">
-            <h1 className="text-3xl font-bold">Hookups Forum</h1>
-            <Link to="/create-post" className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-              Create Post
-            </Link>
-          </div>
-          <div className="mt-6">
-            {posts.map((post) => (
-              <div key={post.id} className="bg-gray-800 rounded-lg shadow-md p-6 mb-6 flex">
-                <img src={post.avatar} alt="avatar" className="w-16 h-16 rounded-full mr-6" />
-                <div>
-                  <Link to={`/post/${post.id}`}>
-                    <h2 className="text-2xl font-bold">{post.title}</h2>
-                  </Link>
-                  <p className="text-sm text-gray-400">by {post.author}</p>
-                  <p className="mt-4">{post.body}</p>
-                  <button className="mt-4 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                    Message
-                  </button>
-                </div>
+    <>
+      <SEO
+        title="Hookups - Discreet Dating & Connections | Limpopo Connect"
+        description="Find meaningful connections and discreet relationships in Limpopo Province. Browse personal ads from Polokwane, Tzaneen, and Mokopane residents seeking genuine connections."
+        keywords="Limpopo dating, Polokwane hookups, Tzaneen dating, Mokopane relationships, discreet connections, South African dating, local singles"
+        image="/images/hookups-card.png"
+      />
+
+      <div className={`min-h-screen ${currentTheme.gradient} ${currentTheme.text}`}>
+        <main className="py-10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h1 className="text-4xl font-bold mb-4">Hookups Forum</h1>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                Connect with like-minded individuals across Limpopo Province. Our discreet platform
+                facilitates genuine connections between respectful adults seeking meaningful relationships,
+                whether for one night or something more lasting.
+              </p>
+              <p className="mt-4 text-lg text-gray-400 max-w-2xl mx-auto">
+                Browse personal ads from Polokwane, Tzaneen, and Mokopane. All interactions are
+                conducted with respect for privacy and consent. Find your perfect match in our
+                vibrant community.
+              </p>
+            </div>
+
+            <div className="mb-8 text-center">
+              <Link
+                to="/create-post"
+                className="inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg transition-colors duration-300"
+              >
+                Create Your Profile
+              </Link>
+            </div>
+
+            <div className="grid gap-6 max-w-4xl mx-auto">
+              {posts.map((post) => (
+                <article key={post.id} className={`bg-gray-800 bg-opacity-50 rounded-lg shadow-lg p-6 hover:bg-opacity-70 transition-all duration-300`}>
+                  <div className="flex flex-col md:flex-row">
+                    <div className="flex-shrink-0 mb-4 md:mb-0 md:mr-6">
+                      <img
+                        src={post.avatar}
+                        alt={`Profile avatar for ${post.author} - ${post.age} years old from ${post.location}`}
+                        className="w-20 h-20 rounded-full border-2 border-red-500"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <header>
+                        <Link to={`/post/${post.id}`} className="block">
+                          <h2 className="text-2xl font-bold hover:text-red-400 transition-colors mb-2">
+                            {post.title}
+                          </h2>
+                        </Link>
+                        <div className="flex flex-wrap items-center gap-4 text-sm text-gray-400 mb-3">
+                          <span className="flex items-center">
+                            <IoPersonOutline className="mr-1" />
+                            {post.author}
+                          </span>
+                          <span>{post.age} years old</span>
+                          <span>{post.location}</span>
+                          <span>Posted {new Date(post.postedDate).toLocaleDateString('en-ZA')}</span>
+                        </div>
+                      </header>
+
+                      <p className="text-gray-300 mb-4 leading-relaxed">{post.body}</p>
+
+                      <div className="mb-4">
+                        <h3 className="text-sm font-semibold text-gray-400 mb-2">Interests:</h3>
+                        <div className="flex flex-wrap gap-2">
+                          {post.interests.map((interest, index) => (
+                            <span
+                              key={index}
+                              className="bg-red-600 bg-opacity-20 text-red-300 px-3 py-1 rounded-full text-xs"
+                            >
+                              {interest}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="flex gap-3">
+                        <button
+                          className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-lg transition-colors duration-300 flex items-center"
+                          aria-label={`Send message to ${post.author}`}
+                        >
+                          <IoChatbubbleOutline className="mr-2" />
+                          Message
+                        </button>
+                        <button
+                          className="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-6 rounded-lg transition-colors duration-300 flex items-center"
+                          aria-label={`Like post by ${post.author}`}
+                        >
+                          <IoHeartOutline className="mr-2" />
+                          Like
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            {/* Safety Notice */}
+            <div className="mt-12 bg-yellow-900 bg-opacity-20 border border-yellow-600 rounded-lg p-6">
+              <h2 className="text-xl font-bold text-yellow-400 mb-4">Safety & Respect Guidelines</h2>
+              <ul className="text-gray-300 space-y-2 text-sm">
+                <li>• Always meet in public places for first meetings</li>
+                <li>• Respect boundaries and obtain clear consent</li>
+                <li>• Be honest about your intentions and situation</li>
+                <li>• Report any suspicious or inappropriate behavior</li>
+                <li>• Your privacy and safety are our top priorities</li>
+              </ul>
+            </div>
+
+            {/* Call to Action */}
+            <div className="mt-12 text-center bg-gray-800 bg-opacity-50 rounded-lg p-8">
+              <h2 className="text-2xl font-bold mb-4">Ready to Find Your Connection?</h2>
+              <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
+                Join thousands of Limpopo residents who have found meaningful connections through our platform.
+                Create your profile today and start exploring compatible matches in your area.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link
+                  to="/create-post"
+                  className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300"
+                >
+                  Create Profile
+                </Link>
+                <Link
+                  to="/profile"
+                  className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300"
+                >
+                  View My Profile
+                </Link>
               </div>
-            ))}
+            </div>
           </div>
-        </div>
-      </main>
-    </div>
+        </main>
+      </div>
+    </>
   );
 }
 
