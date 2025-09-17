@@ -1,42 +1,193 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { ThemeContext } from '../contexts/ThemeContext';
+import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
+import AuthModal from './AuthModal';
 
-/**
- * Renders the main navigation bar for the application.
- * It includes links to various pages and uses the theme context for styling.
- * This navbar is primarily designed for desktop views.
- *
- * @component
- * @returns {JSX.Element} The main navigation bar component.
- */
-function Navbar() {
-  const { currentTheme } = useContext(ThemeContext);
-  const linkStyle = `${currentTheme.text} hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors`;
+const Navbar = () => {
+  const location = useLocation();
+  const { user, logout, isAuthenticated } = useAuth();
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [showUserMenu, setShowUserMenu] = useState(false);
+
+  const navItems = [
+    { path: '/', label: 'Home' },
+    { path: '/events', label: 'Events' },
+    { path: '/messages', label: 'Messages' },
+    { path: '/profile', label: 'Profile' },
+    { path: '/blog', label: 'Blog' },
+  ];
+
+  const handleLogout = () => {
+    logout();
+    setShowUserMenu(false);
+  };
 
   return (
-    <nav className={`${currentTheme.navbar} shadow-md sticky top-0 z-50`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex-shrink-0">
-            <Link to="/" className={`text-2xl font-bold ${currentTheme.text}`}>Limpopo Connect</Link>
-          </div>
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
-              <Link to="/" className={linkStyle}>Home</Link>
-              <Link to="#" className={linkStyle}>Search</Link>
-              <Link to="/hookups" className={linkStyle}>Hookups</Link>
-              <Link to="/community" className={linkStyle}>Events</Link>
-              <Link to="/groups" className={linkStyle}>Groups</Link>
-              <Link to="/leaderboard" className={linkStyle}>Leaderboard</Link>
-              <Link to="/messages" className={linkStyle}>Messages</Link>
-              <Link to="/profile" className={linkStyle}>Profile</Link>
-            </div>
+    <>
+      <nav style={{
+        backgroundColor: 'rgba(26, 0, 51, 0.9)',
+        padding: '1rem',
+        position: 'sticky',
+        top: 0,
+        zIndex: 100,
+        backdropFilter: 'blur(10px)',
+      }}>
+        <div style={{
+          maxWidth: '1200px',
+          margin: '0 auto',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}>
+          <Link to="/" style={{
+            color: 'white',
+            textDecoration: 'none',
+            fontSize: '1.5rem',
+            fontWeight: 'bold',
+          }}>
+            Limpopo Connect
+          </Link>
+
+          <div style={{
+            display: 'flex',
+            gap: '2rem',
+            alignItems: 'center',
+          }}>
+            {navItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                style={{
+                  color: location.pathname === item.path ? '#ff6b6b' : 'white',
+                  textDecoration: 'none',
+                  fontWeight: location.pathname === item.path ? 'bold' : 'normal',
+                  transition: 'color 0.3s ease',
+                  padding: '0.5rem 1rem',
+                  borderRadius: '4px',
+                  backgroundColor: location.pathname === item.path ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
+                }}
+              >
+                {item.label}
+              </Link>
+            ))}
+
+            {isAuthenticated ? (
+              <div style={{ position: 'relative' }}>
+                <button
+                  onClick={() => setShowUserMenu(!showUserMenu)}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    color: 'white',
+                    padding: '0.5rem',
+                    borderRadius: '50%',
+                    transition: 'background 0.3s ease',
+                  }}
+                  onMouseEnter={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.1)'}
+                  onMouseLeave={(e) => e.target.style.background = 'none'}
+                >
+                  <div
+                    style={{
+                      width: '32px',
+                      height: '32px',
+                      borderRadius: '50%',
+                      background: '#ff6b6b',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '0.9rem',
+                      fontWeight: 'bold',
+                      color: 'white'
+                    }}
+                  >
+                    {user.avatar}
+                  </div>
+                </button>
+
+                {showUserMenu && (
+                  <div style={{
+                    position: 'absolute',
+                    top: '100%',
+                    right: 0,
+                    background: 'white',
+                    borderRadius: '8px',
+                    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.2)',
+                    minWidth: '200px',
+                    zIndex: 1000,
+                    marginTop: '0.5rem'
+                  }}>
+                    <div style={{
+                      padding: '1rem',
+                      borderBottom: '1px solid #eee',
+                      fontWeight: 'bold',
+                      color: '#1a0033'
+                    }}>
+                      {user.name}
+                    </div>
+                    <Link
+                      to="/profile"
+                      style={{
+                        display: 'block',
+                        padding: '0.75rem 1rem',
+                        color: '#333',
+                        textDecoration: 'none',
+                        borderBottom: '1px solid #eee'
+                      }}
+                      onClick={() => setShowUserMenu(false)}
+                    >
+                      👤 View Profile
+                    </Link>
+                    <button
+                      onClick={handleLogout}
+                      style={{
+                        width: '100%',
+                        padding: '0.75rem 1rem',
+                        background: 'none',
+                        border: 'none',
+                        color: '#c62828',
+                        cursor: 'pointer',
+                        textAlign: 'left',
+                        borderRadius: '0 0 8px 8px'
+                      }}
+                    >
+                      🚪 Logout
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <button
+                onClick={() => setShowAuthModal(true)}
+                style={{
+                  background: '#ff6b6b',
+                  color: 'white',
+                  border: 'none',
+                  padding: '0.5rem 1.5rem',
+                  borderRadius: '25px',
+                  cursor: 'pointer',
+                  fontWeight: 'bold',
+                  transition: 'background 0.3s ease',
+                }}
+                onMouseEnter={(e) => e.target.style.background = '#ff5252'}
+                onMouseLeave={(e) => e.target.style.background = '#ff6b6b'}
+              >
+                Login
+              </button>
+            )}
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+
+      <AuthModal
+        isOpen={showAuthModal}
+        onClose={() => setShowAuthModal(false)}
+      />
+    </>
   );
-}
+};
 
 export default Navbar;

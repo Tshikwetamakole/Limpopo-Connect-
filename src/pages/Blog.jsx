@@ -1,219 +1,198 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { ThemeContext } from '../contexts/ThemeContext';
-import SEO from '../components/SEO';
-import OptimizedImage from '../components/OptimizedImage';
-import { IoCalendarOutline, IoPersonOutline, IoTimeOutline } from 'react-icons/io5';
+import { useState } from 'react';
+import { useAuth } from '../contexts/AuthContext';
 
-const blogPosts = [
-  {
-    id: 1,
-    title: 'Top 10 Hidden Gems in Polokwane: Local Secrets Revealed',
-    excerpt: 'Discover the best-kept secrets of Polokwane that only locals know about. From authentic restaurants to scenic viewpoints, explore what makes this city special.',
-    content: 'Polokwane, formerly known as Pietersburg, is a vibrant city with a rich history and culture. In this comprehensive guide, we reveal the top 10 hidden gems that make Polokwane truly special...',
-    author: 'Sarah Nkosi',
-    date: '2025-09-15',
-    readTime: '5 min read',
-    category: 'Local Guide',
-    image: '/images/community-card.jpg',
-    tags: ['Polokwane', 'Local Guide', 'Hidden Gems', 'Culture']
-  },
-  {
-    id: 2,
-    title: 'Community Events Calendar: September Highlights in Limpopo',
-    excerpt: 'Stay updated with the most exciting community events happening across Limpopo Province this month. From cultural festivals to networking events.',
-    content: 'September brings a wealth of exciting events to Limpopo Province. Here\'s your complete guide to the must-attend community events this month...',
-    author: 'Mike van der Merwe',
-    date: '2025-09-10',
-    readTime: '3 min read',
-    category: 'Events',
-    image: '/images/public-faces.jpg',
-    tags: ['Events', 'Community', 'Calendar', 'Limpopo']
-  },
-  {
-    id: 3,
-    title: 'Building Meaningful Connections: Dating Tips for Limpopo Residents',
-    excerpt: 'Expert advice on finding genuine connections in the digital age. Learn how to navigate online dating safely and effectively in our local community.',
-    content: 'In today\'s digital world, finding meaningful connections can be both exciting and challenging. Here are some expert tips tailored for Limpopo residents...',
-    author: 'Dr. Thandi Mthembu',
-    date: '2025-09-05',
-    readTime: '7 min read',
-    category: 'Relationships',
-    image: '/images/lady-azania.jpg',
-    tags: ['Dating', 'Relationships', 'Advice', 'Safety']
-  },
-  {
-    id: 4,
-    title: 'The Rise of Tech Startups in Tzaneen: Innovation in Action',
-    excerpt: 'Explore how Tzaneen is becoming a hub for technology innovation. Meet the entrepreneurs driving change and creating opportunities in our province.',
-    content: 'Tzaneen is quietly becoming a powerhouse for technology innovation in Limpopo Province. Discover the startups and entrepreneurs making waves...',
-    author: 'James Khumalo',
-    date: '2025-08-28',
-    readTime: '6 min read',
-    category: 'Business',
-    image: '/images/hookups-card.png',
-    tags: ['Technology', 'Startups', 'Innovation', 'Tzaneen']
-  }
-];
+const Blog = () => {
+  const { isAuthenticated, user } = useAuth();
+  const [posts, setPosts] = useState([
+    {
+      id: 1,
+      title: 'Welcome to Limpopo Connect',
+      author: 'Community Team',
+      date: '2025-09-15',
+      content: 'We\'re excited to launch Limpopo Connect, a platform dedicated to bringing our community together. Through this platform, residents of Polokwane, Tzaneen, Mokopane, and surrounding areas can connect, share ideas, and build stronger relationships.',
+      category: 'Announcements'
+    },
+    {
+      id: 2,
+      title: 'Upcoming Community Events',
+      author: 'Events Coordinator',
+      date: '2025-09-16',
+      content: 'Mark your calendars! We have an exciting lineup of community events coming up. From farmers\' markets to cultural festivals, there\'s something for everyone. Stay tuned for more details and registration information.',
+      category: 'Events'
+    },
+    {
+      id: 3,
+      title: 'Local Business Spotlight: Traditional Crafts',
+      author: 'Business Development',
+      date: '2025-09-14',
+      content: 'This month, we\'re highlighting the incredible traditional crafts from our local artisans. From handwoven baskets to intricate beadwork, our community is rich with talented creators preserving our cultural heritage.',
+      category: 'Business'
+    }
+  ]);
 
-/**
- * Blog/News page component displaying latest articles and community content
- * @component
- * @returns {JSX.Element} The Blog page component
- */
-function Blog() {
-  const { currentTheme } = useContext(ThemeContext);
+  const [showForm, setShowForm] = useState(false);
+  const [formData, setFormData] = useState({
+    title: '',
+    content: '',
+    category: 'General'
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newPost = {
+      id: posts.length + 1,
+      ...formData,
+      author: user.name,
+      date: new Date().toISOString().split('T')[0]
+    };
+    setPosts(prev => [newPost, ...prev]);
+    setFormData({
+      title: '',
+      content: '',
+      category: 'General'
+    });
+    setShowForm(false);
+  };
+
+  const categories = ['All', 'Announcements', 'Events', 'Business', 'General'];
+  const [selectedCategory, setSelectedCategory] = useState('All');
+
+  const filteredPosts = selectedCategory === 'All'
+    ? posts
+    : posts.filter(post => post.category === selectedCategory);
 
   return (
-    <>
-      <SEO
-        title="Blog & News - Latest Updates from Limpopo Connect"
-        description="Stay informed with the latest news, events, and insights from the Limpopo Province community. Read articles about local culture, events, and community connections."
-        keywords="Limpopo news, community blog, local events, Polokwane updates, Tzaneen news, Mokopane articles, South African community"
-        image="/images/community-card.jpg"
-      />
+    <div>
+      <div className="page-container">
+        <h1 className="page-title">Community Blog</h1>
+        <p className="page-subtitle">
+          Stay updated with the latest news, announcements, and stories from our community.
+        </p>
 
-      <div className={`min-h-screen ${currentTheme.gradient} ${currentTheme.text}`}>
-        <main className="py-10">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h1 className="text-4xl font-bold mb-4">Limpopo Connect Blog</h1>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Stay connected with the latest news, insights, and stories from our vibrant
-                Limpopo Province community. Discover local events, cultural highlights, and
-                meaningful connections happening across Polokwane, Tzaneen, and Mokopane.
-              </p>
+        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+          {isAuthenticated ? (
+            <button
+              className="btn"
+              onClick={() => setShowForm(!showForm)}
+            >
+              {showForm ? 'Cancel' : 'Write New Post'}
+            </button>
+          ) : (
+            <div style={{
+              background: '#fff3cd',
+              color: '#856404',
+              padding: '1rem',
+              borderRadius: '8px',
+              border: '1px solid #ffeaa7'
+            }}>
+              <strong>Login Required:</strong> Please login to create blog posts and engage with the community.
+            </div>
+          )}
+        </div>
+
+        {showForm && isAuthenticated && (
+          <form className="blog-form" onSubmit={handleSubmit}>
+            <h3>Create New Blog Post</h3>
+
+            <div className="form-group">
+              <label className="form-label">Title</label>
+              <input
+                type="text"
+                name="title"
+                className="form-input"
+                value={formData.title}
+                onChange={handleInputChange}
+                placeholder="Enter post title"
+                required
+              />
             </div>
 
-            {/* Featured Post */}
-            <div className="mb-12">
-              <div className="bg-gray-800 bg-opacity-50 rounded-lg overflow-hidden shadow-lg">
-                <div className="md:flex">
-                  <div className="md:flex-shrink-0">
-                    <OptimizedImage
-                      src={blogPosts[0].image}
-                      alt={`Featured article: ${blogPosts[0].title}`}
-                      className="h-48 w-full md:w-48 object-cover"
-                      sizes="(max-width: 768px) 100vw, 192px"
-                    />
-                  </div>
-                  <div className="p-8">
-                    <div className="flex items-center text-sm text-gray-400 mb-2">
-                      <span className="bg-blue-600 text-white px-2 py-1 rounded-full text-xs mr-2">
-                        Featured
-                      </span>
-                      <span>{blogPosts[0].category}</span>
-                    </div>
-                    <Link to={`/blog/${blogPosts[0].id}`}>
-                      <h2 className="text-2xl font-bold hover:text-blue-400 transition-colors mb-3">
-                        {blogPosts[0].title}
-                      </h2>
-                    </Link>
-                    <p className="text-gray-300 mb-4">{blogPosts[0].excerpt}</p>
-                    <div className="flex items-center text-sm text-gray-400">
-                      <IoPersonOutline className="mr-1" />
-                      <span className="mr-4">{blogPosts[0].author}</span>
-                      <IoCalendarOutline className="mr-1" />
-                      <span className="mr-4">{new Date(blogPosts[0].date).toLocaleDateString('en-ZA')}</span>
-                      <IoTimeOutline className="mr-1" />
-                      <span>{blogPosts[0].readTime}</span>
-                    </div>
-                  </div>
-                </div>
+            <div className="form-group">
+              <label className="form-label">Category</label>
+              <select
+                name="category"
+                className="form-input"
+                value={formData.category}
+                onChange={handleInputChange}
+              >
+                <option value="General">General</option>
+                <option value="Announcements">Announcements</option>
+                <option value="Events">Events</option>
+                <option value="Business">Business</option>
+              </select>
+            </div>
+
+            <div className="form-group">
+              <label className="form-label">Content</label>
+              <textarea
+                name="content"
+                className="form-textarea"
+                value={formData.content}
+                onChange={handleInputChange}
+                placeholder="Write your blog post content..."
+                rows="8"
+                required
+              />
+            </div>
+
+            <button type="submit" className="btn">Publish Post</button>
+          </form>
+        )}
+
+        <div style={{ marginBottom: '2rem' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center' }}>
+            {categories.map(category => (
+              <button
+                key={category}
+                className={`btn ${selectedCategory === category ? '' : 'btn-secondary'}`}
+                onClick={() => setSelectedCategory(category)}
+                style={{ minWidth: 'auto' }}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          {filteredPosts.map(post => (
+            <article key={post.id} className="blog-post">
+              <h2>{post.title}</h2>
+              <div className="blog-meta">
+                By {post.author} • {post.date} • Category: {post.category}
               </div>
-            </div>
-
-            {/* Blog Posts Grid */}
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {blogPosts.slice(1).map((post) => (
-                <article key={post.id} className="bg-gray-800 bg-opacity-50 rounded-lg overflow-hidden shadow-lg hover:bg-opacity-70 transition-all duration-300">
-                  <OptimizedImage
-                    src={post.image}
-                    alt={`Blog post: ${post.title}`}
-                    className="h-48 w-full object-cover"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  />
-                  <div className="p-6">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="bg-gray-700 text-gray-300 px-2 py-1 rounded-full text-xs">
-                        {post.category}
-                      </span>
-                      <span className="text-xs text-gray-400">{post.readTime}</span>
-                    </div>
-                    <Link to={`/blog/${post.id}`}>
-                      <h2 className="text-xl font-bold hover:text-blue-400 transition-colors mb-3 line-clamp-2">
-                        {post.title}
-                      </h2>
-                    </Link>
-                    <p className="text-gray-300 text-sm mb-4 line-clamp-3">{post.excerpt}</p>
-                    <div className="flex items-center justify-between text-xs text-gray-400">
-                      <div className="flex items-center">
-                        <IoPersonOutline className="mr-1" />
-                        <span>{post.author}</span>
-                      </div>
-                      <div className="flex items-center">
-                        <IoCalendarOutline className="mr-1" />
-                        <span>{new Date(post.date).toLocaleDateString('en-ZA')}</span>
-                      </div>
-                    </div>
-                    <div className="flex flex-wrap gap-1 mt-3">
-                      {post.tags.slice(0, 3).map((tag, index) => (
-                        <span
-                          key={index}
-                          className="bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs"
-                        >
-                          #{tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </article>
-              ))}
-            </div>
-
-            {/* Newsletter Signup */}
-            <div className="mt-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg p-8 text-center">
-              <h2 className="text-2xl font-bold text-white mb-4">Stay Updated</h2>
-              <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
-                Subscribe to our newsletter and never miss important community updates,
-                local events, and exclusive content from Limpopo Connect.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white"
-                  aria-label="Email address for newsletter"
-                />
-                <button className="bg-white text-blue-600 font-bold py-3 px-6 rounded-lg hover:bg-gray-100 transition-colors">
-                  Subscribe
+              <div className="blog-content">
+                {post.content}
+              </div>
+              <div style={{ marginTop: '1rem', paddingTop: '1rem', borderTop: '1px solid #eee' }}>
+                <button className="btn btn-secondary" style={{ marginRight: '1rem' }}>
+                  👍 Like
+                </button>
+                <button className="btn btn-secondary">
+                  💬 Comment
                 </button>
               </div>
-            </div>
+            </article>
+          ))}
+        </div>
 
-            {/* Categories */}
-            <div className="mt-12">
-              <h2 className="text-2xl font-bold mb-6">Explore by Category</h2>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {['Local Guide', 'Events', 'Relationships', 'Business'].map((category) => (
-                  <Link
-                    key={category}
-                    to={`/blog/category/${category.toLowerCase().replace(' ', '-')}`}
-                    className="bg-gray-800 bg-opacity-50 hover:bg-opacity-70 p-4 rounded-lg text-center transition-all duration-300"
-                  >
-                    <h3 className="font-semibold">{category}</h3>
-                    <p className="text-sm text-gray-400 mt-1">
-                      {blogPosts.filter(post => post.category === category).length} articles
-                    </p>
-                  </Link>
-                ))}
-              </div>
-            </div>
+        {filteredPosts.length === 0 && (
+          <div style={{ textAlign: 'center', padding: '3rem', color: '#666' }}>
+            <h3>No posts found</h3>
+            <p>Try selecting a different category or create the first post in this category!</p>
           </div>
-        </main>
+        )}
       </div>
-    </>
+    </div>
   );
-}
+};
 
 export default Blog;

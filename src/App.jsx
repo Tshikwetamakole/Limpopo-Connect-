@@ -1,45 +1,43 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { HelmetProvider } from 'react-helmet-async';
+import { Helmet } from 'react-helmet-async';
 import { routes } from './routes';
 import Navbar from './components/Navbar';
-import BottomNav from './components/BottomNav';
 import Footer from './components/Footer';
-import { ThemeProvider } from './contexts/ThemeContext';
-import AnimatedBackground from './components/AnimatedBackground';
+import { AuthProvider } from './contexts/AuthContext';
+import './App.css';
 
 /**
  * The main application component.
- * It sets up the theme provider, router, and the overall layout of the application,
- * including the animated background, navigation bars, and page routes.
+ * Sets up routing, authentication, and overall layout.
  *
  * @component
  * @returns {JSX.Element} The root component of the application.
  */
 function App() {
   return (
-    <HelmetProvider>
-      <ThemeProvider>
-        <div style={{ position: 'relative' }}>
-          <AnimatedBackground />
-          <div style={{ position: 'relative', zIndex: 1 }}>
-
-            <Router basename="/">
-              <Navbar />
-              <Routes>
-                {routes.map((route) => (
-                  <Route key={route.path} path={route.path} element={<route.Component />} />
-                ))}
-              </Routes>
-              <BottomNav />
-              <Footer />
-            </Router>
-
-
-          </div>
+    <AuthProvider>
+      <Router>
+        <Helmet>
+          <title>Limpopo Connect - Community Platform</title>
+          <meta name="description" content="Connect with the Limpopo community through events, groups, and social networking. Join Polokwane, Tzaneen, and Mokopane residents." />
+          <meta name="author" content="Emmanuel Charley Raluswinga" />
+          <meta name="keywords" content="Limpopo, community, social network, events, Polokwane, Tzaneen, Mokopane" />
+          <meta name="robots" content="index, follow" />
+          <link rel="author" href="https://charleyraluswinga.space" />
+        </Helmet>
+        <div className="app">
+          <Navbar />
+          <main className="main-content">
+            <Routes>
+              {routes.map((route) => (
+                <Route key={route.path} path={route.path} element={<route.Component />} />
+              ))}
+            </Routes>
+          </main>
+          <Footer />
         </div>
-      </ThemeProvider>
-    </HelmetProvider>
+      </Router>
+    </AuthProvider>
   );
 }
 
