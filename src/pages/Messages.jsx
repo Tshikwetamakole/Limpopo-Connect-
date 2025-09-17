@@ -1,7 +1,10 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useAuth } from '../contexts/AuthContext';
+import { ThemeContext } from '../contexts/ThemeContext';
+import SEO from '../components/SEO';
 
 const Messages = () => {
+  const { currentTheme } = useContext(ThemeContext);
   const { isAuthenticated, user } = useAuth();
   const [conversations, setConversations] = useState([
     {
@@ -75,152 +78,120 @@ const Messages = () => {
   };
 
   return (
-    <div>
-      <div className="page-container">
-        <h1 className="page-title">Messages</h1>
-        <p className="page-subtitle">
-          Connect and communicate with fellow community members. Stay in touch and build relationships.
-        </p>
+    <>
+      <SEO
+        title="Messages - Limpopo Connect"
+        description="Stay connected with the Limpopo community through our messaging platform. Chat with fellow residents and build meaningful relationships."
+        keywords="Limpopo messages, community chat, social networking, communication, messaging"
+        image="/images/messages-card.jpg"
+      />
 
-        {isAuthenticated ? (
-          <div className="grid-2">
-          {/* Conversations List */}
-          <div className="card">
-            <h3>Your Conversations</h3>
-            <div style={{ maxHeight: '500px', overflowY: 'auto' }}>
-              {conversations.map(conversation => (
-                <div
-                  key={conversation.id}
-                  className="message"
-                  style={{
-                    cursor: 'pointer',
-                    backgroundColor: selectedConversation.id === conversation.id ? '#f0f0f0' : 'white'
-                  }}
-                  onClick={() => setSelectedConversation(conversation)}
-                >
-                  <div className="message-header">
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+      <div className={`min-h-screen ${currentTheme.gradient} ${currentTheme.text}`}>
+        <main className="py-10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h1 className="text-4xl font-bold mb-4">Messages</h1>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                Connect and communicate with fellow community members. Stay in touch and build relationships.
+              </p>
+            </div>
+
+            {isAuthenticated ? (
+              <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                {/* Conversations List */}
+                <div className="bg-gray-800 bg-opacity-50 rounded-lg shadow-lg p-6">
+                  <h3 className="text-xl font-bold mb-4 text-white">Your Conversations</h3>
+                  <div className="max-h-96 overflow-y-auto space-y-3">
+                    {conversations.map(conversation => (
                       <div
-                        className="profile-avatar"
-                        style={{
-                          width: '40px',
-                          height: '40px',
-                          fontSize: '1rem',
-                          margin: 0
-                        }}
+                        key={conversation.id}
+                        className={`p-4 rounded-lg cursor-pointer transition-all duration-300 ${
+                          selectedConversation.id === conversation.id 
+                            ? 'bg-gray-600 bg-opacity-80' 
+                            : 'bg-gray-700 bg-opacity-50 hover:bg-gray-600 hover:bg-opacity-60'
+                        }`}
+                        onClick={() => setSelectedConversation(conversation)}
                       >
-                        {conversation.avatar}
-                      </div>
-                      <div>
-                        <div className="message-sender">{conversation.name}</div>
-                        <div style={{ fontSize: '0.9rem', color: '#666' }}>
-                          {conversation.lastMessage}
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                              {conversation.avatar}
+                            </div>
+                            <div>
+                              <div className="font-semibold text-white">{conversation.name}</div>
+                              <div className="text-sm text-gray-300 truncate max-w-48">
+                                {conversation.lastMessage}
+                              </div>
+                            </div>
+                          </div>
+                          <div className="text-right">
+                            <div className="text-xs text-gray-400">{conversation.time}</div>
+                            {conversation.unread && (
+                              <div className="w-2 h-2 bg-red-500 rounded-full mt-1 ml-auto"></div>
+                            )}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div style={{ textAlign: 'right' }}>
-                      <div className="message-time">{conversation.time}</div>
-                      {conversation.unread && (
-                        <div style={{
-                          width: '8px',
-                          height: '8px',
-                          backgroundColor: '#ff6b6b',
-                          borderRadius: '50%',
-                          marginTop: '0.5rem'
-                        }}></div>
-                      )}
-                    </div>
+                    ))}
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
 
-          {/* Chat Interface */}
-          <div className="card">
-            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem' }}>
-              <div
-                className="profile-avatar"
-                style={{
-                  width: '50px',
-                  height: '50px',
-                  fontSize: '1.2rem',
-                  marginRight: '1rem'
-                }}
-              >
-                {selectedConversation.avatar}
-              </div>
-              <h3>{selectedConversation.name}</h3>
-            </div>
-
-            <div style={{
-              height: '300px',
-              overflowY: 'auto',
-              border: '1px solid #ddd',
-              borderRadius: '8px',
-              padding: '1rem',
-              marginBottom: '1rem',
-              backgroundColor: '#fafafa'
-            }}>
-              {selectedConversation.messages.map(message => (
-                <div
-                  key={message.id}
-                  style={{
-                    marginBottom: '1rem',
-                    textAlign: message.sender === user.name ? 'right' : 'left'
-                  }}
-                >
-                  <div style={{
-                    display: 'inline-block',
-                    maxWidth: '70%',
-                    padding: '0.5rem 1rem',
-                    borderRadius: '18px',
-                    backgroundColor: message.sender === user.name ? '#ff6b6b' : '#e0e0e0',
-                    color: message.sender === user.name ? 'white' : '#333'
-                  }}>
-                    <div className="message-content">{message.content}</div>
-                    <div style={{
-                      fontSize: '0.8rem',
-                      opacity: 0.7,
-                      marginTop: '0.25rem'
-                    }}>
-                      {message.time}
+                {/* Chat Interface */}
+                <div className="bg-gray-800 bg-opacity-50 rounded-lg shadow-lg p-6">
+                  <div className="flex items-center gap-3 mb-4 pb-4 border-b border-gray-600">
+                    <div className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white font-bold">
+                      {selectedConversation.avatar}
                     </div>
+                    <h3 className="text-xl font-bold text-white">{selectedConversation.name}</h3>
                   </div>
-                </div>
-              ))}
-            </div>
 
-            <form onSubmit={handleSendMessage}>
-              <div style={{ display: 'flex', gap: '1rem' }}>
-                <input
-                  type="text"
-                  className="form-input"
-                  placeholder="Type your message..."
-                  value={newMessage}
-                  onChange={(e) => setNewMessage(e.target.value)}
-                  style={{ margin: 0 }}
-                />
-                <button type="submit" className="btn">Send</button>
+                  <div className="h-80 overflow-y-auto bg-gray-900 bg-opacity-50 rounded-lg p-4 mb-4 space-y-3">
+                    {selectedConversation.messages.map(message => (
+                      <div
+                        key={message.id}
+                        className={`flex ${message.sender === user?.name ? 'justify-end' : 'justify-start'}`}
+                      >
+                        <div className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
+                          message.sender === user?.name 
+                            ? 'bg-red-500 text-white' 
+                            : 'bg-gray-600 text-gray-100'
+                        }`}>
+                          <div className="text-sm">{message.content}</div>
+                          <div className="text-xs opacity-70 mt-1">
+                            {message.time}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <form onSubmit={handleSendMessage} className="flex gap-3">
+                    <input
+                      type="text"
+                      className="flex-1 bg-gray-700 bg-opacity-50 border border-gray-600 rounded-lg px-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                      placeholder="Type your message..."
+                      value={newMessage}
+                      onChange={(e) => setNewMessage(e.target.value)}
+                    />
+                    <button 
+                      type="submit" 
+                      className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-lg transition-colors duration-300"
+                    >
+                      Send
+                    </button>
+                  </form>
+                </div>
               </div>
-            </form>
+            ) : (
+              <div className="max-w-md mx-auto bg-yellow-900 bg-opacity-20 border border-yellow-600 rounded-lg p-8 text-center">
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">Login Required</h3>
+                <p className="text-gray-300">Please login to access your messages and communicate with the community.</p>
+              </div>
+            )}
           </div>
-        </div>
-        ) : (
-          <div style={{
-            textAlign: 'center',
-            padding: '3rem',
-            background: '#fff3cd',
-            color: '#856404',
-            borderRadius: '8px',
-            border: '1px solid #ffeaa7'
-          }}>
-            <h3>Login Required</h3>
-            <p>Please login to access your messages and communicate with the community.</p>
-          </div>
-        )}
+        </main>
       </div>
-    </div>
+    </>
   );
 };
 

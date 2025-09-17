@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { ThemeContext } from '../contexts/ThemeContext';
 import SEO from '../components/SEO';
@@ -67,9 +67,9 @@ function Community() {
                 and like-minded people in your local area.
               </p>
               <p className="mt-4 text-lg text-gray-400 max-w-2xl mx-auto">
-                Whether you're interested in professional networking, cultural exploration, or outdoor
+                Whether you&apos;re interested in professional networking, cultural exploration, or outdoor
                 recreation, Limpopo Connect brings together the diverse interests and passions of our
-                province's vibrant community. Join events that matter to you and help build stronger
+                province&apos;s vibrant community. Join events that matter to you and help build stronger
                 connections across our beautiful region.
               </p>
             </div>
@@ -122,7 +122,7 @@ function Community() {
             <div className="mt-16 text-center bg-gray-800 bg-opacity-50 rounded-lg p-8">
               <h2 className="text-2xl font-bold mb-4">Ready to Join the Community?</h2>
               <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-                Don't see an event that interests you? Create your own! Share your passions,
+                Don&apos;t see an event that interests you? Create your own! Share your passions,
                 organize meetups, and bring people together in your local Limpopo community.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
