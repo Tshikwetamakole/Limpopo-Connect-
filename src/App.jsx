@@ -27,7 +27,7 @@ function App() {
           */}
           {(() => {
             const shouldUseRepoBase = typeof window !== 'undefined' && window.location.pathname.startsWith('/Limpopo-Connect-');
-            const basename = shouldUseRepoBase ? '/Limpopo-Connect-' : '/';
+            const basename = shouldUseRepoBase ? '/Limpopo-Connect-' : undefined;
             return (
               <Router basename={basename}>
                 <Navbar />
