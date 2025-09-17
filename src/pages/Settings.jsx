@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 /**
  * Renders the Settings page, which allows users to configure their privacy and notification preferences.
