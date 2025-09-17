@@ -24,7 +24,7 @@ function App() {
           <AnimatedBackground />
           <div style={{ position: 'relative', zIndex: 1 }}>
 
-            <Router basename="/Limpopo-Connect-/">
+            <Router basename="/">
               <Navbar />
               <Routes>
                 {routes.map((route) => (
