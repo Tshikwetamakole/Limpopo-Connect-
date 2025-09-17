@@ -20,27 +20,18 @@ function App() {
       <div style={{ position: 'relative' }}>
         <AnimatedBackground />
         <div style={{ position: 'relative', zIndex: 1 }}>
-          {/*
-            Determine the router basename at runtime so the app works both when
-            served from the repo subpath (GitHub Pages URL: /Limpopo-Connect-/)
-            and when served from a custom domain root (https://limpopoconnect.site/).
-          */}
-          {(() => {
-            const shouldUseRepoBase = typeof window !== 'undefined' && window.location.pathname.startsWith('/Limpopo-Connect-');
-            const basename = shouldUseRepoBase ? '/Limpopo-Connect-' : undefined;
-            return (
-              <Router basename={basename}>
-                <Navbar />
-                <Routes>
-                  {routes.map((route) => (
-                    <Route key={route.path} path={route.path} element={<route.Component />} />
-                  ))}
-                </Routes>
-                <BottomNav />
-              </Router>
-            );
-          })()}
-          
+
+          <Router basename={import.meta.env.BASE_URL}>
+            <Navbar />
+            <Routes>
+              {routes.map((route) => (
+                <Route key={route.path} path={route.path} element={<route.Component />} />
+              ))}
+            </Routes>
+            <BottomNav />
+          </Router>
+
+
         </div>
       </div>
     </ThemeProvider>

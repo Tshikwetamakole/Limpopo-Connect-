@@ -25,6 +25,27 @@ The project uses Vite with the base path configured for GitHub Pages:
 - Build output: `dist/` directory
 - Vite configuration: `vite.config.js`
 
+
+## Local Development
+
+To run the project locally:
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+```
+
+The development server will be available at `http://localhost:5173/Limpopo-Connect-/`
+
 ## Troubleshooting
 
 ### Common Issues
@@ -52,6 +73,28 @@ If needed, you can manually trigger a deployment:
 3. Click "Run workflow"
 4. Select the main branch and click "Run workflow"
 
+
+## Production Preview
+
+To test the production build locally before deployment:
+
+```bash
+npm run build
+npm run preview
+```
+
+This will start a local server serving the production build at `http://localhost:4173/Limpopo-Connect-/`
+
+## Configuration Files
+
+- **`vite.config.js`**: Contains the base path configuration for GitHub Pages
+- **`.github/workflows/deploy.yml`**: GitHub Actions workflow for automatic deployment
+- **`package.json`**: Contains build scripts with host binding for external access
+
+## External Access
+
+Both development and preview servers are configured with `--host` flag to allow external access from containers, codespaces, or other environments.
+
 ## Local Development
 
 To run the project locally:
@@ -71,3 +114,4 @@ npm run preview
 ```
 
 The development server will be available at `http://localhost:5173/Limpopo-Connect-/`
+
