@@ -17,7 +17,7 @@ const events = [
     date: '2025-10-15',
     location: 'Tzaneen',
     description: 'Celebrate the rich cultural heritage of the Tzaneen region.',
-    image: '/images/public faces.jpg',
+    image: '/images/public-faces.jpg',
   },
   {
     id: 3,
@@ -25,7 +25,7 @@ const events = [
     date: '2025-11-05',
     location: 'Mokopane',
     description: 'A scenic hiking trip through the beautiful landscapes of Mokopane.',
-    image: '/images/lady azania.jpg',
+    image: '/images/lady-azania.jpg',
   },
 ];
 

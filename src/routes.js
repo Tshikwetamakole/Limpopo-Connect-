@@ -43,5 +43,4 @@ export const routes = [
   { path: '/settings', Component: Settings, nav: false },
   { path: '/badges', Component: Badges, nav: false },
   { path: '/leaderboard', Component: Leaderboard, nav: false },
-  { path: '/locations', Component: Home, label: 'Locations', Icon: IoLocationOutline, nav: true }, // Assuming locations is not yet implemented and redirects to home
 ];
