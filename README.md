@@ -16,6 +16,7 @@ Limpopo Connect is a modern social networking application designed to connect pe
 The project is built with React and Vite, and styled with Tailwind CSS.
 
 ```
+
 /
 |-- public/         # Static assets
 |-- src/
