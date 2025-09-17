@@ -33,7 +33,9 @@ function Home() {
             <Link to="/hookups" className="block transform hover:scale-105 transition-transform duration-300 group">
               <div
                 className={cardStyle}
+
                 style={{ backgroundImage: `url(${ladyAzania})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+
               >
                 <div className={overlayStyle}></div>
                 <div className={textContainerStyle}>
@@ -52,7 +54,9 @@ function Home() {
             <Link to="/community" className="block transform hover:scale-105 transition-transform duration-300 group">
               <div
                 className={cardStyle}
+
                 style={{ backgroundImage: `url(${publicFaces})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+
               >
                 <div className={overlayStyle}></div>
                 <div className={textContainerStyle}>
