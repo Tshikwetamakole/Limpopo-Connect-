@@ -36,6 +36,8 @@ function Home() {
 
                 style={{ backgroundImage: `url(${ladyAzania})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
 
+
+
               >
                 <div className={overlayStyle}></div>
                 <div className={textContainerStyle}>
@@ -53,11 +55,9 @@ function Home() {
             {/* Community Hub Card */}
             <Link to="/community" className="block transform hover:scale-105 transition-transform duration-300 group">
               <div
-                className={cardStyle}
-
+                className={cardS
                 style={{ backgroundImage: `url(${publicFaces})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
-
-              >
+>
                 <div className={overlayStyle}></div>
                 <div className={textContainerStyle}>
                   <h3 className="text-4xl font-bold">Community</h3>
