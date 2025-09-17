@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import { createContext, useState } from 'react';
 
 /**
  * @typedef {'dark' | 'light'} ThemeName
@@ -28,7 +28,7 @@ import React, { createContext, useState } from 'react';
  *
  * @type {React.Context<ThemeContextValue>}
  */
-// eslint-disable-next-line react-refresh/only-export-components
+
 export const ThemeContext = createContext();
 
 /**

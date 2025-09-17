@@ -7,6 +7,13 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Settings from './pages/Settings';
 import Community from './pages/Community';
+import Hookups from './pages/Hookups';
+import Groups from './pages/Groups';
+import Leaderboard from './pages/Leaderboard';
+import CreatePost from './pages/CreatePost';
+import PostDetail from './pages/PostDetail';
+import EventDetail from './pages/EventDetail';
+import Badges from './pages/Badges';
 
 export const routes = [
   { path: '/', Component: Home },
@@ -18,4 +25,11 @@ export const routes = [
   { path: '/signup', Component: SignUp },
   { path: '/settings', Component: Settings },
   { path: '/community', Component: Community },
+  { path: '/hookups', Component: Hookups },
+  { path: '/groups', Component: Groups },
+  { path: '/leaderboard', Component: Leaderboard },
+  { path: '/create-post', Component: CreatePost },
+  { path: '/post/:id', Component: PostDetail },
+  { path: '/event/:id', Component: EventDetail },
+  { path: '/badges', Component: Badges },
 ];

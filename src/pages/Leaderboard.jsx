@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 const leaderboard = [
   { id: 1, name: 'Jules', score: 1250, avatar: 'https://via.placeholder.com/150' },
