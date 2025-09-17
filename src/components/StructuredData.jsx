@@ -13,8 +13,8 @@ const StructuredData = ({ type = 'Organization', data }) => {
     '@type': type,
     name: 'Limpopo Connect',
     description: 'Social networking platform for the Limpopo Province community, connecting residents through events, groups, and local networking.',
-    url: 'https://limpopo-connect.netlify.app',
-    logo: 'https://limpopo-connect.netlify.app/images/lady-azania.jpg',
+    url: 'https://limpopoconnect.site',
+    logo: 'https://limpopoconnect.site/images/lady-azania.jpg',
     sameAs: [
       'https://facebook.com/limpopoconnect',
       'https://twitter.com/limpopoconnect',

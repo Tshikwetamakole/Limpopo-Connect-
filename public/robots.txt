@@ -1,11 +1,11 @@
 # Robots.txt for Limpopo Connect
-# https://limpopo-connect.netlify.app/robots.txt
+# https://limpopoconnect.site/robots.txt
 
 User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://limpopo-connect.netlify.app/sitemap.xml
+Sitemap: https://limpopoconnect.site/sitemap.xml
 
 # Disallow admin areas (if any)
 Disallow: /admin/
