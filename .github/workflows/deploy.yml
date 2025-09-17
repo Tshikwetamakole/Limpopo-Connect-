@@ -58,6 +58,4 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-# NOTE:
-# - If you use a CNAME file for a custom domain, add: keep_files: CNAME
-# - If you'd prefer the Pages branch to be 'gh-pages' or 'gh_pages' change publish_branch above.
+
