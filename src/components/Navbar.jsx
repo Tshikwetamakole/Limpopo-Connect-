@@ -2,6 +2,14 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { ThemeContext } from '../contexts/ThemeContext';
 
+/**
+ * Renders the main navigation bar for the application.
+ * It includes links to various pages and uses the theme context for styling.
+ * This navbar is primarily designed for desktop views.
+ *
+ * @component
+ * @returns {JSX.Element} The main navigation bar component.
+ */
 function Navbar() {
   const { currentTheme } = useContext(ThemeContext);
   const linkStyle = `${currentTheme.text} hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors`;

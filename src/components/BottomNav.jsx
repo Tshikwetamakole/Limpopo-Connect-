@@ -2,6 +2,13 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { routes } from '../routes';
 
+/**
+ * Renders the bottom navigation bar for mobile devices.
+ * The navigation items are dynamically generated from the routes configuration.
+ *
+ * @component
+ * @returns {JSX.Element} The bottom navigation component.
+ */
 const BottomNav = () => {
   const navItems = routes.filter(route => route.nav);
 
@@ -18,7 +25,7 @@ const BottomNav = () => {
               }`
             }
           >
-            {item.icon}
+            {item.Icon && <item.Icon size={24} />}
             <span className="mt-1">{item.label}</span>
           </NavLink>
         ))}

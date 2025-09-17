@@ -29,6 +29,13 @@ const events = [
   },
 ];
 
+/**
+ * Renders the Community Hub page, which displays a list of local events.
+ * The event data is currently hardcoded. The component uses the ThemeContext to apply themes.
+ *
+ * @component
+ * @returns {JSX.Element} The Community Hub page component.
+ */
 function Community() {
   const { currentTheme } = useContext(ThemeContext);
 

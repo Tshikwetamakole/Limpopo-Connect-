@@ -1,15 +1,60 @@
 import React, { createContext, useState } from 'react';
 
+/**
+ * @typedef {'dark' | 'light'} ThemeName
+ */
+
+/**
+ * @typedef {object} Theme
+ * @property {string} navbar - CSS classes for the navbar background.
+ * @property {string} background - CSS classes for the main background.
+ * @property {string} gradient - CSS classes for background gradients.
+ * @property {string} text - CSS classes for the primary text color.
+ * @property {string} cardBg - CSS classes for card backgrounds.
+ * @property {string} button - CSS classes for button backgrounds.
+ * @property {string} buttonText - CSS classes for button text color.
+ */
+
+/**
+ * @typedef {object} ThemeContextValue
+ * @property {ThemeName} theme - The name of the current theme ('dark' or 'light').
+ * @property {function(ThemeName): void} toggleTheme - Function to switch the theme.
+ * @property {Theme} currentTheme - The configuration object for the current theme.
+ */
+
+/**
+ * React context for managing application theme.
+ * Provides theme information and a function to change the theme.
+ *
+ * @type {React.Context<ThemeContextValue>}
+ */
+// eslint-disable-next-line react-refresh/only-export-components
 export const ThemeContext = createContext();
 
+/**
+ * Provides the theme context to its children.
+ * It manages the current theme state and provides a function to update it.
+ *
+ * @component
+ * @param {object} props - The component props.
+ * @param {React.ReactNode} props.children - The child components to render.
+ * @returns {JSX.Element} The theme provider component.
+ */
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState('dark');
 
+  /**
+   * Toggles the current theme.
+   * @param {ThemeName} newTheme - The new theme name to set.
+   */
   const toggleTheme = (newTheme) => {
     setTheme(newTheme);
   };
 
-  // Theme configuration using the newly defined colors in tailwind.config.js
+  /**
+   * Configuration for the different themes available in the application.
+   * @type {Object<ThemeName, Theme>}
+   */
   const themeConfig = {
     dark: {
       navbar: 'bg-transparent',

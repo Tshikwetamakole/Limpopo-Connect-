@@ -1,5 +1,12 @@
 import React from 'react';
 
+/**
+ * Renders the SignUp page, which provides a form for new users to create an account.
+ * It includes fields for email, password, experience preference, and age verification.
+ *
+ * @component
+ * @returns {JSX.Element} The SignUp page component.
+ */
 function SignUp() {
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
