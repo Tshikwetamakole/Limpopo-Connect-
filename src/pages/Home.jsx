@@ -31,7 +31,7 @@ function Home() {
             <Link to="/hookups" className="block transform hover:scale-105 transition-transform duration-300 group">
               <div
                 className={cardStyle}
-                style={{ backgroundImage: `url('/images/lady azania.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+                style={{ backgroundImage: `url('/images/lady-azania.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center' }}
               >
                 <div className={overlayStyle}></div>
                 <div className={textContainerStyle}>
@@ -50,7 +50,7 @@ function Home() {
             <Link to="/community" className="block transform hover:scale-105 transition-transform duration-300 group">
               <div
                 className={cardStyle}
-                style={{ backgroundImage: `url('/images/public faces.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+                style={{ backgroundImage: `url('/images/public-faces.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center' }}
               >
                 <div className={overlayStyle}></div>
                 <div className={textContainerStyle}>
