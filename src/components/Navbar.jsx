@@ -11,10 +11,11 @@ const Navbar = () => {
 
   const navItems = [
     { path: '/', label: 'Home' },
+    { path: '/community', label: 'Community' },
     { path: '/events', label: 'Events' },
     { path: '/messages', label: 'Messages' },
-    { path: '/profile', label: 'Profile' },
     { path: '/blog', label: 'Blog' },
+    { path: '/profile', label: 'Profile' },
   ];
 
   const handleLogout = () => {

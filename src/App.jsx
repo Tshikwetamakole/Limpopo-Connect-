@@ -4,6 +4,7 @@ import { routes } from './routes';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import { AuthProvider } from './contexts/AuthContext';
+import { ThemeProvider } from './contexts/ThemeContext';
 import './App.css';
 
 /**
@@ -15,29 +16,31 @@ import './App.css';
  */
 function App() {
   return (
-    <AuthProvider>
-      <Router>
-        <Helmet>
-          <title>Limpopo Connect - Community Platform</title>
-          <meta name="description" content="Connect with the Limpopo community through events, groups, and social networking. Join Polokwane, Tzaneen, and Mokopane residents." />
-          <meta name="author" content="Emmanuel Charley Raluswinga" />
-          <meta name="keywords" content="Limpopo, community, social network, events, Polokwane, Tzaneen, Mokopane" />
-          <meta name="robots" content="index, follow" />
-          <link rel="author" href="https://charleyraluswinga.space" />
-        </Helmet>
-        <div className="app">
-          <Navbar />
-          <main className="main-content">
-            <Routes>
-              {routes.map((route) => (
-                <Route key={route.path} path={route.path} element={<route.Component />} />
-              ))}
-            </Routes>
-          </main>
-          <Footer />
-        </div>
-      </Router>
-    </AuthProvider>
+    <ThemeProvider>
+      <AuthProvider>
+        <Router>
+          <Helmet>
+            <title>Limpopo Connect - Community Platform</title>
+            <meta name="description" content="Connect with the Limpopo community through events, groups, and social networking. Join Polokwane, Tzaneen, and Mokopane residents." />
+            <meta name="author" content="Emmanuel Charley Raluswinga" />
+            <meta name="keywords" content="Limpopo, community, social network, events, Polokwane, Tzaneen, Mokopane" />
+            <meta name="robots" content="index, follow" />
+            <link rel="author" href="https://charleyraluswinga.space" />
+          </Helmet>
+          <div className="app">
+            <Navbar />
+            <main className="main-content">
+              <Routes>
+                {routes.map((route) => (
+                  <Route key={route.path} path={route.path} element={<route.Component />} />
+                ))}
+              </Routes>
+            </main>
+            <Footer />
+          </div>
+        </Router>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 
