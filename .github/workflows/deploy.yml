@@ -4,61 +4,59 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:        # allows manual runs from the Actions UI
+  workflow_dispatch:
 
-concurrency:
-  group: deploy-pages-${{ github.ref }}
-  cancel-in-progress: true  # prevents overlapping deploys for the same ref
-
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
+jobs:
+  # Build job
+  build:
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0   # full history can be useful for some actions and diagnostics
-
-      - name: Setup Node.js (with npm cache)
+        
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
-          cache-dependency-path: package-lock.json
-
+          
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+        
       - name: Install dependencies
-        run: npm ci --prefer-offline --no-audit --no-fund
-
+        run: npm ci
+        
       - name: Build
-        run: npm run build --if-present
-
-      - name: Verify build output
-        run: |
-          if [ ! -d ./dist ] || [ -z "$(ls -A ./dist 2>/dev/null)" ]; then
-            echo "ERROR: ./dist is missing or empty — build probably failed."
-            ls -la
-            exit 1
-          fi
-          echo "Build output exists:"
-          ls -la ./dist
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        run: npm run build
+        
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          publish_branch: gh-pages
-          user_name: github-actions[bot]
-          user_email: github-actions[bot]@users.noreply.github.com
-          commit_message: "chore(deploy): ${{ github.sha }}"
-          clean: true
+          path: ./dist
+
+  # Deployment job
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
 
 # NOTE:
 # - If you use a CNAME file for a custom domain, add: keep_files: CNAME
