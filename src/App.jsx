@@ -21,7 +21,7 @@ function App() {
       <div style={{ position: 'relative' }}>
         <AnimatedBackground />
         <div style={{ position: 'relative', zIndex: 1 }}>
-          <Router>
+          <Router basename={import.meta.env.BASE_URL}>
             <Navbar />
             <Routes>
               {routes.map((route) => (
