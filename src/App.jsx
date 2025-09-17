@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './index.css';
 import { routes } from './routes';
 import Navbar from './components/Navbar';
 import BottomNav from './components/BottomNav';
@@ -21,6 +20,7 @@ function App() {
       <div style={{ position: 'relative' }}>
         <AnimatedBackground />
         <div style={{ position: 'relative', zIndex: 1 }}>
+
           <Router basename={import.meta.env.BASE_URL}>
             <Navbar />
             <Routes>
@@ -30,6 +30,8 @@ function App() {
             </Routes>
             <BottomNav />
           </Router>
+
+
         </div>
       </div>
     </ThemeProvider>

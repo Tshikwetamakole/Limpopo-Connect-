@@ -2,6 +2,7 @@
 
 Limpopo Connect is a modern social networking application designed to connect people within the Limpopo province. It provides a platform for users to interact, share updates, join groups, and discover events.
 
+
 ## Features
 
 *   **Community Feed:** A central place to view posts from other users.
