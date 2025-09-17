@@ -4,11 +4,7 @@ import { Link } from 'react-router-dom';
 const user = {
   name: 'Jules',
   email: 'jules@example.com',
-
-  avatar: '/images/Randy.jpg',
-
   avatar: 'https://via.placeholder.com/150',
-
   bio: 'Just a developer trying to make the world a better place.',
   activity: [
     { type: 'event', name: 'Polokwane Tech Meetup', date: '2025-10-01' },
@@ -16,6 +12,13 @@ const user = {
   ],
 };
 
+/**
+ * Renders the user Profile page, which displays user information, bio, and recent activity.
+ * The user data is currently hardcoded.
+ *
+ * @component
+ * @returns {JSX.Element} The Profile page component.
+ */
 function Profile() {
   return (
     <div className="min-h-screen bg-gray-100">

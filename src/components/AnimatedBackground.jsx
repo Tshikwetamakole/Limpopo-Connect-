@@ -2,7 +2,19 @@ import React, { useCallback } from 'react';
 import Particles from 'react-tsparticles';
 import { loadFull } from 'tsparticles';
 
+/**
+ * Renders an animated background using the react-tsparticles library.
+ * This component provides a visually engaging background with interactive particles.
+ *
+ * @component
+ * @returns {JSX.Element} The animated background component.
+ */
 const AnimatedBackground = () => {
+  /**
+   * Initializes the tsparticles engine.
+   * This function is passed to the Particles component to load the necessary engine.
+   * @param {object} engine - The tsparticles engine instance.
+   */
   const particlesInit = useCallback(async (engine) => {
     await loadFull(engine);
   }, []);

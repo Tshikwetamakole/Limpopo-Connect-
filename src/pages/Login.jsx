@@ -2,6 +2,14 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { ThemeContext } from '../contexts/ThemeContext';
 
+/**
+ * Renders the Login page, which provides a form for users to sign in.
+ * It includes fields for email and password, along with options for password recovery and registration.
+ * The component uses the ThemeContext to apply themes.
+ *
+ * @component
+ * @returns {JSX.Element} The Login page component.
+ */
 function Login() {
   const { currentTheme } = useContext(ThemeContext);
 

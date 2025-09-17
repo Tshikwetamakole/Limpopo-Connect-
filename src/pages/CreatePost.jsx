@@ -1,5 +1,12 @@
 import React from 'react';
 
+/**
+ * Renders the Create Post page, which contains a form for creating a new post.
+ * Users can enter a title, body, and choose to post anonymously.
+ *
+ * @component
+ * @returns {JSX.Element} The Create Post page component.
+ */
 function CreatePost() {
   return (
     <div className="min-h-screen bg-black text-white">

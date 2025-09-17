@@ -1,5 +1,11 @@
 import React from 'react';
 
+/**
+ * Renders the Settings page, which allows users to configure their privacy and notification preferences.
+ *
+ * @component
+ * @returns {JSX.Element} The Settings page component.
+ */
 function Settings() {
   return (
     <div className="min-h-screen bg-gray-100">

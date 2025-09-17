@@ -21,6 +21,14 @@ const messages = {
   ],
 };
 
+/**
+ * Renders a list of conversations.
+ *
+ * @component
+ * @param {object} props - The component props.
+ * @param {function(number): void} props.onSelectConversation - Callback function to handle conversation selection.
+ * @returns {JSX.Element} The conversation list component.
+ */
 function ConversationList({ onSelectConversation }) {
     const { currentTheme } = useContext(ThemeContext);
     return (
@@ -42,6 +50,14 @@ function ConversationList({ onSelectConversation }) {
     );
 }
 
+/**
+ * Renders the chat window for a selected conversation.
+ *
+ * @component
+ * @param {object} props - The component props.
+ * @param {number} props.conversationId - The ID of the selected conversation.
+ * @returns {JSX.Element} The chat window component.
+ */
 function ChatWindow({ conversationId }) {
   const { currentTheme } = useContext(ThemeContext);
   const chatMessages = messages[conversationId] || [];
@@ -68,7 +84,13 @@ function ChatWindow({ conversationId }) {
   );
 }
 
-
+/**
+ * Renders the Messaging page, which includes a list of conversations and a chat window.
+ * The conversation and message data is currently hardcoded.
+ *
+ * @component
+ * @returns {JSX.Element} The Messaging page component.
+ */
 function Messaging() {
   const [selectedConversation, setSelectedConversation] = useState(1);
   const { currentTheme } = useContext(ThemeContext);

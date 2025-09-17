@@ -29,6 +29,14 @@ const events = [
     },
   ];
 
+/**
+ * Renders the Event Detail page, which displays information about a specific event.
+ * It retrieves the event ID from the URL and displays the corresponding event details.
+ * The event data is currently hardcoded. The component uses the ThemeContext to apply themes.
+ *
+ * @component
+ * @returns {JSX.Element} The Event Detail page component.
+ */
 function EventDetail() {
   const { id } = useParams();
   const { currentTheme } = useContext(ThemeContext);

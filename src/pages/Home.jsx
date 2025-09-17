@@ -2,6 +2,14 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { ThemeContext } from '../contexts/ThemeContext';
 
+/**
+ * Renders the Home page, which serves as the main entry point of the application.
+ * It presents users with a choice to navigate to either the "Hookups" section or the "Community" hub.
+ * The component uses the ThemeContext to apply themes.
+ *
+ * @component
+ * @returns {JSX.Element} The Home page component.
+ */
 function Home() {
   const { currentTheme } = useContext(ThemeContext);
 

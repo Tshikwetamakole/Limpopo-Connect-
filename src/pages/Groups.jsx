@@ -5,34 +5,29 @@ const groups = [
     id: 1,
     name: 'Polokwane Programmers',
     members: 128,
-
-    image: '/images/public faces.jpg',
-
     image: 'https://via.placeholder.com/400x200',
-
   },
   {
     id: 2,
     name: 'Tzaneen Book Club',
     members: 42,
-
-    image: '/images/public faces.jpg',
-
     image: 'https://via.placeholder.com/400x200',
-
   },
   {
     id: 3,
     name: 'Mokopane Artists Collective',
     members: 78,
-
-    image: '/images/public faces.jpg',
-
     image: 'https://via.placeholder.com/400x200',
-
   },
 ];
 
+/**
+ * Renders the Groups page, which displays a list of available groups.
+ * The group data is currently hardcoded.
+ *
+ * @component
+ * @returns {JSX.Element} The Groups page component.
+ */
 function Groups() {
   return (
     <div className="min-h-screen bg-gray-100">

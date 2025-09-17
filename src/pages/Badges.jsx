@@ -6,6 +6,13 @@ const badges = [
   { id: 3, name: 'Community Leader', description: 'You created a group with over 50 members!', icon: '👑' },
 ];
 
+/**
+ * Renders the Badges page, which displays a list of achievements or badges.
+ * The badge data is currently hardcoded.
+ *
+ * @component
+ * @returns {JSX.Element} The Badges page component.
+ */
 function Badges() {
   return (
     <div className="min-h-screen bg-gray-100">
