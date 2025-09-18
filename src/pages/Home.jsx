@@ -28,7 +28,7 @@ const Home = () => {
             across Polokwane, Tzaneen, and Mokopane.
           </p>
           <p className="text-lg md:text-xl mb-8 text-gray-200 max-w-2xl mx-auto">
-            From cultural festivals to tech meetups, find your place in Limpopo's thriving social scene.
+            From cultural festivals to tech meetups, find your place in Limpopo&apos;s thriving social scene.
           </p>
 
           {/* CTA Buttons */}

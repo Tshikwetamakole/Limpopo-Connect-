@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import OptimizedImage from '../components/OptimizedImage';
 
@@ -226,7 +226,7 @@ function Groups() {
         <div className="bg-gradient-to-r from-red-600 to-purple-600 rounded-lg p-8 text-center text-white">
           <h2 className="text-2xl font-bold mb-4">Start Your Own Group</h2>
           <p className="mb-6 max-w-2xl mx-auto">
-            Have a passion or interest you'd like to share? Create a group and bring together
+            Have a passion or interest you&apos;d like to share? Create a group and bring together
             like-minded people from across Limpopo.
           </p>
           <Link
