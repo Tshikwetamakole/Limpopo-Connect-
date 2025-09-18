@@ -15,46 +15,45 @@ const Home = () => {
             className="w-full h-full object-cover"
             lazy={false}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-purple-900/80 to-red-900/60"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-900/85 via-indigo-900/75 to-red-900/80"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
         </div>
 
         {/* Hero Content */}
-        <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            Welcome to <span className="text-red-400">Limpopo Connect</span>
+        <div className="relative z-10 text-center text-white px-4 max-w-5xl mx-auto">
+          <h1 className="text-6xl md:text-8xl font-extrabold mb-8 leading-tight bg-gradient-to-r from-white via-red-100 to-red-200 bg-clip-text text-transparent drop-shadow-2xl">
+            Welcome to <span className="text-red-400 bg-gradient-to-r from-red-300 to-red-500 bg-clip-text">Limpopo Connect</span>
           </h1>
-          <p className="text-xl md:text-2xl mb-4 leading-relaxed">
+          <p className="text-2xl md:text-3xl mb-12 leading-relaxed max-w-4xl mx-auto font-medium text-gray-100 drop-shadow-lg">
             Discover local events, join vibrant communities, and build meaningful connections
             across Polokwane, Tzaneen, and Mokopane.
           </p>
-          <p className="text-lg md:text-xl mb-8 text-gray-200 max-w-2xl mx-auto">
-            From cultural festivals to tech meetups, find your place in Limpopo's thriving social scene.
-          </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <Link
               to="/events"
-              className="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+              className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-bold py-5 px-10 rounded-xl text-xl transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 shadow-2xl hover:shadow-red-500/50 border border-red-500"
               aria-label="Explore upcoming events in Limpopo"
             >
-              Explore Events
+              ✨ Explore Events
             </Link>
             <Link
               to="/community"
-              className="bg-white/10 hover:bg-white/20 backdrop-blur-sm border-2 border-white text-white font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+              className="bg-white/15 hover:bg-white/25 backdrop-blur-md border-2 border-white/30 hover:border-white/50 text-white font-bold py-5 px-10 rounded-xl text-xl transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 shadow-2xl hover:shadow-white/30"
               aria-label="Join the Limpopo community"
             >
-              Join Community
+              🚀 Join Community
             </Link>
           </div>
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-white rounded-full mt-2 animate-pulse"></div>
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer">
+          <div className="w-8 h-12 border-2 border-white/80 hover:border-white rounded-full flex justify-center backdrop-blur-sm bg-white/10 shadow-lg hover:shadow-white/30 transition-all duration-300">
+            <div className="w-1.5 h-4 bg-white rounded-full mt-3 animate-pulse"></div>
           </div>
+          <p className="text-white/70 text-sm mt-2 font-medium">Scroll down</p>
         </div>
       </section>
 
