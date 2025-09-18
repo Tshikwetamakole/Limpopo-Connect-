@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Settings from './pages/Settings';
 import Community from './pages/Community';
+import Connections from './pages/Connections';
 
 export const routes = [
   { path: '/', Component: Home },
@@ -18,4 +19,5 @@ export const routes = [
   { path: '/signup', Component: SignUp },
   { path: '/settings', Component: Settings },
   { path: '/community', Component: Community },
+  { path: '/connections', Component: Connections },
 ];

@@ -28,8 +28,9 @@ function App() {
             <link rel="author" href="https://charleyraluswinga.space" />
           </Helmet>
           <div className="app">
+            <a href="#main-content" className="skip-link">Skip to main content</a>
             <Navbar />
-            <main className="main-content">
+            <main id="main-content" className="main-content">
               <Routes>
                 {routes.map((route) => (
                   <Route key={route.path} path={route.path} element={<route.Component />} />

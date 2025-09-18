@@ -1,4 +1,5 @@
 import React from 'react';
+import OptimizedImage from '../components/OptimizedImage';
 
 const leaderboard = [
   { id: 1, name: 'Jules', score: 1250, avatar: 'https://via.placeholder.com/150' },
@@ -26,7 +27,7 @@ function Leaderboard() {
                 <li key={user.id} className="flex items-center justify-between p-4 border-b border-gray-200">
                   <div className="flex items-center">
                     <span className="text-2xl font-bold mr-4">{index + 1}</span>
-                    <img src={user.avatar} alt="avatar" className="w-12 h-12 rounded-full" />
+                    <OptimizedImage src={user.avatar} alt={`${user.name}'s profile avatar`} className="w-12 h-12 rounded-full" sizes="48px" />
                     <p className="ml-4 font-bold">{user.name}</p>
                   </div>
                   <p className="text-xl font-bold">{user.score} points</p>

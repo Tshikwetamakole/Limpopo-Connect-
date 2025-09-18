@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { ThemeContext } from '../contexts/ThemeContext';
 import SEO from '../components/SEO';
+import OptimizedImage from '../components/OptimizedImage';
 
 const events = [
   {
@@ -87,11 +88,11 @@ function Community() {
               {events.map((event) => (
                 <div key={event.id} className={`flex flex-col rounded-lg shadow-lg overflow-hidden ${currentTheme.cardBg} transform hover:scale-105 transition-transform duration-300`}>
                   <div className="flex-shrink-0">
-                    <img
+                    <OptimizedImage
                       className="h-48 w-full object-cover"
                       src={event.image}
                       alt={`${event.name} - ${event.category} event in ${event.location}, Limpopo Province`}
-                      loading="lazy"
+                      sizes="(max-width: 1024px) 100vw, 33vw"
                     />
                   </div>
                   <div className="flex-1 p-6 flex flex-col justify-between">

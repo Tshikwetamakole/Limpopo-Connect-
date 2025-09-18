@@ -1,5 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import OptimizedImage from '../components/OptimizedImage';
 
 const posts = [
     {
@@ -47,7 +48,7 @@ function PostDetail() {
                 <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="bg-gray-800 rounded-lg shadow-md p-6">
                         <div className="flex items-center mb-6">
-                            <img src={post.avatar} alt="avatar" className="w-16 h-16 rounded-full mr-6" />
+                            <OptimizedImage src={post.avatar} alt={`${post.author}'s profile avatar`} className="w-16 h-16 rounded-full mr-6" sizes="64px" />
                             <div>
                                 <h1 className="text-3xl font-bold">{post.title}</h1>
                                 <p className="text-sm text-gray-400">by {post.author}</p>

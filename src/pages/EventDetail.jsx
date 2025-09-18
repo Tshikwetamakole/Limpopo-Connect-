@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { ThemeContext } from '../contexts/ThemeContext';
+import OptimizedImage from '../components/OptimizedImage';
 
 const events = [
     {
@@ -53,7 +54,7 @@ function EventDetail() {
           <div className="lg:grid lg:grid-cols-3 lg:gap-x-8">
             <div className="lg:col-span-2">
               <div className="aspect-w-16 aspect-h-9">
-                <img className="w-full object-cover rounded-lg shadow-lg" src={event.image} alt={event.name} />
+                <OptimizedImage className="w-full object-cover rounded-lg shadow-lg" src={event.image} alt={`${event.name} event details`} sizes="(max-width: 1024px) 100vw, 66vw" />
               </div>
             </div>
             <div className="mt-8 lg:mt-0 lg:col-span-1">

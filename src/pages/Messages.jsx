@@ -75,150 +75,155 @@ const Messages = () => {
   };
 
   return (
-    <div>
-      <div className="page-container">
-        <h1 className="page-title">Messages</h1>
-        <p className="page-subtitle">
-          Connect and communicate with fellow community members. Stay in touch and build relationships.
-        </p>
-
-        {isAuthenticated ? (
-          <div className="grid-2">
+    <div className="min-h-screen bg-gray-50">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="bg-white rounded-lg shadow-md h-[600px] flex">
           {/* Conversations List */}
-          <div className="card">
-            <h3>Your Conversations</h3>
-            <div style={{ maxHeight: '500px', overflowY: 'auto' }}>
-              {conversations.map(conversation => (
-                <div
-                  key={conversation.id}
-                  className="message"
-                  style={{
-                    cursor: 'pointer',
-                    backgroundColor: selectedConversation.id === conversation.id ? '#f0f0f0' : 'white'
-                  }}
-                  onClick={() => setSelectedConversation(conversation)}
-                >
-                  <div className="message-header">
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                      <div
-                        className="profile-avatar"
-                        style={{
-                          width: '40px',
-                          height: '40px',
-                          fontSize: '1rem',
-                          margin: 0
-                        }}
-                      >
+          <div className="w-1/3 border-r border-gray-200 flex flex-col">
+            <div className="p-4 border-b border-gray-200">
+              <h2 className="text-xl font-bold text-gray-900">Messages</h2>
+            </div>
+
+            {conversations.length > 0 ? (
+              <div className="flex-1 overflow-y-auto">
+                {conversations.map((conversation) => (
+                  <div
+                    key={conversation.id}
+                    onClick={() => setSelectedConversation(conversation)}
+                    className={`p-4 cursor-pointer border-b border-gray-100 hover:bg-gray-50 transition-colors ${
+                      selectedConversation?.id === conversation.id ? 'bg-red-50 border-r-4 border-r-red-500' : ''
+                    }`}
+                  >
+                    <div className="flex items-center space-x-3">
+                      <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold">
                         {conversation.avatar}
                       </div>
-                      <div>
-                        <div className="message-sender">{conversation.name}</div>
-                        <div style={{ fontSize: '0.9rem', color: '#666' }}>
-                          {conversation.lastMessage}
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center justify-between">
+                          <h3 className="text-sm font-medium text-gray-900 truncate">
+                            {conversation.name}
+                          </h3>
+                          <span className="text-xs text-gray-500">{conversation.time}</span>
                         </div>
+                        <p className={`text-sm truncate ${
+                          conversation.unread ? 'font-medium text-gray-900' : 'text-gray-500'
+                        }`}>
+                          {conversation.lastMessage}
+                        </p>
                       </div>
-                    </div>
-                    <div style={{ textAlign: 'right' }}>
-                      <div className="message-time">{conversation.time}</div>
                       {conversation.unread && (
-                        <div style={{
-                          width: '8px',
-                          height: '8px',
-                          backgroundColor: '#ff6b6b',
-                          borderRadius: '50%',
-                          marginTop: '0.5rem'
-                        }}></div>
+                        <div className="w-2 h-2 bg-red-500 rounded-full"></div>
                       )}
                     </div>
                   </div>
+                ))}
+              </div>
+            ) : (
+              /* Empty State for Conversations */
+              <div className="flex-1 flex items-center justify-center p-8">
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span className="text-2xl">💬</span>
+                  </div>
+                  <h3 className="text-lg font-medium text-gray-900 mb-2">No messages yet</h3>
+                  <p className="text-gray-600 mb-4 max-w-xs mx-auto">
+                    Start connecting with people in your community. Join groups or attend events to begin conversations.
+                  </p>
+                  <div className="space-y-2">
+                    <a
+                      href="/events"
+                      className="btn btn-primary btn-sm block"
+                    >
+                      Browse Events
+                    </a>
+                    <a
+                      href="/groups"
+                      className="btn btn-outline btn-sm block"
+                    >
+                      Join Groups
+                    </a>
+                  </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            )}
           </div>
 
-          {/* Chat Interface */}
-          <div className="card">
-            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem' }}>
-              <div
-                className="profile-avatar"
-                style={{
-                  width: '50px',
-                  height: '50px',
-                  fontSize: '1.2rem',
-                  marginRight: '1rem'
-                }}
-              >
-                {selectedConversation.avatar}
-              </div>
-              <h3>{selectedConversation.name}</h3>
-            </div>
-
-            <div style={{
-              height: '300px',
-              overflowY: 'auto',
-              border: '1px solid #ddd',
-              borderRadius: '8px',
-              padding: '1rem',
-              marginBottom: '1rem',
-              backgroundColor: '#fafafa'
-            }}>
-              {selectedConversation.messages.map(message => (
-                <div
-                  key={message.id}
-                  style={{
-                    marginBottom: '1rem',
-                    textAlign: message.sender === user.name ? 'right' : 'left'
-                  }}
-                >
-                  <div style={{
-                    display: 'inline-block',
-                    maxWidth: '70%',
-                    padding: '0.5rem 1rem',
-                    borderRadius: '18px',
-                    backgroundColor: message.sender === user.name ? '#ff6b6b' : '#e0e0e0',
-                    color: message.sender === user.name ? 'white' : '#333'
-                  }}>
-                    <div className="message-content">{message.content}</div>
-                    <div style={{
-                      fontSize: '0.8rem',
-                      opacity: 0.7,
-                      marginTop: '0.25rem'
-                    }}>
-                      {message.time}
+          {/* Chat Area */}
+          <div className="flex-1 flex flex-col">
+            {selectedConversation ? (
+              <>
+                {/* Chat Header */}
+                <div className="p-4 border-b border-gray-200">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold">
+                      {selectedConversation.avatar}
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-medium text-gray-900">{selectedConversation.name}</h3>
+                      <p className="text-sm text-gray-500">Active now</p>
                     </div>
                   </div>
                 </div>
-              ))}
-            </div>
 
-            <form onSubmit={handleSendMessage}>
-              <div style={{ display: 'flex', gap: '1rem' }}>
-                <input
-                  type="text"
-                  className="form-input"
-                  placeholder="Type your message..."
-                  value={newMessage}
-                  onChange={(e) => setNewMessage(e.target.value)}
-                  style={{ margin: 0 }}
-                />
-                <button type="submit" className="btn">Send</button>
+                {/* Messages */}
+                <div className="flex-1 overflow-y-auto p-4 space-y-4">
+                  {selectedConversation.messages.map((message) => (
+                    <div
+                      key={message.id}
+                      className={`flex ${message.sender === user?.name ? 'justify-end' : 'justify-start'}`}
+                    >
+                      <div
+                        className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
+                          message.sender === user?.name
+                            ? 'bg-red-500 text-white'
+                            : 'bg-gray-200 text-gray-900'
+                        }`}
+                      >
+                        <p className="text-sm">{message.content}</p>
+                        <p className={`text-xs mt-1 ${
+                          message.sender === user?.name ? 'text-red-100' : 'text-gray-500'
+                        }`}>
+                          {message.time}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Message Input */}
+                <div className="p-4 border-t border-gray-200">
+                  <form onSubmit={handleSendMessage} className="flex space-x-2">
+                    <input
+                      type="text"
+                      value={newMessage}
+                      onChange={(e) => setNewMessage(e.target.value)}
+                      placeholder="Type a message..."
+                      className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                    />
+                    <button
+                      type="submit"
+                      className="btn btn-primary"
+                      disabled={!newMessage.trim()}
+                    >
+                      Send
+                    </button>
+                  </form>
+                </div>
+              </>
+            ) : (
+              /* Empty Chat State */
+              <div className="flex-1 flex items-center justify-center">
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span className="text-2xl">💭</span>
+                  </div>
+                  <h3 className="text-lg font-medium text-gray-900 mb-2">Select a conversation</h3>
+                  <p className="text-gray-600">Choose a conversation from the list to start chatting</p>
+                </div>
               </div>
-            </form>
+            )}
           </div>
         </div>
-        ) : (
-          <div style={{
-            textAlign: 'center',
-            padding: '3rem',
-            background: '#fff3cd',
-            color: '#856404',
-            borderRadius: '8px',
-            border: '1px solid #ffeaa7'
-          }}>
-            <h3>Login Required</h3>
-            <p>Please login to access your messages and communicate with the community.</p>
-          </div>
-        )}
       </div>
     </div>
   );

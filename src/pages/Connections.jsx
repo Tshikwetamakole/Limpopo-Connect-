@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { ThemeContext } from '../contexts/ThemeContext';
 import SEO from '../components/SEO';
+import OptimizedImage from '../components/OptimizedImage';
 import { IoHeartOutline, IoChatbubbleOutline, IoPersonOutline } from 'react-icons/io5';
 
 const posts = [
@@ -41,21 +42,21 @@ const posts = [
 ];
 
 /**
- * Renders the Hookups page, which displays a forum-style list of personal ads.
+ * Renders the Connections page, which displays a forum-style list of personal ads.
  * The post data is currently hardcoded.
  *
  * @component
- * @returns {JSX.Element} The Hookups page component.
+ * @returns {JSX.Element} The Connections page component.
  */
-function Hookups() {
+function Connections() {
   const { currentTheme } = useContext(ThemeContext);
 
   return (
     <>
       <SEO
-        title="Hookups - Discreet Dating & Connections | Limpopo Connect"
-        description="Find meaningful connections and discreet relationships in Limpopo Province. Browse personal ads from Polokwane, Tzaneen, and Mokopane residents seeking genuine connections."
-        keywords="Limpopo dating, Polokwane hookups, Tzaneen dating, Mokopane relationships, discreet connections, South African dating, local singles"
+        title="Connections - Meaningful Relationships & Friendships | Limpopo Connect"
+        description="Find meaningful connections and build lasting relationships in Limpopo Province. Browse personal ads from Polokwane, Tzaneen, and Mokopane residents seeking genuine connections."
+        keywords="Limpopo connections, Polokwane relationships, Tzaneen friendships, Mokopane relationships, meaningful connections, South African dating, local singles"
         image="/images/hookups-card.png"
       />
 
@@ -63,15 +64,15 @@ function Hookups() {
         <main className="py-10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h1 className="text-4xl font-bold mb-4">Hookups Forum</h1>
+              <h1 className="text-4xl font-bold mb-4">Connections Forum</h1>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Connect with like-minded individuals across Limpopo Province. Our discreet platform
-                facilitates genuine connections between respectful adults seeking meaningful relationships,
-                whether for one night or something more lasting.
+                Connect with like-minded individuals across Limpopo Province. Our platform
+                facilitates genuine connections between respectful people seeking meaningful relationships,
+                whether for friendship, romance, or shared interests.
               </p>
               <p className="mt-4 text-lg text-gray-400 max-w-2xl mx-auto">
                 Browse personal ads from Polokwane, Tzaneen, and Mokopane. All interactions are
-                conducted with respect for privacy and consent. Find your perfect match in our
+                conducted with respect for privacy and consent. Find your perfect connection in our
                 vibrant community.
               </p>
             </div>
@@ -90,11 +91,11 @@ function Hookups() {
                 <article key={post.id} className={`bg-gray-800 bg-opacity-50 rounded-lg shadow-lg p-6 hover:bg-opacity-70 transition-all duration-300`}>
                   <div className="flex flex-col md:flex-row">
                     <div className="flex-shrink-0 mb-4 md:mb-0 md:mr-6">
-                      <img
+                      <OptimizedImage
                         src={post.avatar}
                         alt={`Profile avatar for ${post.author} - ${post.age} years old from ${post.location}`}
                         className="w-20 h-20 rounded-full border-2 border-red-500"
-                        loading="lazy"
+                        sizes="80px"
                       />
                     </div>
                     <div className="flex-1">
@@ -194,4 +195,4 @@ function Hookups() {
   );
 }
 
-export default Hookups;
+export default Connections;

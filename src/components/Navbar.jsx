@@ -8,6 +8,8 @@ const Navbar = () => {
   const { user, logout, isAuthenticated } = useAuth();
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [showSearch, setShowSearch] = useState(false);
 
   const navItems = [
     { path: '/', label: 'Home' },
@@ -23,15 +25,25 @@ const Navbar = () => {
     setShowUserMenu(false);
   };
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      // For now, redirect to events page with search query
+      // In a full implementation, this would search across events, groups, and profiles
+      window.location.href = `/events?search=${encodeURIComponent(searchQuery)}`;
+    }
+  };
+
   return (
     <>
       <nav style={{
-        backgroundColor: 'rgba(26, 0, 51, 0.9)',
+        backgroundColor: 'rgba(26, 0, 51, 0.95)',
         padding: '1rem',
         position: 'sticky',
         top: 0,
         zIndex: 100,
         backdropFilter: 'blur(10px)',
+        borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
       }}>
         <div style={{
           maxWidth: '1200px',
@@ -49,11 +61,56 @@ const Navbar = () => {
             Limpopo Connect
           </Link>
 
+          {/* Desktop Navigation */}
           <div style={{
             display: 'flex',
             gap: '2rem',
             alignItems: 'center',
           }}>
+            {/* Search Bar */}
+            <div style={{ position: 'relative' }}>
+              <form onSubmit={handleSearch} style={{ display: 'flex', alignItems: 'center' }}>
+                <input
+                  type="text"
+                  placeholder="Search events, groups..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  style={{
+                    padding: '0.5rem 2.5rem 0.5rem 1rem',
+                    borderRadius: '25px',
+                    border: '1px solid rgba(255, 255, 255, 0.2)',
+                    background: 'rgba(255, 255, 255, 0.1)',
+                    color: 'white',
+                    fontSize: '0.9rem',
+                    width: showSearch ? '250px' : '0px',
+                    transition: 'width 0.3s ease',
+                    opacity: showSearch ? 1 : 0,
+                    overflow: 'hidden',
+                  }}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowSearch(!showSearch)}
+                  style={{
+                    position: 'absolute',
+                    right: '0.5rem',
+                    background: 'none',
+                    border: 'none',
+                    color: 'white',
+                    cursor: 'pointer',
+                    padding: '0.25rem',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                  aria-label="Toggle search"
+                >
+                  🔍
+                </button>
+              </form>
+            </div>
+
             {navItems.map((item) => (
               <Link
                 key={item.path}
