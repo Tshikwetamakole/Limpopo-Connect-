@@ -148,6 +148,7 @@ const Navbar = () => {
                   }}
                   onMouseEnter={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.1)'}
                   onMouseLeave={(e) => e.target.style.background = 'none'}
+                  aria-label="Open user menu"
                 >
                   <div
                     style={{
@@ -198,7 +199,7 @@ const Navbar = () => {
                       }}
                       onClick={() => setShowUserMenu(false)}
                     >
-                      👤 View Profile
+                      <span aria-hidden="true">👤</span> View Profile
                     </Link>
                     <button
                       onClick={handleLogout}
@@ -213,7 +214,7 @@ const Navbar = () => {
                         borderRadius: '0 0 8px 8px'
                       }}
                     >
-                      🚪 Logout
+                      <span aria-hidden="true">🚪</span> Logout
                     </button>
                   </div>
                 )}

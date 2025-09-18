@@ -15,6 +15,7 @@ const OptimizedImage = ({
   className = '',
   lazy = true,
   sizes = '100vw',
+  srcset,
   ...props
 }) => {
   // Generate WebP version if the image is a common format
@@ -26,10 +27,18 @@ const OptimizedImage = ({
   };
 
   const webpSrc = getWebPSrc(src);
+  const webpSrcset = srcset ? getWebPSrc(srcset) : null;
 
   return (
     <picture>
-      {webpSrc !== src && (
+      {webpSrcset && (
+        <source
+          srcSet={webpSrcset}
+          type="image/webp"
+          sizes={sizes}
+        />
+      )}
+      {webpSrc !== src && !webpSrcset && (
         <source
           srcSet={webpSrc}
           type="image/webp"
@@ -38,6 +47,7 @@ const OptimizedImage = ({
       )}
       <img
         src={src}
+        srcSet={srcset}
         alt={alt}
         className={className}
         loading={lazy ? 'lazy' : 'eager'}
