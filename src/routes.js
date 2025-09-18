@@ -14,17 +14,20 @@ import CreatePost from './pages/CreatePost';
 import PostDetail from './pages/PostDetail';
 import EventDetail from './pages/EventDetail';
 import Badges from './pages/Badges';
+import NotFound from './pages/NotFound';
+// Icons for navigation (mobile bottom nav)
+import { FiHome, FiUsers, FiCalendar, FiMessageSquare, FiUser } from 'react-icons/fi';
 
 export const routes = [
-  { path: '/', Component: Home },
-  { path: '/events', Component: Events },
-  { path: '/messages', Component: Messages },
-  { path: '/profile', Component: Profile },
+  { path: '/', Component: Home, nav: true, label: 'Home', Icon: FiHome },
+  { path: '/community', Component: Community, nav: true, label: 'Community', Icon: FiUsers },
+  { path: '/events', Component: Events, nav: true, label: 'Events', Icon: FiCalendar },
+  { path: '/messages', Component: Messages, nav: true, label: 'Messages', Icon: FiMessageSquare },
+  { path: '/profile', Component: Profile, nav: true, label: 'Profile', Icon: FiUser },
   { path: '/blog', Component: Blog },
   { path: '/login', Component: Login },
   { path: '/signup', Component: SignUp },
   { path: '/settings', Component: Settings },
-  { path: '/community', Component: Community },
   { path: '/connections', Component: Connections },
   { path: '/groups', Component: Groups },
   { path: '/leaderboard', Component: Leaderboard },
@@ -32,4 +35,5 @@ export const routes = [
   { path: '/post/:id', Component: PostDetail },
   { path: '/event/:id', Component: EventDetail },
   { path: '/badges', Component: Badges },
+  { path: '*', Component: NotFound },
 ];

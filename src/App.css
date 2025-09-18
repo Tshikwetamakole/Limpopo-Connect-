@@ -1,3 +1,94 @@
+/* Limpopo Connect App.css - Advanced Custom Styles */
+
+/* Brand Gradients and Colors (for fallback/non-Tailwind usage) */
+.brand-gradient {
+  background: linear-gradient(135deg, #6d28d9 0%, #1a0033 100%);
+}
+.brand-purple {
+  color: #6d28d9;
+}
+.brand-red {
+  color: #e11d48;
+}
+.brand-dark {
+  color: #1a0033;
+}
+
+/* Custom Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  background: #1a0033;
+}
+::-webkit-scrollbar-thumb {
+  background: #6d28d9;
+  border-radius: 4px;
+}
+
+/* Focus States for Accessibility */
+:focus {
+  outline: 2px solid #6d28d9;
+  outline-offset: 2px;
+  transition: outline 0.2s;
+}
+
+/* Animation Utilities */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.fade-in {
+  animation: fadeIn 0.7s ease-in;
+}
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.slide-up {
+  animation: slideUp 0.6s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* Responsive Utilities (for custom elements) */
+@media (max-width: 640px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+  .show-on-mobile {
+    display: block !important;
+  }
+}
+@media (min-width: 641px) {
+  .show-on-mobile {
+    display: none !important;
+  }
+}
+
+/* Dark Mode Support */
+.dark .brand-gradient {
+  background: linear-gradient(135deg, #1a0033 0%, #6d28d9 100%);
+}
+.dark .brand-purple {
+  color: #c4b5fd;
+}
+.dark .brand-red {
+  color: #f43f5e;
+}
+.dark .brand-dark {
+  color: #0a001a;
+}
+
+/* Utility Classes for Card Shadows */
+.card-shadow {
+  box-shadow: 0 4px 24px 0 rgba(26,0,51,0.12), 0 1.5px 6px 0 rgba(109,40,217,0.08);
+}
+
+/* Remove default margin/padding for body */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  background: #f8fafc;
+}
+
 /* App.css */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -31,6 +122,7 @@ body {
   margin-bottom: 2rem;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .page-title {

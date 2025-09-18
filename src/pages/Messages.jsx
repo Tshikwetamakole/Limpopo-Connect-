@@ -83,7 +83,7 @@ const Messages = () => {
         title="Messages - Limpopo Connect"
         description="Stay connected with the Limpopo community through our messaging platform. Chat with fellow residents and build meaningful relationships."
         keywords="Limpopo messages, community chat, social networking, communication, messaging"
-        image="/images/messages-card.jpg"
+        image={`${import.meta.env.BASE_URL || '/'}images/public-faces.jpg`}
       />
 
       <div className={`min-h-screen ${currentTheme.gradient} ${currentTheme.text}`}>

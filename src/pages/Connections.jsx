@@ -57,7 +57,7 @@ function Connections() {
         title="Connections - Meaningful Relationships & Friendships | Limpopo Connect"
         description="Find meaningful connections and build lasting relationships in Limpopo Province. Browse personal ads from Polokwane, Tzaneen, and Mokopane residents seeking genuine connections."
         keywords="Limpopo connections, Polokwane relationships, Tzaneen friendships, Mokopane relationships, meaningful connections, South African dating, local singles"
-        image="/images/hookups-card.png"
+        image={`${import.meta.env.BASE_URL || '/'}images/hookups-card.png`}
       />
 
       <div className={`min-h-screen ${currentTheme.gradient} ${currentTheme.text}`}>

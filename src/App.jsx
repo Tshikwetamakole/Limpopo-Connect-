@@ -14,12 +14,12 @@ import './App.css';
  * @component
  * @returns {JSX.Element} The root component of the application.
  */
-function App() {
+const App = () => {
   return (
     <HelmetProvider>
       <ThemeProvider>
         <AuthProvider>
-          <Router>
+          <Router basename={import.meta.env.BASE_URL}>
             <Helmet>
               <title>Limpopo Connect - Community Platform</title>
               <meta name="description" content="Connect with the Limpopo community through events, groups, and social networking. Join Polokwane, Tzaneen, and Mokopane residents." />
@@ -45,6 +45,6 @@ function App() {
       </ThemeProvider>
     </HelmetProvider>
   );
-}
+};
 
 export default App;

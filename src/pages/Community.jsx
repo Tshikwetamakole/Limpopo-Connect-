@@ -4,6 +4,8 @@ import { ThemeContext } from '../contexts/ThemeContext';
 import SEO from '../components/SEO';
 import OptimizedImage from '../components/OptimizedImage';
 
+const BASE = import.meta.env.BASE_URL || '/';
+
 const events = [
   {
     id: 1,
@@ -11,7 +13,7 @@ const events = [
     date: '2025-10-01',
     location: 'Polokwane',
     description: 'A monthly meetup for tech enthusiasts and professionals in Polokwane. Network with fellow developers, entrepreneurs, and tech leaders in Limpopo Province.',
-    image: '/images/community-card.jpg',
+  image: `${BASE}images/community-card.jpg`,
     attendees: 45,
     category: 'Technology'
   },
@@ -21,7 +23,7 @@ const events = [
     date: '2025-10-15',
     location: 'Tzaneen',
     description: 'Celebrate the rich cultural heritage of the Tzaneen region with traditional music, dance, food, and art exhibitions showcasing local talent.',
-    image: '/images/public-faces.jpg',
+  image: `${BASE}images/public-faces.jpg`,
     attendees: 120,
     category: 'Culture'
   },
@@ -31,7 +33,7 @@ const events = [
     date: '2025-11-05',
     location: 'Mokopane',
     description: 'A scenic hiking trip through the beautiful landscapes of Mokopane. Perfect for nature lovers and outdoor enthusiasts in Limpopo.',
-    image: '/images/lady-azania.jpg',
+  image: `${BASE}images/lady-azania.jpg`,
     attendees: 25,
     category: 'Outdoor'
   },
@@ -53,7 +55,7 @@ function Community() {
         title="Community Events - Limpopo Connect"
         description="Discover local events and community activities in Limpopo Province. Join tech meetups in Polokwane, cultural festivals in Tzaneen, and outdoor adventures in Mokopane."
         keywords="Limpopo events, Polokwane meetups, Tzaneen festivals, Mokopane activities, community events, local gatherings, South African events"
-        image="/images/community-card.jpg"
+  image={`${BASE}images/community-card.jpg`}
       />
 
       <div className={`min-h-screen ${currentTheme.gradient} ${currentTheme.text}`}>

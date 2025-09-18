@@ -76,7 +76,7 @@ const Footer = () => {
           <span>•</span>
           <span>Hosted on GitHub Pages</span>
           <span>•</span>
-          <span>Open Source Community Project</span>
+          <span>Private Community Project</span>
         </div>
       </div>
     </footer>

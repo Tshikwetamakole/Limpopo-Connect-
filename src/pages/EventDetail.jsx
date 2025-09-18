@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { ThemeContext } from '../contexts/ThemeContext';
 import OptimizedImage from '../components/OptimizedImage';
 
+const BASE = import.meta.env.BASE_URL || '/';
+
 const events = [
     {
       id: 1,
@@ -10,7 +12,7 @@ const events = [
       date: '2025-10-01',
       location: 'Polokwane',
       description: 'A monthly meetup for tech enthusiasts and professionals.',
-      image: '/images/community-card.jpg',
+  image: `${BASE}images/community-card.jpg`,
     },
     {
       id: 2,
@@ -18,7 +20,7 @@ const events = [
       date: '2025-10-15',
       location: 'Tzaneen',
       description: 'Celebrate the rich cultural heritage of the Tzaneen region.',
-      image: '/images/public-faces.jpg',
+  image: `${BASE}images/public-faces.jpg`,
     },
     {
       id: 3,
@@ -26,7 +28,7 @@ const events = [
       date: '2025-11-05',
       location: 'Mokopane',
       description: 'A scenic hiking trip through the beautiful landscapes of Mokopane.',
-      image: '/images/lady-azania.jpg',
+  image: `${BASE}images/lady-azania.jpg`,
     },
   ];
 
