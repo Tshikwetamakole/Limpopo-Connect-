@@ -10,6 +10,7 @@ const Home = () => {
         <div className="absolute inset-0">
           <OptimizedImage
             src="/images/lady-azania.jpg"
+            srcset="/images/lady-azania-sm.jpg 640w, /images/lady-azania-md.jpg 1024w, /images/lady-azania-lg.jpg 1280w"
             alt="Limpopo community members celebrating together at a local event, showcasing the vibrant culture and connections in the province"
             className="w-full h-full object-cover"
             lazy={false}
