@@ -98,7 +98,7 @@ const Events = () => {
 
   const handleAttendEvent = (eventId) => {
     // In a real app, this would make an API call
-    alert('Event attendance confirmed! (This is a demo)');
+    alert(`Event attendance confirmed for event ${eventId}! (This is a demo)`);
   };
 
   const filteredEvents = events.filter(event => {

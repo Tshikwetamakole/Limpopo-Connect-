@@ -28,7 +28,6 @@ const Home = () => {
             Discover local events, join vibrant communities, and build meaningful connections
             across Polokwane, Tzaneen, and Mokopane.
           </p>
-
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <Link
