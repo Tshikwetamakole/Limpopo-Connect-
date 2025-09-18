@@ -22,7 +22,7 @@ const Home = () => {
         {/* Hero Content */}
         <div className="relative z-10 text-center text-white px-4 max-w-5xl mx-auto">
           <h1 className="text-6xl md:text-8xl font-extrabold mb-8 leading-tight bg-gradient-to-r from-white via-red-100 to-red-200 bg-clip-text text-transparent drop-shadow-2xl">
-            Welcome to <span className="text-red-400 bg-gradient-to-r from-red-300 to-red-500 bg-clip-text">Limpopo Connect</span>
+            Welcome to <span className="bg-gradient-to-r from-red-300 to-red-500 bg-clip-text text-transparent">Limpopo Connect</span>
           </h1>
           <p className="text-2xl md:text-3xl mb-12 leading-relaxed max-w-4xl mx-auto font-medium text-gray-100 drop-shadow-lg">
             Discover local events, join vibrant communities, and build meaningful connections
