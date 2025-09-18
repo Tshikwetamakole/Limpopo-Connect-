@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import AuthModal from './AuthModal';
 
 const Navbar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { user, logout, isAuthenticated } = useAuth();
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
@@ -30,7 +31,7 @@ const Navbar = () => {
     if (searchQuery.trim()) {
       // For now, redirect to events page with search query
       // In a full implementation, this would search across events, groups, and profiles
-      window.location.href = `/events?search=${encodeURIComponent(searchQuery)}`;
+      navigate(`/events?search=${encodeURIComponent(searchQuery)}`);
     }
   };
 
@@ -69,7 +70,7 @@ const Navbar = () => {
           }}>
             {/* Search Bar */}
             <div style={{ position: 'relative' }}>
-              <form onSubmit={handleSearch} style={{ display: 'flex', alignItems: 'center' }}>
+              <form onSubmit={handleSearch} style={{ display: 'flex', alignItems: 'center' }} aria-label="Search form">
                 <input
                   type="text"
                   placeholder="Search events, groups..."
