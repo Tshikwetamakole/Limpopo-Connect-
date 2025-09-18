@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 /**
  * Optimized Image component with lazy loading, WebP support, and responsive sizing

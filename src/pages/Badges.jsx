@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 const badges = [
   { id: 1, name: 'First Post', description: 'You made your first post!', icon: '🏆' },

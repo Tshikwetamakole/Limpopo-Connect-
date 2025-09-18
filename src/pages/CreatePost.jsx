@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 /**
  * Renders the Create Post page, which contains a form for creating a new post.

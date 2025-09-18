@@ -1,7 +1,10 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useAuth } from '../contexts/AuthContext';
+import { ThemeContext } from '../contexts/ThemeContext';
+import SEO from '../components/SEO';
 
 const Messages = () => {
+  const { currentTheme } = useContext(ThemeContext);
   const { isAuthenticated, user } = useAuth();
   const [conversations, setConversations] = useState([
     {
@@ -75,157 +78,121 @@ const Messages = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="bg-white rounded-lg shadow-md h-[600px] flex">
-          {/* Conversations List */}
-          <div className="w-1/3 border-r border-gray-200 flex flex-col">
-            <div className="p-4 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">Messages</h2>
+    <>
+      <SEO
+        title="Messages - Limpopo Connect"
+        description="Stay connected with the Limpopo community through our messaging platform. Chat with fellow residents and build meaningful relationships."
+        keywords="Limpopo messages, community chat, social networking, communication, messaging"
+        image="/images/messages-card.jpg"
+      />
+
+      <div className={`min-h-screen ${currentTheme.gradient} ${currentTheme.text}`}>
+        {/* DEBUG: Updated Messages Component */}
+        <main className="py-10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h1 className="text-4xl font-bold mb-4">Messages</h1>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                Connect and communicate with fellow community members. Stay in touch and build relationships.
+              </p>
             </div>
 
-            {conversations.length > 0 ? (
-              <div className="flex-1 overflow-y-auto">
-                {conversations.map((conversation) => (
-                  <div
-                    key={conversation.id}
-                    onClick={() => setSelectedConversation(conversation)}
-                    className={`p-4 cursor-pointer border-b border-gray-100 hover:bg-gray-50 transition-colors ${
-                      selectedConversation?.id === conversation.id ? 'bg-red-50 border-r-4 border-r-red-500' : ''
-                    }`}
-                  >
-                    <div className="flex items-center space-x-3">
-                      <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold">
-                        {conversation.avatar}
-                      </div>
-                      <div className="flex-1 min-w-0">
+            {isAuthenticated ? (
+              <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                {/* Conversations List */}
+                <div className="bg-gray-800 bg-opacity-50 rounded-lg shadow-lg p-6">
+                  <h3 className="text-xl font-bold mb-4 text-white">Your Conversations</h3>
+                  <div className="max-h-96 overflow-y-auto space-y-3">
+                    {conversations.map(conversation => (
+                      <div
+                        key={conversation.id}
+                        className={`p-4 rounded-lg cursor-pointer transition-all duration-300 ${
+                          selectedConversation.id === conversation.id 
+                            ? 'bg-gray-600 bg-opacity-80' 
+                            : 'bg-gray-700 bg-opacity-50 hover:bg-gray-600 hover:bg-opacity-60'
+                        }`}
+                        onClick={() => setSelectedConversation(conversation)}
+                      >
                         <div className="flex items-center justify-between">
-                          <h3 className="text-sm font-medium text-gray-900 truncate">
-                            {conversation.name}
-                          </h3>
-                          <span className="text-xs text-gray-500">{conversation.time}</span>
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                              {conversation.avatar}
+                            </div>
+                            <div>
+                              <div className="font-semibold text-white">{conversation.name}</div>
+                              <div className="text-sm text-gray-300 truncate max-w-48">
+                                {conversation.lastMessage}
+                              </div>
+                            </div>
+                          </div>
+                          <div className="text-right">
+                            <div className="text-xs text-gray-400">{conversation.time}</div>
+                            {conversation.unread && (
+                              <div className="w-2 h-2 bg-red-500 rounded-full mt-1 ml-auto"></div>
+                            )}
+                          </div>
                         </div>
-                        <p className={`text-sm truncate ${
-                          conversation.unread ? 'font-medium text-gray-900' : 'text-gray-500'
-                        }`}>
-                          {conversation.lastMessage}
-                        </p>
                       </div>
-                      {conversation.unread && (
-                        <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              /* Empty State for Conversations */
-              <div className="flex-1 flex items-center justify-center p-8">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span className="text-2xl">💬</span>
-                  </div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-2">No messages yet</h3>
-                  <p className="text-gray-600 mb-4 max-w-xs mx-auto">
-                    Start connecting with people in your community. Join groups or attend events to begin conversations.
-                  </p>
-                  <div className="space-y-2">
-                    <a
-                      href="/events"
-                      className="btn btn-primary btn-sm block"
-                    >
-                      Browse Events
-                    </a>
-                    <a
-                      href="/groups"
-                      className="btn btn-outline btn-sm block"
-                    >
-                      Join Groups
-                    </a>
+                    ))}
                   </div>
                 </div>
-              </div>
-            )}
-          </div>
 
-          {/* Chat Area */}
-          <div className="flex-1 flex flex-col">
-            {selectedConversation ? (
-              <>
-                {/* Chat Header */}
-                <div className="p-4 border-b border-gray-200">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold">
+                {/* Chat Interface */}
+                <div className="bg-gray-800 bg-opacity-50 rounded-lg shadow-lg p-6">
+                  <div className="flex items-center gap-3 mb-4 pb-4 border-b border-gray-600">
+                    <div className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white font-bold">
                       {selectedConversation.avatar}
                     </div>
-                    <div>
-                      <h3 className="text-lg font-medium text-gray-900">{selectedConversation.name}</h3>
-                      <p className="text-sm text-gray-500">Active now</p>
-                    </div>
+                    <h3 className="text-xl font-bold text-white">{selectedConversation.name}</h3>
                   </div>
-                </div>
 
-                {/* Messages */}
-                <div className="flex-1 overflow-y-auto p-4 space-y-4">
-                  {selectedConversation.messages.map((message) => (
-                    <div
-                      key={message.id}
-                      className={`flex ${message.sender === user?.name ? 'justify-end' : 'justify-start'}`}
-                    >
+                  <div className="h-80 overflow-y-auto bg-gray-900 bg-opacity-50 rounded-lg p-4 mb-4 space-y-3">
+                    {selectedConversation.messages.map(message => (
                       <div
-                        className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
-                          message.sender === user?.name
-                            ? 'bg-red-500 text-white'
-                            : 'bg-gray-200 text-gray-900'
-                        }`}
+                        key={message.id}
+                        className={`flex ${message.sender === user?.name ? 'justify-end' : 'justify-start'}`}
                       >
-                        <p className="text-sm">{message.content}</p>
-                        <p className={`text-xs mt-1 ${
-                          message.sender === user?.name ? 'text-red-100' : 'text-gray-500'
+                        <div className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
+                          message.sender === user?.name 
+                            ? 'bg-red-500 text-white' 
+                            : 'bg-gray-600 text-gray-100'
                         }`}>
-                          {message.time}
-                        </p>
+                          <div className="text-sm">{message.content}</div>
+                          <div className="text-xs opacity-70 mt-1">
+                            {message.time}
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
+                    ))}
+                  </div>
 
-                {/* Message Input */}
-                <div className="p-4 border-t border-gray-200">
-                  <form onSubmit={handleSendMessage} className="flex space-x-2">
+                  <form onSubmit={handleSendMessage} className="flex gap-3">
                     <input
                       type="text"
+                      className="flex-1 bg-gray-700 bg-opacity-50 border border-gray-600 rounded-lg px-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                      placeholder="Type your message..."
                       value={newMessage}
                       onChange={(e) => setNewMessage(e.target.value)}
-                      placeholder="Type a message..."
-                      className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
                     />
-                    <button
-                      type="submit"
-                      className="btn btn-primary"
-                      disabled={!newMessage.trim()}
+                    <button 
+                      type="submit" 
+                      className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-lg transition-colors duration-300"
                     >
                       Send
                     </button>
                   </form>
                 </div>
-              </>
+              </div>
             ) : (
-              /* Empty Chat State */
-              <div className="flex-1 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span className="text-2xl">💭</span>
-                  </div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-2">Select a conversation</h3>
-                  <p className="text-gray-600">Choose a conversation from the list to start chatting</p>
-                </div>
+              <div className="max-w-md mx-auto bg-yellow-900 bg-opacity-20 border border-yellow-600 rounded-lg p-8 text-center">
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">Login Required</h3>
+                <p className="text-gray-300">Please login to access your messages and communicate with the community.</p>
               </div>
             )}
           </div>
-        </div>
+        </main>
       </div>
-    </div>
+    </>
   );
 };
 
