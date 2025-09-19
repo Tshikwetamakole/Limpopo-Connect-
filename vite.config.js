@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
 export default defineConfig({
-  // Base path for custom domain (limpopoconnect.site)
+  // Base path with relative URLs for better compatibility
   base: './',
   plugins: [react()],
   resolve: {
