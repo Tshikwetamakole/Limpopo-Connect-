@@ -37,5 +37,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           cname: limpopoconnect.site
+          clean: true # Automatically remove deleted files
+          force_orphan: true # Create a new orphan branch each time to clean history
 
 
