@@ -31,6 +31,10 @@ jobs:
         env:
           GITHUB_ACTIONS: true
 
+      # Add .nojekyll file to prevent Jekyll processing
+      - name: Create .nojekyll file
+        run: touch ./dist/.nojekyll
+
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:
