@@ -83,11 +83,7 @@ const Messages = () => {
         title="Messages - Limpopo Connect"
         description="Stay connected with the Limpopo community through our messaging platform. Chat with fellow residents and build meaningful relationships."
         keywords="Limpopo messages, community chat, social networking, communication, messaging"
-<<<<<<< HEAD
-        image={`${import.meta.env.BASE_URL || '/'}images/public-faces.jpg`}
-=======
-  image={`${import.meta.env.BASE_URL}images/messages-card.jpg`}
->>>>>>> bcbbecc (chore: clean root assets, add NotFound route, fix base paths; lint+build pass)
+        image={`${import.meta.env.BASE_URL}images/messages-card.jpg`}
       />
 
       <div className={`min-h-screen ${currentTheme.gradient} ${currentTheme.text}`}>

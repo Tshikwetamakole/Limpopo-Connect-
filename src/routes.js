@@ -15,11 +15,9 @@ import PostDetail from './pages/PostDetail';
 import EventDetail from './pages/EventDetail';
 import Badges from './pages/Badges';
 import NotFound from './pages/NotFound';
-<<<<<<< HEAD
+
 // Icons for navigation (mobile bottom nav)
 import { FiHome, FiUsers, FiCalendar, FiMessageSquare, FiUser } from 'react-icons/fi';
-=======
->>>>>>> bcbbecc (chore: clean root assets, add NotFound route, fix base paths; lint+build pass)
 
 export const routes = [
   { path: '/', Component: Home, nav: true, label: 'Home', Icon: FiHome },
@@ -39,8 +37,4 @@ export const routes = [
   { path: '/event/:id', Component: EventDetail },
   { path: '/badges', Component: Badges },
   { path: '*', Component: NotFound },
-<<<<<<< HEAD
 ];
-=======
-];
->>>>>>> bcbbecc (chore: clean root assets, add NotFound route, fix base paths; lint+build pass)

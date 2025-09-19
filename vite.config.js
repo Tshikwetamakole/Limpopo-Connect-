@@ -4,15 +4,9 @@ import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
 export default defineConfig({
-  // Base path for GitHub Pages (repo name)
-  base: '/Limpopo-Connect-/',
+  // Base path for custom domain (limpopoconnect.site)
+  base: '/',
   plugins: [react()],
-<<<<<<< HEAD
-  test: {
-    globals: true,
-    environment: 'jsdom',
-    setupFiles: './vitest.setup.js',
-=======
   resolve: {
     alias: {
       'react-helmet-async': 'react-helmet-async/lib/index.js',
@@ -33,6 +27,5 @@ export default defineConfig({
     coverage: {
       reporter: ['text', 'html'],
     },
->>>>>>> bcbbecc (chore: clean root assets, add NotFound route, fix base paths; lint+build pass)
   },
 })

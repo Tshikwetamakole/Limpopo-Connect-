@@ -2,11 +2,7 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../contexts/AuthContext";
 
 const mockProfile = {
-<<<<<<< HEAD
-  avatar: `${import.meta.env.BASE_URL || '/'}images/lady-azania.jpg`,
-=======
   avatar: `${import.meta.env.BASE_URL}images/lady-azania.jpg`,
->>>>>>> bcbbecc (chore: clean root assets, add NotFound route, fix base paths; lint+build pass)
   name: "Azania Mphahlele",
   email: "azania@limpopoconnect.co.za",
   bio: "Community builder, artist, and event organizer in Polokwane.",
