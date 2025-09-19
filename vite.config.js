@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   // Base path for custom domain (limpopoconnect.site)
-  base: '/',
+  base: './',
   plugins: [react()],
   resolve: {
     alias: {
