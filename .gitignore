@@ -1,3 +1,11 @@
+node_modules/
+dist/
+.vite/
+*.log
+coverage/
+.DS_Store
+.env*
+Thumbs.db
 # Logs
 logs
 *.log

@@ -13,7 +13,11 @@ const events = [
     date: '2025-10-01',
     location: 'Polokwane',
     description: 'A monthly meetup for tech enthusiasts and professionals in Polokwane. Network with fellow developers, entrepreneurs, and tech leaders in Limpopo Province.',
+<<<<<<< HEAD
   image: `${BASE}images/community-card.jpg`,
+=======
+  image: `${import.meta.env.BASE_URL}images/community-card.jpg`,
+>>>>>>> bcbbecc (chore: clean root assets, add NotFound route, fix base paths; lint+build pass)
     attendees: 45,
     category: 'Technology'
   },
@@ -23,7 +27,11 @@ const events = [
     date: '2025-10-15',
     location: 'Tzaneen',
     description: 'Celebrate the rich cultural heritage of the Tzaneen region with traditional music, dance, food, and art exhibitions showcasing local talent.',
+<<<<<<< HEAD
   image: `${BASE}images/public-faces.jpg`,
+=======
+  image: `${import.meta.env.BASE_URL}images/public-faces.jpg`,
+>>>>>>> bcbbecc (chore: clean root assets, add NotFound route, fix base paths; lint+build pass)
     attendees: 120,
     category: 'Culture'
   },
@@ -33,7 +41,11 @@ const events = [
     date: '2025-11-05',
     location: 'Mokopane',
     description: 'A scenic hiking trip through the beautiful landscapes of Mokopane. Perfect for nature lovers and outdoor enthusiasts in Limpopo.',
+<<<<<<< HEAD
   image: `${BASE}images/lady-azania.jpg`,
+=======
+  image: `${import.meta.env.BASE_URL}images/lady-azania.jpg`,
+>>>>>>> bcbbecc (chore: clean root assets, add NotFound route, fix base paths; lint+build pass)
     attendees: 25,
     category: 'Outdoor'
   },
@@ -55,7 +67,11 @@ function Community() {
         title="Community Events - Limpopo Connect"
         description="Discover local events and community activities in Limpopo Province. Join tech meetups in Polokwane, cultural festivals in Tzaneen, and outdoor adventures in Mokopane."
         keywords="Limpopo events, Polokwane meetups, Tzaneen festivals, Mokopane activities, community events, local gatherings, South African events"
+<<<<<<< HEAD
   image={`${BASE}images/community-card.jpg`}
+=======
+  image={`${import.meta.env.BASE_URL}images/community-card.jpg`}
+>>>>>>> bcbbecc (chore: clean root assets, add NotFound route, fix base paths; lint+build pass)
       />
 
       <div className={`min-h-screen ${currentTheme.gradient} ${currentTheme.text}`}>

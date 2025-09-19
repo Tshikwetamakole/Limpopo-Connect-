@@ -15,7 +15,11 @@ const SEO = ({
   title = "Limpopo Connect - Social Networking for Limpopo Province",
   description = "Connect with the Limpopo community through events, groups, and social networking. Join Polokwane, Tzaneen, and Mokopane residents for local events and connections.",
   keywords = "Limpopo, Polokwane, Tzaneen, Mokopane, social networking, community events, local groups, South Africa",
+<<<<<<< HEAD
   image = `${import.meta.env.BASE_URL || '/'}images/lady-azania.jpg`,
+=======
+  image = `${import.meta.env.BASE_URL}images/lady-azania.jpg`,
+>>>>>>> bcbbecc (chore: clean root assets, add NotFound route, fix base paths; lint+build pass)
   url = window.location.href,
   type = "website"
 }) => {
@@ -40,7 +44,11 @@ const SEO = ({
       <meta property="og:url" content={url} />
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
+<<<<<<< HEAD
   <meta property="og:image" content={image.startsWith('http') ? image : `${window.location.origin}${image}`} />
+=======
+  <meta property="og:image" content={image.startsWith('http') ? image : `${window.location.origin}${import.meta.env.BASE_URL}${image.replace(/^\/?/, '').replace(/^Limpopo-Connect-\//, '')}`} />
+>>>>>>> bcbbecc (chore: clean root assets, add NotFound route, fix base paths; lint+build pass)
       <meta property="og:site_name" content={siteName} />
       <meta property="og:locale" content="en_ZA" />
 
@@ -49,7 +57,11 @@ const SEO = ({
       <meta property="twitter:url" content={url} />
       <meta property="twitter:title" content={fullTitle} />
       <meta property="twitter:description" content={description} />
+<<<<<<< HEAD
   <meta property="twitter:image" content={image.startsWith('http') ? image : `${window.location.origin}${image}`} />
+=======
+  <meta property="twitter:image" content={image.startsWith('http') ? image : `${window.location.origin}${import.meta.env.BASE_URL}${image.replace(/^\/?/, '').replace(/^Limpopo-Connect-\//, '')}`} />
+>>>>>>> bcbbecc (chore: clean root assets, add NotFound route, fix base paths; lint+build pass)
 
       {/* Additional SEO tags */}
       <meta name="theme-color" content="#1a0033" />

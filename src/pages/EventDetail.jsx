@@ -6,6 +6,7 @@ import OptimizedImage from '../components/OptimizedImage';
 const BASE = import.meta.env.BASE_URL || '/';
 
 const events = [
+<<<<<<< HEAD
     {
       id: 1,
       name: 'Polokwane Tech Meetup',
@@ -31,11 +32,38 @@ const events = [
   image: `${BASE}images/lady-azania.jpg`,
     },
   ];
+=======
+  {
+    id: 1,
+    name: 'Polokwane Tech Meetup',
+    date: '2025-10-01',
+    location: 'Polokwane',
+    description: 'A monthly meetup for tech enthusiasts and professionals.',
+    image: `${import.meta.env.BASE_URL}images/community-card.jpg`,
+  },
+  {
+    id: 2,
+    name: 'Tzaneen Cultural Festival',
+    date: '2025-10-15',
+    location: 'Tzaneen',
+    description: 'Celebrate the rich cultural heritage of the Tzaneen region.',
+    image: `${import.meta.env.BASE_URL}images/public-faces.jpg`,
+  },
+  {
+    id: 3,
+    name: 'Mokopane Hiking Trip',
+    date: '2025-11-05',
+    location: 'Mokopane',
+    description: 'A scenic hiking trip through the beautiful landscapes of Mokopane.',
+    image: `${import.meta.env.BASE_URL}images/lady-azania.jpg`,
+  },
+];
+>>>>>>> bcbbecc (chore: clean root assets, add NotFound route, fix base paths; lint+build pass)
 
 /**
  * Renders the Event Detail page, which displays information about a specific event.
  * It retrieves the event ID from the URL and displays the corresponding event details.
- * The event data is currently hardcoded. The component uses the ThemeContext to apply themes.
+      image: `${import.meta.env.BASE_URL}images/lady-azania.jpg`,
  *
  * @component
  * @returns {JSX.Element} The Event Detail page component.

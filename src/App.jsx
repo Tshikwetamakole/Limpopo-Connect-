@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { routes } from './routes';
@@ -6,6 +7,16 @@ import Footer from './components/Footer';
 import { AuthProvider } from './contexts/AuthContext';
 import { ThemeProvider } from './contexts/ThemeContext';
 import './App.css';
+=======
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ThemeProvider } from "../src/contexts/ThemeContext";
+import Navbar from "../src/components/Navbar";
+import BottomNav from "../src/components/BottomNav";
+import SEO from "../src/components/SEO";
+import { routes } from "./routes";
+import "./App.css";
+>>>>>>> bcbbecc (chore: clean root assets, add NotFound route, fix base paths; lint+build pass)
 
 /**
  * The main application component.
@@ -16,6 +27,7 @@ import './App.css';
  */
 const App = () => {
   return (
+<<<<<<< HEAD
     <HelmetProvider>
       <ThemeProvider>
         <AuthProvider>
@@ -44,6 +56,22 @@ const App = () => {
         </AuthProvider>
       </ThemeProvider>
     </HelmetProvider>
+=======
+    <ThemeProvider>
+      <SEO />
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
+        <Navbar />
+        <main className="pt-16 pb-20 min-h-screen bg-gradient-to-br from-brand-purple to-brand-dark">
+          <Routes>
+            {routes.map(({ path, Component }, idx) => (
+              <Route key={idx} path={path} element={<Component />} />
+            ))}
+          </Routes>
+        </main>
+        <BottomNav />
+      </BrowserRouter>
+    </ThemeProvider>
+>>>>>>> bcbbecc (chore: clean root assets, add NotFound route, fix base paths; lint+build pass)
   );
 };
 
