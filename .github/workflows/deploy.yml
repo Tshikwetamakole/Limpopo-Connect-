@@ -31,6 +31,9 @@ jobs:
         env:
           GITHUB_ACTIONS: true
 
+      - name: SPA fallback (copy index.html to 404.html)
+        run: cp dist/index.html dist/404.html
+
       # Add .nojekyll file to prevent Jekyll processing
       - name: Create .nojekyll file
         run: touch ./dist/.nojekyll
