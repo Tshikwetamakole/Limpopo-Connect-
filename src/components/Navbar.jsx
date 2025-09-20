@@ -37,74 +37,28 @@ const Navbar = () => {
 
   return (
     <>
-      <nav style={{
-        backgroundColor: 'rgba(26, 0, 51, 0.95)',
-        padding: '1rem',
-        position: 'sticky',
-        top: 0,
-        zIndex: 100,
-        backdropFilter: 'blur(10px)',
-        borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
-      }}>
-        <div style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}>
-          <Link to="/" style={{
-            color: 'white',
-            textDecoration: 'none',
-            fontSize: '1.5rem',
-            fontWeight: 'bold',
-          }}>
+      <nav className="hidden md:block sticky top-0 z-50 bg-brand-dark/95 backdrop-blur border-b border-white/10">
+        <div className="max-w-screen-xl mx-auto flex items-center justify-between px-4 py-4">
+          <Link to="/" className="text-white no-underline text-xl font-bold">
             Limpopo Connect
           </Link>
 
           {/* Desktop Navigation */}
-          <div style={{
-            display: 'flex',
-            gap: '2rem',
-            alignItems: 'center',
-          }}>
+          <div className="flex items-center gap-8">
             {/* Search Bar */}
-            <div style={{ position: 'relative' }}>
-              <form onSubmit={handleSearch} style={{ display: 'flex', alignItems: 'center' }} aria-label="Search form">
+            <div className="relative">
+              <form onSubmit={handleSearch} className="flex items-center" aria-label="Search form">
                 <input
                   type="text"
                   placeholder="Search events, groups..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  style={{
-                    padding: '0.5rem 2.5rem 0.5rem 1rem',
-                    borderRadius: '25px',
-                    border: '1px solid rgba(255, 255, 255, 0.2)',
-                    background: 'rgba(255, 255, 255, 0.1)',
-                    color: 'white',
-                    fontSize: '0.9rem',
-                    width: showSearch ? '250px' : '0px',
-                    transition: 'width 0.3s ease',
-                    opacity: showSearch ? 1 : 0,
-                    overflow: 'hidden',
-                  }}
+                  className={`px-4 py-2 rounded-full border border-white/20 bg-white/10 text-white text-sm transition-all ${showSearch ? 'w-64 opacity-100' : 'w-0 opacity-0'} overflow-hidden`}
                 />
                 <button
                   type="button"
                   onClick={() => setShowSearch(!showSearch)}
-                  style={{
-                    position: 'absolute',
-                    right: '0.5rem',
-                    background: 'none',
-                    border: 'none',
-                    color: 'white',
-                    cursor: 'pointer',
-                    padding: '0.25rem',
-                    borderRadius: '50%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
+                  className="absolute right-2 text-white p-1 rounded-full"
                   aria-label="Toggle search"
                 >
                   🔍
@@ -116,104 +70,29 @@ const Navbar = () => {
               <Link
                 key={item.path}
                 to={item.path}
-                style={{
-                  color: location.pathname === item.path ? '#ff6b6b' : 'white',
-                  textDecoration: 'none',
-                  fontWeight: location.pathname === item.path ? 'bold' : 'normal',
-                  transition: 'color 0.3s ease',
-                  padding: '0.5rem 1rem',
-                  borderRadius: '4px',
-                  backgroundColor: location.pathname === item.path ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
-                }}
+                className={`px-3 py-2 rounded text-sm transition-colors ${location.pathname === item.path ? 'text-red-400 bg-white/10 font-semibold' : 'text-white hover:text-white/90'}`}
               >
                 {item.label}
               </Link>
             ))}
 
             {isAuthenticated ? (
-              <div style={{ position: 'relative' }}>
+              <div className="relative">
                 <button
                   onClick={() => setShowUserMenu(!showUserMenu)}
-                  style={{
-                    background: 'none',
-                    border: 'none',
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.5rem',
-                    color: 'white',
-                    padding: '0.5rem',
-                    borderRadius: '50%',
-                    transition: 'background 0.3s ease',
-                  }}
-                  onMouseEnter={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.1)'}
-                  onMouseLeave={(e) => e.target.style.background = 'none'}
+                  className="text-white p-2 rounded-full hover:bg-white/10"
                   aria-label="Open user menu"
                 >
-                  <div
-                    style={{
-                      width: '32px',
-                      height: '32px',
-                      borderRadius: '50%',
-                      background: '#ff6b6b',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontSize: '0.9rem',
-                      fontWeight: 'bold',
-                      color: 'white'
-                    }}
-                  >
-                    {user.avatar}
-                  </div>
+                  <div className="w-8 h-8 rounded-full bg-red-500 text-white flex items-center justify-center text-sm font-bold">{user.avatar}</div>
                 </button>
 
                 {showUserMenu && (
-                  <div style={{
-                    position: 'absolute',
-                    top: '100%',
-                    right: 0,
-                    background: 'white',
-                    borderRadius: '8px',
-                    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.2)',
-                    minWidth: '200px',
-                    zIndex: 1000,
-                    marginTop: '0.5rem'
-                  }}>
-                    <div style={{
-                      padding: '1rem',
-                      borderBottom: '1px solid #eee',
-                      fontWeight: 'bold',
-                      color: '#1a0033'
-                    }}>
-                      {user.name}
-                    </div>
-                    <Link
-                      to="/profile"
-                      style={{
-                        display: 'block',
-                        padding: '0.75rem 1rem',
-                        color: '#333',
-                        textDecoration: 'none',
-                        borderBottom: '1px solid #eee'
-                      }}
-                      onClick={() => setShowUserMenu(false)}
-                    >
+                  <div className="absolute top-full right-0 bg-white rounded-lg shadow-lg min-w-[200px] z-50 mt-2">
+                    <div className="p-4 border-b font-semibold text-brand-dark">{user.name}</div>
+                    <Link to="/profile" className="block px-4 py-2 text-gray-800 hover:bg-gray-50 border-b" onClick={() => setShowUserMenu(false)}>
                       <span aria-hidden="true">👤</span> View Profile
                     </Link>
-                    <button
-                      onClick={handleLogout}
-                      style={{
-                        width: '100%',
-                        padding: '0.75rem 1rem',
-                        background: 'none',
-                        border: 'none',
-                        color: '#c62828',
-                        cursor: 'pointer',
-                        textAlign: 'left',
-                        borderRadius: '0 0 8px 8px'
-                      }}
-                    >
+                    <button onClick={handleLogout} className="w-full px-4 py-2 text-left text-red-600 hover:bg-gray-50 rounded-b-lg">
                       <span aria-hidden="true">🚪</span> Logout
                     </button>
                   </div>
@@ -222,18 +101,7 @@ const Navbar = () => {
             ) : (
               <button
                 onClick={() => setShowAuthModal(true)}
-                style={{
-                  background: '#ff6b6b',
-                  color: 'white',
-                  border: 'none',
-                  padding: '0.5rem 1.5rem',
-                  borderRadius: '25px',
-                  cursor: 'pointer',
-                  fontWeight: 'bold',
-                  transition: 'background 0.3s ease',
-                }}
-                onMouseEnter={(e) => e.target.style.background = '#ff5252'}
-                onMouseLeave={(e) => e.target.style.background = '#ff6b6b'}
+                className="bg-brand-red text-white px-4 py-2 rounded-full font-semibold hover:bg-brand-red/90"
               >
                 Login
               </button>
