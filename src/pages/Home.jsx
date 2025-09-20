@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-brand-purple to-brand-dark">
       <AnimatedBackground />
-      <div className="z-10 w-full max-w-3xl px-4 py-8 flex flex-col gap-8">
+      <div className="relative z-10 w-full max-w-3xl px-4 py-8 flex flex-col gap-8">
         <h1 className="text-4xl font-bold text-center text-white mb-6 drop-shadow-lg">
           Welcome to Limpopo Connect
         </h1>
